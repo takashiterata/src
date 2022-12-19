@@ -15,7 +15,7 @@ jQuery.noConflict();
     var messageEl = document.createElement('p');
 
     messageEl.classList.add('plugin-space-message');
-    messageEl.textContent = 'テストssd'+ config.message;
+    messageEl.textContent = 'テスト１２３４５４'+ config.message;
     headingEl.classList.add('plugin-space-heading');
     headingEl.textContent = 'こん kintone plugin!';
 
