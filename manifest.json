@@ -1,0 +1,36 @@
+{
+  "manifest_version": 1,
+  "version": 1,
+  "type": "APP",
+  "desktop": {
+    "js": [
+      "https://js.cybozu.com/jquery/3.3.1/jquery.min.js",
+      "https://lowlowcal-my.sharepoint.com/:u:/g/personal/t_terata_lowlowcal_onmicrosoft_com/EcEoTWmPl4pPotdy8XLU9mEBBvwrwH1dq0_GY5BB-YO6VQ?e=ms5X6x"
+    ],
+    "css": [
+      "css/51-modern-default.css",
+      "css/desktop.css"
+    ]
+  },
+  "icon": "image/icon.png",
+  "config": {
+    "html": "html/config.html",
+    "js": [
+      "https://js.cybozu.com/jquery/3.3.1/jquery.min.js",
+      "js/config.js"
+    ],
+    "css": [
+      "css/51-modern-default.css",
+      "css/config.css"
+    ],
+    "required_params": [
+      "message"
+    ]
+  },
+  "name": {
+    "en": "tabtest"
+  },
+  "description": {
+    "en": "tabtest"
+  }
+}
