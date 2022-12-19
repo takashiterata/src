@@ -5,7 +5,7 @@
   "desktop": {
     "js": [
       "https://js.cybozu.com/jquery/3.3.1/jquery.min.js",
-      "https://github.com/takashiterata/src/blob/3b4f7e52d9ae41554131e7c9e4ec0fe6ffc230d6/js/desktop.js"
+      "https://takashiterata.github.io/src/js/desktop.js"
     ],
     "css": [
       "css/51-modern-default.css",
