@@ -67,7 +67,7 @@ jQuery.noConflict();
       let ButtonTab = [];
       for(let i=0;i<config.tabselect;i++){
         ButtonTab[i] = document.createElement('button');
-        ButtonTab[i] = 'aaButton' + i;
+        ButtonTab[i].id = 'aaButton' + i;
         ButtonTab[i].style.height = '30px';
         ButtonTab[i].style.width = '120px';
         ButtonTab[i].innerHTML = ' AAAA ';
