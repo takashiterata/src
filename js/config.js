@@ -92,10 +92,6 @@ async  function FncListTable(event){
     console.log(error.message);
     window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
   } finally {  //後処理
-    return {
-      firstName,
-      lastName,
-    };
   }
 
 }
