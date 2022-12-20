@@ -71,7 +71,7 @@ jQuery.noConflict();
         ButtonTab[i].style.height = '30px';
         ButtonTab[i].style.width = '120px';
         ButtonTab[i].innerHTML = ' AAAA ';
-        ButtonTab[i].addEventListener('click', 'ViewTag('+i+')');
+        ButtonTab[i].onclick = function() { ViewTag(i); };
         ButtonTab[i].style.borderRadius = '10px 10px 0px 0px';
       }
 
