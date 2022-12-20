@@ -1,4 +1,4 @@
-/*jQuery.noConflict();
+jQuery.noConflict();
 
 (function($, PLUGIN_ID) {
   'use strict';
@@ -25,7 +25,7 @@
     window.location.href = '../../' + kintone.app.getId() + '/plugin/';
   });
 })(jQuery, kintone.$PLUGIN_ID);
-*/
+
 // アイテムのリストを取得
 const items = [...document.querySelectorAll(".item")];
 
