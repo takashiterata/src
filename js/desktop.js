@@ -24,7 +24,6 @@ jQuery.noConflict();
     spaceElement.appendChild(fragment);
   });
 
-/*
   const appId = kintone.app.getId();
   kintone.events.on(['app.record.detail.show','app.record.edit.show','app.record.create.show'], function(event) {
     DeleteList(event);
@@ -33,6 +32,7 @@ jQuery.noConflict();
   //移動対象のリストを取得
   async  function DeleteList(event){
     try {
+      let config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
       //タブの箱作成
       //箱はフォームの最も下に配置する
@@ -64,7 +64,18 @@ jQuery.noConflict();
       ButtonAll.style.borderRadius = '10px 10px 0px 0px';
 
 //設定値によりループする↓
-      let ButtonA = document.createElement('button');
+      let ButtonTab = [];
+      for(let i=0;i<config.tabselect;i++){
+        ButtonTab[i] = document.createElement('button');
+        ButtonTab[i] = 'aaButton' + i;
+        ButtonTab[i].style.height = '30px';
+        ButtonTab[i].style.width = '120px';
+        ButtonTab[i].innerHTML = ' AAAA ';
+        ButtonTab[i].onclick = function() { ViewTag(i); };
+        ButtonTab[i].style.borderRadius = '10px 10px 0px 0px';
+      }
+
+/*      let ButtonA = document.createElement('button');
       ButtonA.id = 'aaButton';
       ButtonA.style.height = '30px';
       ButtonA.style.width = '120px';
@@ -78,8 +89,9 @@ jQuery.noConflict();
       ButtonB.style.width = '120px';
       ButtonB.innerHTML = ' BBBB ';
       ButtonB.onclick = function() { ViewTag(2); };
-      ButtonB.style.borderRadius = '10px 10px 0px 0px';
+      ButtonB.style.borderRadius = '10px 10px 0px 0px'; */
 //設定値によりループする↑
+
 
       const recordGaia = document.getElementById("record-gaia").children[0];
 
@@ -91,13 +103,17 @@ jQuery.noConflict();
       recordGaia.appendChild(devSpace);
       devSpace.appendChild(ButtonAll);
 //設定値によりループする↓
-      devSpace.appendChild(ButtonA);
-      devSpace.appendChild(ButtonB);
+      for(let i=0;i<ButtonTab.length;i++){
+        devSpace.appendChild(ButtonTab[i]);
+      }
+//      devSpace.appendChild(ButtonA);
+//      devSpace.appendChild(ButtonB);
 //設定値によりループする↑
 
       recordGaia.appendChild(hrSpacef2);  //デバッグ用線
       recordGaia.appendChild(devSpacef);
 
+/*
       //オブジェクトの一覧取得
       //レコード情報
       let record = event.record;
@@ -154,13 +170,13 @@ jQuery.noConflict();
         devSpacef.appendChild(prmval[i][2]);
       }
 
-//      window.alert("完了しました。");
+//      window.alert("完了しました。"); */
     } catch (error) {  //エラー処理
       console.log(error.message);
       window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
     } finally {  //後処理
     }
-  }  */
+  }  
 })(jQuery, kintone.$PLUGIN_ID);
 
 /*
