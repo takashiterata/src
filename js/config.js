@@ -3,6 +3,18 @@ jQuery.noConflict();
 (function($, PLUGIN_ID) {
   'use strict';
 
+
+  const ListTable = document.getElementById("ListTable");
+  //フォームの設定情報
+  let { layout } = await kintone.api(
+    kintone.api.url('/k/v1/app/form/layout.json', true),
+    'GET',
+    { app: kintone.app.getId() }
+  );
+
+
+
+
   let $form = $('.js-submit-settings');
   let $cancelButton = $('.js-cancel-button');
   let $message = $('.js-text-message');
@@ -27,6 +39,10 @@ jQuery.noConflict();
     }
 
   }
+
+
+
+
   $form.on('submit', function(e) {
     e.preventDefault();
 
