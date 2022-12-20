@@ -23,7 +23,7 @@ jQuery.noConflict();
     //配列戻し
     $tabselect2val = config.tabselect2.split('@44');
     for(let i=0;i<$tabselect2val.length;i++){
-      $tabselect2any[i].val($tabselect2val[i]);
+      $tabselect2any[i].value = $tabselect2val[i];
     }
 
   }
