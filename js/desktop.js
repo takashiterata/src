@@ -60,7 +60,7 @@ jQuery.noConflict();
       ButtonAll.style.height = '30px';
       ButtonAll.style.width = '120px';
       ButtonAll.innerHTML = ' 全表示 ';
-      ButtonAll.addEventListener('click', 'ViewTag(ALL)');
+      ButtonAll.onclick = function() { ViewTag('ALL'); };
       ButtonAll.style.borderRadius = '10px 10px 0px 0px';
 
 //設定値によりループする↓
