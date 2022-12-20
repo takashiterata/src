@@ -81,7 +81,7 @@ jQuery.noConflict();
       ButtonA.style.width = '120px';
       ButtonA.innerHTML = ' AAAA ';
       ButtonA.onclick = function() { ViewTag(1); };
-      ButtonA.style.borderRadius = '10px 10px 0px 0px';
+      ButtonA.style.borderRadius = '10px 10px 0px 0px'; */
 //設定値によりループする↑
 
 
