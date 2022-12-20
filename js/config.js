@@ -53,7 +53,7 @@ async  function FncListTable(event){
     }
     ListTable.appendChild(devSpace); 
 
-    let $form = $('.js-submit-settings');
+    var $form = $('.js-submit-settings');
     let $cancelButton = $('.js-cancel-button');
     let $message = $('.js-text-message');
     let $tabselect = $('.tab-select');
