@@ -5,38 +5,6 @@ jQuery.noConflict();
 
   FncListTable();
 
-  let $form = $('.js-submit-settings');
-  let $cancelButton = $('.js-cancel-button');
-  let $message = $('.js-text-message');
-  let $tabselect = $('.tab-select');
-
-  let $tabselect2any = $('.tab-select2');
-  let $tabselect2val = [];
-  let $tabsetany = $('.tabset');
-  let $tabsetanyval = [];
-
-  if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
-    throw new Error('Required elements do not exist.');
-  }
-  var config = kintone.plugin.app.getConfig(PLUGIN_ID);
-
-  if (config.message) {
-    $message.val(config.message);
-    $tabselect.val(config.tabselect);
-
-    //配列戻し
-    $tabselect2val = config.tabselect2.split('@44');
-    for(let i=0;i<$tabselect2val.length-1;i++){
-      $tabselect2any[i].value = $tabselect2val[i];
-    }
-
-    $tabsetval = config.tabset.split('@44');
-    for(let i=0;i<$tabsetval.length-1;i++){
-      $tabsetany[i].value = $tabsetval[i];
-    }
-
-  }
-
   $form.on('submit', function(e) {
     e.preventDefault();
 
@@ -84,6 +52,38 @@ async  function FncListTable(event){
       devSpace.innerHTML = devSpace.innerHTML + ii + '行目' + layout[i]['type'] + '<select name="pets" class="tabset"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select><br>';
     }
     ListTable.appendChild(devSpace); 
+
+    let $form = $('.js-submit-settings');
+    let $cancelButton = $('.js-cancel-button');
+    let $message = $('.js-text-message');
+    let $tabselect = $('.tab-select');
+  
+    let $tabselect2any = $('.tab-select2');
+    let $tabselect2val = [];
+    let $tabsetany = $('.tabset');
+    let $tabsetanyval = [];
+  
+    if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
+      throw new Error('Required elements do not exist.');
+    }
+    var config = kintone.plugin.app.getConfig(PLUGIN_ID);
+  
+    if (config.message) {
+      $message.val(config.message);
+      $tabselect.val(config.tabselect);
+  
+      //配列戻し
+      $tabselect2val = config.tabselect2.split('@44');
+      for(let i=0;i<$tabselect2val.length-1;i++){
+        $tabselect2any[i].value = $tabselect2val[i];
+      }
+  
+      $tabsetval = config.tabset.split('@44');
+      for(let i=0;i<$tabsetval.length-1;i++){
+        $tabsetany[i].value = $tabsetval[i];
+      }
+  
+    }
 
   } catch (error) {  //エラー処理
     console.log(error.message);
