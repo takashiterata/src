@@ -69,7 +69,7 @@ async  function FncListTable(event){
     devSpace.innerHTML = '';//タブ位置の調整
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
-      devSpace.innerHTML = devSpace.innerHTML + ii + '行目' + layout[i]['type'] + '<br>';
+      devSpace.innerHTML = devSpace.innerHTML + ii + '行目' + layout[i]['type'] + '<select name="pets" class="tabset"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select><br>';
     }
     ListTable.appendChild(devSpace); 
 
