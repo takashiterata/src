@@ -22,11 +22,11 @@ jQuery.noConflict();
   $form.on('submit', function(e) {
     e.preventDefault();
 
-    //配列の設定;
+    //配列の設定 *プラグインの設定値は配列を格納できないので文字列連結でsplit;
     let $tabselect2any = document.getElementsByClassName("tab-select2");
-    let $tabselect2 = [];
+    let $tabselect2 = "";
     for(let i=0;i<$tabselect2any.length;i++){
-      $tabselect2[i] = $tabselect2any[i].value;
+      $tabselect2 += $tabselect2any[i].value + '@44';
     }
 
     kintone.plugin.app.setConfig({
