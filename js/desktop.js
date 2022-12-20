@@ -65,12 +65,13 @@ jQuery.noConflict();
 
 //設定値によりループする↓
       let ButtonTab = [];
+      let tabname = config.tabselect2.split('@44');
       for(let i=0;i<config.tabselect;i++){
         ButtonTab[i] = document.createElement('button');
         ButtonTab[i].id = 'aaButton' + i;
         ButtonTab[i].style.height = '30px';
         ButtonTab[i].style.width = '120px';
-        ButtonTab[i].innerHTML = ' AAAA ';
+        ButtonTab[i].innerHTML = tabname[i];
         ButtonTab[i].onclick = function() { ViewTag(i); };
         ButtonTab[i].style.borderRadius = '10px 10px 0px 0px';
       }

@@ -64,6 +64,14 @@ async  function FncListTable(event){
       'GET',
       { app: kintone.app.getId() }
     );
+
+    let devSpace = document.createElement('dev');
+    devSpace.innerHTML = '';//タブ位置の調整
+    for(let i =0;i<layout.length;i++){
+      devSpace.innerHTML = devSpace.innerHTML + layout[i]['type'];
+    }
+    ListTable.appendChild(devSpace); 
+    
   } catch (error) {  //エラー処理
     console.log(error.message);
     window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
