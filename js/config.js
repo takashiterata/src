@@ -3,19 +3,26 @@ jQuery.noConflict();
 (function($, PLUGIN_ID) {
   'use strict';
 
+  let $form = $('.js-submit-settings');
+  let $cancelButton = $('.js-cancel-button');
+  let $message = $('.js-text-message');
+  let $tabselect = $('.tab-select');
+
   FncListTable();
 
   $form.on('submit', function(e) {
     e.preventDefault();
 
     //配列の設定 *プラグインの設定値は配列を格納できないので文字列連結でsplit;
+    let $tabselect2any = $('.tab-select2');
     let $tabselect2 = "";
     for(let i=0;i<$tabselect2any.length;i++){
       $tabselect2 += $tabselect2any[i].value + '@44';
     }
+    let $tabsetany = $('.tabset');
     let $tabset = "";
     for(let i=0;i<$tabsetany.length;i++){
-      $tabset += $tabsetany[i].value + '@44';
+      $tabset += $tabsetany[i].value + '@44';m
     }
 
     kintone.plugin.app.setConfig({
@@ -52,15 +59,11 @@ async  function FncListTable(event){
       devSpace.innerHTML = devSpace.innerHTML + ii + '行目' + layout[i]['type'] + '<select name="pets" class="tabset"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select><br>';
     }
     ListTable.appendChild(devSpace); 
-
-    var $form = $('.js-submit-settings');
-    let $cancelButton = $('.js-cancel-button');
-    let $message = $('.js-text-message');
-    let $tabselect = $('.tab-select');
   
     let $tabselect2any = $('.tab-select2');
-    let $tabselect2val = [];
     let $tabsetany = $('.tabset');
+
+    let $tabselect2val = [];
     let $tabsetanyval = [];
   
     if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
@@ -89,6 +92,10 @@ async  function FncListTable(event){
     console.log(error.message);
     window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
   } finally {  //後処理
+    return {
+      firstName,
+      lastName,
+    };
   }
 
 }
