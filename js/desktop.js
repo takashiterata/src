@@ -24,7 +24,7 @@ jQuery.noConflict();
     spaceElement.appendChild(fragment);
   });
 
-
+/*
   const appId = kintone.app.getId();
   kintone.events.on(['app.record.detail.show','app.record.edit.show','app.record.create.show'], function(event) {
     DeleteList(event);
@@ -160,10 +160,10 @@ jQuery.noConflict();
       window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
     } finally {  //後処理
     }
-  }  
+  }  */
 })(jQuery, kintone.$PLUGIN_ID);
 
-
+/*
 function ViewTag(ViewType){
   let Tagparm = [];
   //設定値でループになる
@@ -181,3 +181,4 @@ function ViewTag(ViewType){
     }
   }
 }
+*/
