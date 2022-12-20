@@ -6,6 +6,8 @@ jQuery.noConflict();
   var $form = $('.js-submit-settings');
   var $cancelButton = $('.js-cancel-button');
   var $message = $('.js-text-message');
+  var $tabselect = $('.tab-select');
+  
   if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
     throw new Error('Required elements do not exist.');
   }
@@ -13,10 +15,14 @@ jQuery.noConflict();
 
   if (config.message) {
     $message.val(config.message);
+    $tabselect.val(config.tabselect);
   }
   $form.on('submit', function(e) {
     e.preventDefault();
-    kintone.plugin.app.setConfig({message: $message.val()}, function() {
+    kintone.plugin.app.setConfig({
+      message: $message.val(),
+      tabselect: $tabselect.val()
+    }, function() {
       alert('The plug-in settings have been saved. Please update the app!');
       window.location.href = '../../flow?app=' + kintone.app.getId();
     });

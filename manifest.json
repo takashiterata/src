@@ -24,8 +24,9 @@
       "css/config.css"
     ],
     "required_params": [
-      "message"
-    ]
+      "message",
+      "tab-select"
+      ]
   },
   "name": {
     "en": "tabtest"

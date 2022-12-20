@@ -52,7 +52,7 @@ jQuery.noConflict();
 
 //tab用の箱
       let devSpace = document.createElement('dev');
-      devSpace.innerHTML = '　　　　　　　　　　　　　';//タブ位置の調整
+      devSpace.innerHTML = '　　　　　　　　　　';//タブ位置の調整
 
 //固定tab
       let ButtonAll = document.createElement('button');
