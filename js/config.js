@@ -12,7 +12,9 @@ jQuery.noConflict();
 
   let $tabselect2any = $('.tab-select2');
   let $tabselect2val = [];
-  
+  let $tabsetany = $('.tabset');
+  let $tabsetanyval = [];
+
   if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
     throw new Error('Required elements do not exist.');
   }
@@ -26,6 +28,11 @@ jQuery.noConflict();
     $tabselect2val = config.tabselect2.split('@44');
     for(let i=0;i<$tabselect2val.length-1;i++){
       $tabselect2any[i].value = $tabselect2val[i];
+    }
+
+    $tabsetval = config.tabset.split('@44');
+    for(let i=0;i<$tabsetval.length-1;i++){
+      $tabsetany[i].value = $tabsetval[i];
     }
 
   }
@@ -43,6 +50,7 @@ jQuery.noConflict();
       message: $message.val()
       ,tabselect: $tabselect.val()
       ,tabselect2: $tabselect2
+      ,tabset: $tabset
     }, function() {
       alert('The plug-in settings have been saved. Please update the app!');
       window.location.href = '../../flow?app=' + kintone.app.getId();
