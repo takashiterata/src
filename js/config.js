@@ -22,7 +22,7 @@ jQuery.noConflict();
 
     //配列戻し
     $tabselect2val = config.tabselect2.split('@44');
-    for(let i=0;i<$tabselect2val.length;i++){
+    for(let i=0;i<$tabselect2val.length-1;i++){
       $tabselect2any[i].value = $tabselect2val[i];
     }
 
@@ -33,7 +33,7 @@ jQuery.noConflict();
     //配列の設定 *プラグインの設定値は配列を格納できないので文字列連結でsplit;
     let $tabselect2 = "";
     for(let i=0;i<$tabselect2any.length;i++){
-      $tabselect2 += $tabselect2any[i].val + '@44';
+      $tabselect2 += $tabselect2any[i].value + '@44';
     }
 
     kintone.plugin.app.setConfig({
