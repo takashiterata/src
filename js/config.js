@@ -3,17 +3,7 @@ jQuery.noConflict();
 (function($, PLUGIN_ID) {
   'use strict';
 
-
-  const ListTable = document.getElementById("ListTable");
-  //フォームの設定情報
-  let { layout } = await kintone.api(
-    kintone.api.url('/k/v1/app/form/layout.json', true),
-    'GET',
-    { app: kintone.app.getId() }
-  );
-
-
-
+  FncListTable();
 
   let $form = $('.js-submit-settings');
   let $cancelButton = $('.js-cancel-button');
@@ -40,9 +30,6 @@ jQuery.noConflict();
 
   }
 
-
-
-
   $form.on('submit', function(e) {
     e.preventDefault();
 
@@ -65,6 +52,26 @@ jQuery.noConflict();
     window.location.href = '../../' + kintone.app.getId() + '/plugin/';
   });
 })(jQuery, kintone.$PLUGIN_ID);
+
+
+//移動対象のリストを取得
+async  function FncListTable(event){
+  try{
+    const ListTable = document.getElementById("ListTable");
+    //フォームの設定情報
+    let { layout } = await kintone.api(
+      kintone.api.url('/k/v1/app/form/layout.json', true),
+      'GET',
+      { app: kintone.app.getId() }
+    );
+  } catch (error) {  //エラー処理
+    console.log(error.message);
+    window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
+  } finally {  //後処理
+  }
+
+}
+
 /*
 // アイテムのリストを取得
 const items = [...document.querySelectorAll(".item")];
