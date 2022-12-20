@@ -60,7 +60,7 @@ jQuery.noConflict();
       ButtonAll.style.height = '30px';
       ButtonAll.style.width = '120px';
       ButtonAll.innerHTML = ' 全表示 ';
-      ButtonALL.addEventListener('click', 'ViewTag(ALL)');
+      ButtonAll.addEventListener('click', 'ViewTag(ALL)');
       ButtonAll.style.borderRadius = '10px 10px 0px 0px';
 
 //設定値によりループする↓
@@ -82,14 +82,6 @@ jQuery.noConflict();
       ButtonA.innerHTML = ' AAAA ';
       ButtonA.onclick = function() { ViewTag(1); };
       ButtonA.style.borderRadius = '10px 10px 0px 0px';
-
-      let ButtonB = document.createElement('button');
-      ButtonB.id = 'bbButton';
-      ButtonB.style.height = '30px';
-      ButtonB.style.width = '120px';
-      ButtonB.innerHTML = ' BBBB ';
-      ButtonB.onclick = function() { ViewTag(2); };
-      ButtonB.style.borderRadius = '10px 10px 0px 0px'; */
 //設定値によりループする↑
 
 
