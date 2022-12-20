@@ -60,7 +60,7 @@ jQuery.noConflict();
       ButtonAll.style.height = '30px';
       ButtonAll.style.width = '120px';
       ButtonAll.innerHTML = ' 全表示 ';
-      ButtonAll.onclick = function() { ViewTag(0); };
+      ButtonALL.addEventListener('click', 'ViewTag(ALL)');
       ButtonAll.style.borderRadius = '10px 10px 0px 0px';
 
 //設定値によりループする↓
@@ -71,7 +71,7 @@ jQuery.noConflict();
         ButtonTab[i].style.height = '30px';
         ButtonTab[i].style.width = '120px';
         ButtonTab[i].innerHTML = ' AAAA ';
-        ButtonTab[i].onclick = function() { ViewTag(i); };
+        ButtonTab[i].addEventListener('click', 'ViewTag('+i+')');
         ButtonTab[i].style.borderRadius = '10px 10px 0px 0px';
       }
 
@@ -179,9 +179,10 @@ jQuery.noConflict();
   }  
 })(jQuery, kintone.$PLUGIN_ID);
 
-/*
+
 function ViewTag(ViewType){
-  let Tagparm = [];
+alert(ViewType);
+  /*  let Tagparm = [];
   //設定値でループになる
   Tagparm[1] = document.getElementsByClassName('tabVclass001');
   Tagparm[2] = document.getElementsByClassName('tabVclass002');
@@ -195,6 +196,5 @@ function ViewTag(ViewType){
       }
       
     }
-  }
+  }*/
 }
-*/
