@@ -31,7 +31,7 @@ jQuery.noConflict();
     kintone.plugin.app.setConfig({
       message: $message.val()
       ,tabselect: $tabselect.val()
-      ,tabselect2: $tabselect2.val()
+      ,tabselect2: $tabselect2
     }, function() {
       alert('The plug-in settings have been saved. Please update the app!');
       window.location.href = '../../flow?app=' + kintone.app.getId();
