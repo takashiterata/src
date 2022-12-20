@@ -19,6 +19,7 @@ jQuery.noConflict();
   }
   $form.on('submit', function(e) {
     e.preventDefault();
+
     kintone.plugin.app.setConfig({
       message: $message.val(),
       tabselect: $tabselect.val()
