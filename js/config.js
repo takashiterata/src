@@ -8,7 +8,8 @@ jQuery.noConflict();
   let $message = $('.js-text-message');
   let $tabselect = $('.tab-select');
 
-
+  let $tabselect2any = $('.tab-select2');
+  let $tabselect2val = [];
   
   if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
     throw new Error('Required elements do not exist.');
@@ -18,15 +19,21 @@ jQuery.noConflict();
   if (config.message) {
     $message.val(config.message);
     $tabselect.val(config.tabselect);
+
+    //配列戻し
+    $tabselect2val = config.tabselect2.split('@44');
+    for(let i=0;i<$tabselect2val.length;i++){
+      $tabselect2any[i].val($tabselect2val[i]);
+    }
+
   }
   $form.on('submit', function(e) {
     e.preventDefault();
 
     //配列の設定 *プラグインの設定値は配列を格納できないので文字列連結でsplit;
-    let $tabselect2any = document.getElementsByClassName("tab-select2");
     let $tabselect2 = "";
     for(let i=0;i<$tabselect2any.length;i++){
-      $tabselect2 += $tabselect2any[i].value + '@44';
+      $tabselect2 += $tabselect2any[i].val + '@44';
     }
 
     kintone.plugin.app.setConfig({
