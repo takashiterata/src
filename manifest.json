@@ -24,8 +24,9 @@
       "https://takashiterata.github.io/src/css/config.css"
     ],
     "required_params": [
-      "message",
-      "tabselect"
+      "message"
+      ,"tabselect"
+      ,"tabselect2"
       ]
   },
   "name": {

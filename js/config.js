@@ -7,6 +7,7 @@ jQuery.noConflict();
   var $cancelButton = $('.js-cancel-button');
   var $message = $('.js-text-message');
   var $tabselect = $('.tab-select');
+  var $tabselect2 = $('.tab-select2');
   
   if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
     throw new Error('Required elements do not exist.');
@@ -21,8 +22,9 @@ jQuery.noConflict();
     e.preventDefault();
 
     kintone.plugin.app.setConfig({
-      message: $message.val(),
-      tabselect: $tabselect.val()
+      message: $message.val()
+      ,tabselect: $tabselect.val()
+      ,tabselect2: $tabselect2.val()
     }, function() {
       alert('The plug-in settings have been saved. Please update the app!');
       window.location.href = '../../flow?app=' + kintone.app.getId();
