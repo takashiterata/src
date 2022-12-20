@@ -3,11 +3,18 @@ jQuery.noConflict();
 (function($, PLUGIN_ID) {
   'use strict';
 
-  var $form = $('.js-submit-settings');
-  var $cancelButton = $('.js-cancel-button');
-  var $message = $('.js-text-message');
-  var $tabselect = $('.tab-select');
-  var $tabselect2 = $('.tab-select2');
+  let $form = $('.js-submit-settings');
+  let $cancelButton = $('.js-cancel-button');
+  let $message = $('.js-text-message');
+  let $tabselect = $('.tab-select');
+
+//  let $tabselect2 = $('.tab-select2');
+  let $tabselect3 = document.getElementsByClassName("tab-select2");
+  let $tabselect2 = [];
+  for(let i=0;i<$tabselect3.length;i++){
+    $tabselect2[i] = $tabselect3[i].value;
+  }
+
   
   if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
     throw new Error('Required elements do not exist.');
