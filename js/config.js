@@ -45,6 +45,10 @@ jQuery.noConflict();
     for(let i=0;i<$tabselect2any.length;i++){
       $tabselect2 += $tabselect2any[i].value + '@44';
     }
+    let $tabset = "";
+    for(let i=0;i<$tabsetany.length;i++){
+      $tabset += $tabsetany[i].value + '@44';
+    }
 
     kintone.plugin.app.setConfig({
       message: $message.val()
