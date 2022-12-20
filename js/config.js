@@ -8,12 +8,6 @@ jQuery.noConflict();
   let $message = $('.js-text-message');
   let $tabselect = $('.tab-select');
 
-//  let $tabselect2 = $('.tab-select2');
-  let $tabselect3 = document.getElementsByClassName("tab-select2");
-  let $tabselect2 = [];
-  for(let i=0;i<$tabselect3.length;i++){
-    $tabselect2[i] = $tabselect3[i].value;
-  }
 
   
   if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
@@ -27,6 +21,13 @@ jQuery.noConflict();
   }
   $form.on('submit', function(e) {
     e.preventDefault();
+
+    //配列の設定;
+    let $tabselect2any = document.getElementsByClassName("tab-select2");
+    let $tabselect2 = [];
+    for(let i=0;i<$tabselect2any.length;i++){
+      $tabselect2[i] = $tabselect2any[i].value;
+    }
 
     kintone.plugin.app.setConfig({
       message: $message.val()
