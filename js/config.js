@@ -68,10 +68,11 @@ async  function FncListTable(event){
     let devSpace = document.createElement('dev');
     devSpace.innerHTML = '';//タブ位置の調整
     for(let i =0;i<layout.length;i++){
-      devSpace.innerHTML = devSpace.innerHTML + layout[i]['type'];
+      let ii = i +1;
+      devSpace.innerHTML = devSpace.innerHTML + ii + '行目' + layout[i]['type'] + '<br>';
     }
     ListTable.appendChild(devSpace); 
-    
+
   } catch (error) {  //エラー処理
     console.log(error.message);
     window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
