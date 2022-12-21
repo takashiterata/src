@@ -131,6 +131,7 @@ async function FncListTable(PLUGIN_ID){
     window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
   } finally {  //後処理
     FncDragiven();
+    FncMoveheight();
     const tabselectini = document.getElementById("tabselectini");
     tabselectini.onchange =function() { FnccngTabini(); };
   }
@@ -209,7 +210,6 @@ function FncDragiven(e){
     box.addEventListener("drop", handleDrop, false);
   }
 
-  FncMoveheight();
 }
 
 function FncMoveheight(e){
@@ -248,6 +248,7 @@ function FnccngTabini(e){
   }
   movetabbox.innerHTML=HtmlInnerVal;
 
+  FncDragiven();
   FncMoveheight();
   FncTabonclick(1);
 }
