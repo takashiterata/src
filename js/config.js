@@ -258,7 +258,7 @@ function FncTabonclick(ini){
   Objtabbox[0] =document.getElementById("tabbox0");
   for(let i=1;i<=tabselectini.value;i++){
     let tabboxname='tabbox' + i;
-    if(i=ini){
+    if(i==ini){
       document.getElementById(tabboxname).style.display='none';
     }else{
       document.getElementById(tabboxname).style.display='none';
