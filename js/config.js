@@ -15,7 +15,7 @@ jQuery.noConflict();
   let $tabsetany = $('.tabset');
 
   let $tabselect2val = [];
-  let $tabsetval = [];
+//  let $tabsetval = [];
 
   if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
     throw new Error('Required elements do not exist.');
@@ -32,10 +32,10 @@ jQuery.noConflict();
       $tabselect2any[i].value = $tabselect2val[i];
     }
 
-    $tabsetval = config.tabset.split('@44');
-    for(let i=0;i<$tabsetval.length-1;i++){
-      $tabsetany[i].value = $tabsetval[i];
-    }
+    // $tabsetval = config.tabset.split('@44');
+    // for(let i=0;i<$tabsetval.length-1;i++){
+    //   $tabsetany[i].value = $tabsetval[i];
+    // }
 
   }
 
@@ -83,9 +83,20 @@ async  function FncListTable(event){
 
     let devSpace = document.createElement('dev');
     devSpace.innerHTML = '';//タブ位置の調整
+
+    let tabsetval = config.tabset.split('@44');
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
-      devSpace.innerHTML = devSpace.innerHTML + ii + '行目' + layout[i]['type'] + '<select name="pets" class="tabset"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select><br>';
+      let seltop = '<select name="pets" class="tabset">';
+      for(let iii=0;iii<config.tabselect;iii++){
+        if(tabsetval[i] == iii){
+          seltop += '<option value="'+iii+'" selected>'+iii;
+        }else{
+          seltop += '<option value="'+iii+'">'+iii;
+        }
+      }
+      seltop += '</select>';
+      devSpace.innerHTML = devSpace.innerHTML + ii + '行目' + layout[i]['type'] + seltop +'<br>';
     }
     ListTable.appendChild(devSpace); 
   
