@@ -20,7 +20,7 @@ jQuery.noConflict();
   if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
     throw new Error('Required elements do not exist.');
   }
-  var config = kintone.plugin.app.getConfig(PLUGIN_ID);
+  let config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
   if (config.message) {
     $message.val(config.message);
@@ -42,6 +42,7 @@ jQuery.noConflict();
   $form.on('submit', function(e) {
     e.preventDefault();
 
+    let config = kintone.plugin.app.getConfig(PLUGIN_ID);
     //配列の設定 *プラグインの設定値は配列を格納できないので文字列連結でsplit;
     let $tabselect2any = $('.tab-select2');
     let $tabselect2 = "";
