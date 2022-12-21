@@ -204,11 +204,11 @@ function FncDragiven(e){
 function FncMoveheight(e){
   const Objtabbox0 = document.getElementById("tabbox0");
   const Objtabbox1 = document.getElementById("tabbox1");
-  if(Objtabbox0.style.height > Objtabbox1.style.height){
-    Objtabbox0.style.height = Objtabbox0.style.height;
-    Objtabbox1.style.height = Objtabbox0.style.height;
+  if(Objtabbox0.style.offsetHeight > Objtabbox1.style.offsetHeight){
+    Objtabbox0.style.height = Objtabbox0.style.offsetHeight;
+    Objtabbox1.style.height = Objtabbox0.style.offsetHeight;
   }else{
-    Objtabbox0.style.height = Objtabbox1.style.height;
-    Objtabbox1.style.height = Objtabbox1.style.height;
+    Objtabbox0.style.height = Objtabbox1.style.offsetHeight;
+    Objtabbox1.style.height = Objtabbox1.style.offsetHeight;
   }
 }
