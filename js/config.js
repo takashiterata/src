@@ -119,7 +119,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td><td id="movetabbox">';
     for(let i=1;i<=tabini;i++){
-      HtmlInnerVal += '<div class="box box2" id="tabbox"'+i+' style="width:100%;">'+ i +'</div>';
+      HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;">'+ i +'</div>';
     }
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '</table>';
@@ -244,7 +244,7 @@ function FnccngTabini(e){
   const movetabbox = document.getElementById("movetabbox");
   HtmlInnerVal ="";
   for(let i=1;i<=tabselectini.value;i++){
-    HtmlInnerVal += '<div class="box box2" id="tabbox"'+i+' style="width:100%;">'+ i +'</div>';
+    HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;">'+ i +'</div>';
   }
   movetabbox.innerHTML=HtmlInnerVal;
 
