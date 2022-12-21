@@ -81,10 +81,10 @@ async  function FncListTable(PLUGIN_ID){
     devSpace.innerHTML = '';//タブ位置の調整
 
     let tabsetval = config.tabset.split('@44');
-    for(let i =0;i<=layout.length;i++){
+    for(let i =0;i<layout.length;i++){
       let ii = i +1;
       let seltop = '<select name="pets" class="tabset">';
-      for(let iii=0;iii<config.tabselect;iii++){
+      for(let iii=0;iii<=config.tabselect;iii++){
         if(tabsetval[i] == iii){
           seltop += '<option value="'+iii+'" selected>'+iii;
         }else{
