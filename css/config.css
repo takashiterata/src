@@ -7,14 +7,15 @@
 }
 .grid {
   display: grid;
-/*  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 80vh;*/
+  grid-template-columns: 1fr 1fr;
+/*  grid-template-rows: 80vh;*/
 }
 
 .box {
   border: 1px solid black;
   /*display: flex;*/
   flex-flow: row nowrap;
+  overflow: hidden;
 }
 
 .item {
