@@ -90,7 +90,7 @@ async function FncListTable(PLUGIN_ID){
       }
     }
     for(let i=1;i<=tabini;i++){
-      HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[i] +'" onclick="FncTabonclick("'+ i +'")">';
+      HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[i] +'" onclick="FncTabonclick('+ i +')">';
     }
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '<tr><td>';
@@ -237,7 +237,7 @@ function FnccngTabini(e){
   const tabname = document.getElementById("tabname");
   let HtmlInnerVal ="";
   for(let i=1;i<=tabselectini.value;i++){
-    HtmlInnerVal += '<input type="text" class="tab-select2" value="" onclick="FncTabonclick("'+ i +'")">';
+    HtmlInnerVal += '<input type="text" class="tab-select2" value="" onclick="FncTabonclick('+ i +')">';
   }
   tabname.innerHTML=HtmlInnerVal;
 
