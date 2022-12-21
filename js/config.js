@@ -80,7 +80,11 @@ async  function FncListTable(PLUGIN_ID){
     let devSpace = document.createElement('dev');
     devSpace.innerHTML = '';//タブ位置の調整
 
-    let tabsetval = config.tabset.split('@44');
+    let tabsetval = [];
+    if(config.tabset){
+      tabsetval = config.tabset.split('@44');
+    }
+
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
       let seltop = '<select name="pets" class="tabset">';
