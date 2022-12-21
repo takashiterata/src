@@ -84,11 +84,15 @@ async  function FncListTable(PLUGIN_ID){
     if(config.tabset){
       tabsetval = config.tabset.split('@44');
     }
+    let tabini = 0;
+    if(config.tabselect){
+      tabini = config.tabselect;
+    }
 
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
       let seltop = '<select name="pets" class="tabset">';
-      for(let iii=0;iii<=config.tabselect;iii++){
+      for(let iii=0;iii<=tabini;iii++){
         if(tabsetval[i] == iii){
           seltop += '<option value="'+iii+'" selected>'+iii;
         }else{
