@@ -45,7 +45,7 @@ var  listCnt =0;
         let rowcc = document.getElementById(tabboxname).children[iii].id.replace('item','');
         tabsetany[rowcc] = i
       }
-      document.getElementById(tabboxname).children[0].id
+      //document.getElementById(tabboxname).children[0].id
     }
     for(let i=0;i<tabsetany.length;i++){
       $tabset += tabsetany[i].value + '@44';
