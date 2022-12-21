@@ -110,7 +110,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td><td>';
-    HtmlInnerVal += '<div class="box box2" style="width:100%;height: 100%;">';
+    HtmlInnerVal += '<div class="box box2" style="width:100%;">';
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '</table>';
