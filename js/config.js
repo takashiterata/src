@@ -42,7 +42,6 @@ jQuery.noConflict();
   $form.on('submit', function(e) {
     e.preventDefault();
 
-    let config = kintone.plugin.app.getConfig(PLUGIN_ID);
     //配列の設定 *プラグインの設定値は配列を格納できないので文字列連結でsplit;
     let $tabselect2any = $('.tab-select2');
     let $tabselect2 = "";
@@ -74,6 +73,7 @@ jQuery.noConflict();
 //移動対象のリストを取得
 async  function FncListTable(event){
   try{
+    let config = kintone.plugin.app.getConfig(PLUGIN_ID);
     const ListTable = document.getElementById("ListTable");
     //フォームの設定情報
     let { layout } = await kintone.api(
