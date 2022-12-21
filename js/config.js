@@ -78,7 +78,7 @@ async function FncListTable(PLUGIN_ID){
     }
 
     let HtmlInnerVal='';
-    HtmlInnerVal += '<table style="width:100%;"><tr><td style="width:50%;">TOP</td><td style="width:50%;">';
+    HtmlInnerVal += '<table style="width:100%;"><tr><td style="width:50%;">TOP</td><td style="width:50%;" id="tabname">';
     let tabselect2val = [];  //配列戻し用の変数もここで宣言
     //配列戻し
     if(config.tabselect2){
@@ -130,6 +130,8 @@ async function FncListTable(PLUGIN_ID){
     window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
   } finally {  //後処理
     FncDragiven();
+    const tabselectini = document.getElementById("tabselectini");
+    tabselectini.onchange =function() { FnccngTabini(); };
   }
 }
 
@@ -219,4 +221,15 @@ function FncMoveheight(e){
     Objtabbox0.style.height = Objtabbox1.clientHeight+'px';
     Objtabbox1.style.height = Objtabbox1.clientHeight+'px';
   }
+}
+
+function FnccngTabini(e){
+  const tabselectini = document.getElementById("tabselectini");
+  const tabname = document.getElementById("tabname");
+  let HtmlInnerVal ="";
+  for(let i=0;i<tabselectini.value;i++){
+    HtmlInnerVal += '<input type="text" class="tab-select2" value="">';
+  }
+  tabname.innerHTML=HtmlInnerVal;
+
 }
