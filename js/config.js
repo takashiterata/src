@@ -132,6 +132,7 @@ async function FncListTable(PLUGIN_ID){
   } finally {  //後処理
     FncDragiven();
     FncMoveheight();
+    FncTabonclick(1);
     const tabselectini = document.getElementById("tabselectini");
     tabselectini.onchange =function() { FnccngTabini(); };
   }
