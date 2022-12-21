@@ -216,7 +216,7 @@ function FncMoveheight(e){
   const tabselectini = document.getElementById("tabselectini");
   let Objtabbox=[];
   Objtabbox[0] =document.getElementById("tabbox0");
-  for(let i=1;i<tabselectini.value;i++){
+  for(let i=1;i<=tabselectini.value;i++){
     let tabboxname='tabbox' + i;
     Objtabbox[i] = document.getElementById(tabboxname);
   }
