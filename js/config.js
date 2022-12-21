@@ -119,7 +119,7 @@ async  function FncListTable(PLUGIN_ID){
   }
 }
 
-/*
+
 // アイテムのリストを取得
 const items = [...document.querySelectorAll(".item")];
 
@@ -201,4 +201,3 @@ for (const box of boxes) {
   box.addEventListener("dragover", handleDragOver, false);
   box.addEventListener("drop", handleDrop, false);
 }
-*/

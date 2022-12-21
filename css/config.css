@@ -14,7 +14,7 @@
 .box {
   border: 1px solid black;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
 }
 
 .item {
