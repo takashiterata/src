@@ -89,8 +89,8 @@ async  function FncListTable(PLUGIN_ID){
       tabini = config.tabselect;
     }
 
-    devSpace.innerHTML += '<div class="grid">';
-    devSpace.innerHTML += '<div class="box box1">';
+    devSpace.innerText += '<div class="grid">';
+    devSpace.innerinnerTextHTML += '<div class="box box1">';
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
       let seltop = '<select name="pets" class="tabset">';
@@ -102,12 +102,12 @@ async  function FncListTable(PLUGIN_ID){
         }
       }
       seltop += '</select>';
-      devSpace.innerHTML += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + seltop +'</div>';
+      devSpace.innerText += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + seltop +'</div>';
     }
 
-    devSpace.innerHTML += '</div>';
-    devSpace.innerHTML += '</div>';
-    devSpace.innerHTML += '<div class="box box2">';
+    devSpace.innerText += '</div>';
+    devSpace.innerText += '</div>';
+    devSpace.innerText += '<div class="box box2">';
     ListTable.appendChild(devSpace); 
 
   } catch (error) {  //エラー処理
