@@ -90,7 +90,7 @@ async  function FncListTable(PLUGIN_ID){
     }
 
     devSpace.innerText += '<div class="grid">';
-    devSpace.innerinnerTextHTML += '<div class="box box1">';
+    devSpace.innerText += '<div class="box box1">';
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
       let seltop = '<select name="pets" class="tabset">';
@@ -108,6 +108,7 @@ async  function FncListTable(PLUGIN_ID){
     devSpace.innerText += '</div>';
     devSpace.innerText += '</div>';
     devSpace.innerText += '<div class="box box2">';
+    devSpace.innerText += '</div>';
     ListTable.appendChild(devSpace); 
 
   } catch (error) {  //エラー処理
