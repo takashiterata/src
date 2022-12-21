@@ -3,25 +3,24 @@ jQuery.noConflict();
 (function($, PLUGIN_ID) {
   'use strict';
 
-  FncListTable(PLUGIN_ID);
+  FncListTable(PLUGIN_ID);  //API呼び出しで、同期解除の為別関数で呼び出し　動的配列も関数内で設定する。
 
+  //固定オブジェクトはここで宣言
   let $form = $('.js-submit-settings');
   let $cancelButton = $('.js-cancel-button');
   let $message = $('.js-text-message');
   let $tabselect = $('.tab-select');
 
+  //固定オブジェクト（配列）はここで宣言
   let $tabselect2any = $('.tab-select2');
-  let $tabsetany = $('.tabset');
-
-  let $tabselect2val = [];
-//  let $tabsetval = [];
+  let $tabselect2val = [];  //配列戻し用の変数もここで宣言
 
   if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
     throw new Error('Required elements do not exist.');
   }
   let config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
-  if (config.message) {
+  if (config.message) {  //格納設定値セット
     $message.val(config.message);
     $tabselect.val(config.tabselect);
 
@@ -30,29 +29,26 @@ jQuery.noConflict();
     for(let i=0;i<$tabselect2val.length-1;i++){
       $tabselect2any[i].value = $tabselect2val[i];
     }
-
-    // $tabsetval = config.tabset.split('@44');
-    // for(let i=0;i<$tabsetval.length-1;i++){
-    //   $tabsetany[i].value = $tabsetval[i];
-    // }
-
   }
 
   $form.on('submit', function(e) {
     e.preventDefault();
 
-    //配列の設定 *プラグインの設定値は配列を格納できないので文字列連結でsplit;
+    //配列の設定↓ *プラグインの設定値は配列を格納できないので文字列連結でsplit;
     let $tabselect2any = $('.tab-select2');
     let $tabselect2 = "";
     for(let i=0;i<$tabselect2any.length;i++){
       $tabselect2 += $tabselect2any[i].value + '@44';
     }
+
     let $tabsetany = $('.tabset');
     let $tabset = "";
     for(let i=0;i<$tabsetany.length;i++){
       $tabset += $tabsetany[i].value + '@44';
     }
+    //配列の設定↑
 
+    //Configへ値のセット
     kintone.plugin.app.setConfig({
       message: $message.val()
       ,tabselect: $tabselect.val()
@@ -85,7 +81,7 @@ async  function FncListTable(PLUGIN_ID){
     devSpace.innerHTML = '';//タブ位置の調整
 
     let tabsetval = config.tabset.split('@44');
-    for(let i =0;i<layout.length;i++){
+    for(let i =0;i<=layout.length;i++){
       let ii = i +1;
       let seltop = '<select name="pets" class="tabset">';
       for(let iii=0;iii<config.tabselect;iii++){
@@ -99,14 +95,12 @@ async  function FncListTable(PLUGIN_ID){
       devSpace.innerHTML = devSpace.innerHTML + ii + '行目' + layout[i]['type'] + seltop +'<br>';
     }
     ListTable.appendChild(devSpace); 
-  
 
   } catch (error) {  //エラー処理
     console.log(error.message);
     window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
   } finally {  //後処理
   }
-
 }
 
 /*
