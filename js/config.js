@@ -122,25 +122,39 @@ async function FncListTable(PLUGIN_ID){
     if(config.tabset){
       tabsetval = config.tabset.split('@44');
     }
+
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
-      let seltop = '<select name="pets" class="tabset">';
-      for(let iii=0;iii<=tabini;iii++){
-        if(tabsetval[i] == iii){
-          seltop += '<option value="'+iii+'" selected>'+iii;
-        }else{
-          seltop += '<option value="'+iii+'">'+iii;
-        }
+      if(tabsetval[i] == 0){
+        HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
       }
-      seltop += '</select>';
-      HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + seltop +'</div>';
     }
+
+    // for(let i =0;i<layout.length;i++){
+    //   let ii = i +1;
+    //   let seltop = '<select name="pets" class="tabset">';
+    //   for(let iii=0;iii<=tabini;iii++){
+    //     if(tabsetval[i] == iii){
+    //       seltop += '<option value="'+iii+'" selected>'+iii;
+    //     }else{
+    //       seltop += '<option value="'+iii+'">'+iii;
+    //     }
+    //   }
+    //   seltop += '</select>';
+    //   HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + seltop +'</div>';
+    // }
 
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td><td id="movetabbox">';
     for(let i=1;i<=tabini;i++){
       HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;">'+ i +'</div>';
+      for(let ii =0;ii<layout.length;ii++){
+        let iii = ii +1;
+        if(tabsetval[ii] == i){
+          HtmlInnerVal += '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目' + layout[ii]['type'] + iii +'</div>';
+        }
+      }
     }
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '</table>';
