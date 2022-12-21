@@ -84,6 +84,11 @@ async function FncListTable(PLUGIN_ID){
     if(config.tabselect2){
       tabselect2val = config.tabselect2.split('@44');
     }
+    if(tabselect2val.length == 0){
+      for(let i=0;i<tabini;i++){
+        tabselect2val[i] = '';
+      }
+    }
     for(let i=0;i<tabini;i++){
       HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[i] +'">';
     }
