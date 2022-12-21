@@ -1,5 +1,6 @@
 jQuery.noConflict();
 
+var  listCnt =0;
 (function($, PLUGIN_ID) {
   'use strict';
 
@@ -96,6 +97,8 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
     HtmlInnerVal += '<div class="box box1" id="tabbox0">';
+
+    listCnt =layout.length;
 
     let tabsetval = [];
     if(config.tabset){
@@ -234,6 +237,13 @@ function FncMoveheight(e){
 
 function FnccngTabini(e){
   const tabselectini = document.getElementById("tabselectini");
+
+  //初期化
+  let Objtabbox =document.getElementById("tabbox0");
+  for(let i=1;i<=listCnt;i++){
+    let tabboxname='item' + i;
+    Objtabbox.appendChild(document.getElementById(tabboxname));
+  }
 
   const tabname = document.getElementById("tabname");
   let HtmlInnerVal ="";
