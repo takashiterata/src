@@ -259,7 +259,7 @@ function FncTabonclick(ini){
   for(let i=1;i<=tabselectini.value;i++){
     let tabboxname='tabbox' + i;
     if(i==ini){
-      document.getElementById(tabboxname).style.display='none';
+      document.getElementById(tabboxname).style.display='';
     }else{
       document.getElementById(tabboxname).style.display='none';
     }
