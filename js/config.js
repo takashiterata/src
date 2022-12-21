@@ -110,7 +110,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td><td>';
-    HtmlInnerVal += '<div class="box box2" id="tabbox1" style="width:100%;height: 100%;">';
+    HtmlInnerVal += '<div class="box box2" id="tabbox1" style="width:100%;">';
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '</table>';
@@ -204,11 +204,11 @@ function FncDragiven(e){
 function FncMoveheight(e){
   const Objtabbox0 = document.getElementById("tabbox0");
   const Objtabbox1 = document.getElementById("tabbox1");
-  if(Objtabbox0.style.offsetHeight > Objtabbox1.style.offsetHeight){
-    Objtabbox0.style.height = Objtabbox0.style.offsetHeight;
-    Objtabbox1.style.height = Objtabbox0.style.offsetHeight;
+  if(Objtabbox0.style.clientHeight > Objtabbox1.style.clientHeight){
+    Objtabbox0.style.height = Objtabbox0.style.clientHeight;
+    Objtabbox1.style.height = Objtabbox0.style.clientHeight;
   }else{
-    Objtabbox0.style.height = Objtabbox1.style.offsetHeight;
-    Objtabbox1.style.height = Objtabbox1.style.offsetHeight;
+    Objtabbox0.style.height = Objtabbox1.style.clientHeight;
+    Objtabbox1.style.height = Objtabbox1.style.clientHeight;
   }
 }
