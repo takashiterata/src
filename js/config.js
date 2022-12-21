@@ -117,9 +117,10 @@ async function FncListTable(PLUGIN_ID){
 
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</div>';
-    HtmlInnerVal += '</td><td>';
-    HtmlInnerVal += '<div class="box box2" id="tabbox1" style="width:100%;">';
-    HtmlInnerVal += '</div>';
+    HtmlInnerVal += '</td><td id="movetabbox">';
+    for(let i=1;i<=tabini;i++){
+      HtmlInnerVal += '<div class="box box2" id="tabbox"'+i+' style="width:100%;">'+ i +'</div>';
+    }
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '</table>';
     devSpace.innerHTML = HtmlInnerVal;
@@ -212,19 +213,28 @@ function FncDragiven(e){
 }
 
 function FncMoveheight(e){
-  const Objtabbox0 = document.getElementById("tabbox0");
-  const Objtabbox1 = document.getElementById("tabbox1");
-  if(Objtabbox0.clientHeight > Objtabbox1.clientHeight){
-    Objtabbox0.style.height = Objtabbox0.clientHeight+'px';
-    Objtabbox1.style.height = Objtabbox0.clientHeight+'px';
-  }else{
-    Objtabbox0.style.height = Objtabbox1.clientHeight+'px';
-    Objtabbox1.style.height = Objtabbox1.clientHeight+'px';
+  const tabselectini = document.getElementById("tabselectini");
+  let Objtabbox=[];
+  Objtabbox[0] =document.getElementById("tabbox0");
+  for(let i=1;i<tabselectini.value;i++){
+    let tabboxname='tabbox' + i;
+    Objtabbox[i] = document.getElementById(tabboxname);
+  }
+  let maxheight =0;
+  for(let i=0;i<Objtabbox.length;i++){
+    if(Objtabbox[i].clientHeight > maxheight){
+      maxheight =Objtabbox[i].clientHeight
+    }
+  }
+  for(let i=0;i<Objtabbox.length;i++){
+      Objtabbox[i].style.height = maxheight+'px';
   }
 }
 
+
 function FnccngTabini(e){
   const tabselectini = document.getElementById("tabselectini");
+
   const tabname = document.getElementById("tabname");
   let HtmlInnerVal ="";
   for(let i=0;i<tabselectini.value;i++){
@@ -232,4 +242,10 @@ function FnccngTabini(e){
   }
   tabname.innerHTML=HtmlInnerVal;
 
+  const movetabbox = document.getElementById("movetabbox");
+  HtmlInnerVal ="";
+  for(let i=1;i<=tabselectini.value;i++){
+    HtmlInnerVal += '<div class="box box2" id="tabbox"'+i+' style="width:100%;">'+ i +'</div>';
+  }
+  movetabbox.innerHTML=HtmlInnerVal;
 }
