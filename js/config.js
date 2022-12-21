@@ -154,6 +154,7 @@ async function FncListTable(PLUGIN_ID){
         if(tabsetval[ii] == i){
           HtmlInnerVal += '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目' + layout[ii]['type'] + iii +'</div>';
         }
+        HtmlInnerVal += '</div>';
       }
     }
     HtmlInnerVal += '</td></tr>';
