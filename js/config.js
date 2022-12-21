@@ -205,10 +205,10 @@ function FncMoveheight(e){
   const Objtabbox0 = document.getElementById("tabbox0");
   const Objtabbox1 = document.getElementById("tabbox1");
   if(Objtabbox0.clientHeight > Objtabbox1.clientHeight){
-    Objtabbox0.style.height = Objtabbox0.clientHeight;
-    Objtabbox1.style.height = Objtabbox0.clientHeight;
+    Objtabbox0.style.height = Objtabbox0.clientHeight+'px';
+    Objtabbox1.style.height = Objtabbox0.clientHeight+'px';
   }else{
-    Objtabbox0.style.height = Objtabbox1.clientHeight;
-    Objtabbox1.style.height = Objtabbox1.clientHeight;
+    Objtabbox0.style.height = Objtabbox1.clientHeight+'px';
+    Objtabbox1.style.height = Objtabbox1.clientHeight+'px';
   }
 }
