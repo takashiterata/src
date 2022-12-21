@@ -79,15 +79,13 @@ async function FncListTable(PLUGIN_ID){
 
     let HtmlInnerVal='';
     HtmlInnerVal += '<table style="width:100%;"><tr><td style="width:50%;">TOP</td><td style="width:50%;">';
-    let seltop="";
     let tabselect2val = [];  //配列戻し用の変数もここで宣言
     //配列戻し
     if(config.tabselect2){
       tabselect2val = config.tabselect2.split('@44');
     }
-    for(let i=0;i<=tabini;i++){
-      let ii = i +1;
-      seltop += '<input type="text" class="tab-select2" value="'+ tabselect2val[ii] +'">';
+    for(let i=0;i<tabini;i++){
+      HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[i] +'">';
     }
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '<tr><td>';
