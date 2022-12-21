@@ -231,7 +231,6 @@ function FncMoveheight(e){
   }
 }
 
-
 function FnccngTabini(e){
   const tabselectini = document.getElementById("tabselectini");
 
@@ -248,4 +247,6 @@ function FnccngTabini(e){
     HtmlInnerVal += '<div class="box box2" id="tabbox"'+i+' style="width:100%;">'+ i +'</div>';
   }
   movetabbox.innerHTML=HtmlInnerVal;
+
+  FncMoveheight();
 }
