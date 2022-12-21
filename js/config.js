@@ -35,11 +35,28 @@ var  listCnt =0;
       $tabselect2 += $tabselect2any[i].value + '@44';
     }
 
-    let $tabsetany = $('.tabset');
-    let $tabset = "";
-    for(let i=0;i<$tabsetany.length;i++){
-      $tabset += $tabsetany[i].value + '@44';
+
+    const tabselectini = document.getElementById("tabselectini");
+    let tabsetany = [];
+    for(let i=0;i<=tabselectini.value;i++){
+      let tabboxname='tabbox' + i;
+      for(let ii=1;ii<=document.getElementById(tabboxname).childElementCount;ii++){
+        let iii = ii-1;
+        let rowcc = document.getElementById(tabboxname).children[iii].id.replace('item','');
+        tabsetany[rowcc] = i
+      }
+      document.getElementById(tabboxname).children[0].id
     }
+    for(let i=0;i<tabsetany.length;i++){
+      $tabset += tabsetany[i].value + '@44';
+    }
+
+
+    // let $tabsetany = $('.tabset');
+    // let $tabset = "";
+    // for(let i=0;i<$tabsetany.length;i++){
+    //   $tabset += $tabsetany[i].value + '@44';
+    // }
     //配列の設定↑
 
     //Configへ値のセット
