@@ -89,6 +89,8 @@ async function FncListTable(PLUGIN_ID){
       tabini = config.tabselect;
     }
     let HtmlInnerVal='';
+    HtmlInnerVal += '<table><tr><td></td></tr>';
+    HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
     HtmlInnerVal += '<div class="box box1">';
     for(let i =0;i<layout.length;i++){
@@ -107,8 +109,11 @@ async function FncListTable(PLUGIN_ID){
 
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</div>';
+    HtmlInnerVal += '</td><td>';
     HtmlInnerVal += '<div class="box box2">';
     HtmlInnerVal += '</div>';
+    HtmlInnerVal += '</td></tr>';
+    HtmlInnerVal += '</table>';
     devSpace.innerHTML = HtmlInnerVal;
     ListTable.appendChild(devSpace); 
 
