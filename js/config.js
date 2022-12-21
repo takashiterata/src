@@ -3,8 +3,7 @@ jQuery.noConflict();
 (function($, PLUGIN_ID) {
   'use strict';
 
-
-  FncListTable();
+  FncListTable(PLUGIN_ID);
 
   let $form = $('.js-submit-settings');
   let $cancelButton = $('.js-cancel-button');
@@ -71,7 +70,7 @@ jQuery.noConflict();
 
 
 //移動対象のリストを取得
-async  function FncListTable(event){
+async  function FncListTable(PLUGIN_ID){
   try{
     let config = kintone.plugin.app.getConfig(PLUGIN_ID);
     const ListTable = document.getElementById("ListTable");
