@@ -89,7 +89,7 @@ async function FncListTable(PLUGIN_ID){
       tabini = config.tabselect;
     }
     let HtmlInnerVal='';
-    HtmlInnerVal += '<table><tr><td></td></tr>';
+    HtmlInnerVal += '<table><tr><td>TOP</td><td>タブ</td></tr>';
     HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
     HtmlInnerVal += '<div class="box box1">';
