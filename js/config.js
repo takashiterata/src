@@ -92,7 +92,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '<table style="width:100%;"><tr><td style="width:50%;">TOP</td><td style="width:50%;">タブ</td></tr>';
     HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
-    HtmlInnerVal += '<div class="box box1">';
+    HtmlInnerVal += '<div class="box box1" id="tabbox0">';
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
       let seltop = '<select name="pets" class="tabset">';
@@ -110,7 +110,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td><td>';
-    HtmlInnerVal += '<div class="box box2" style="width:100%;">';
+    HtmlInnerVal += '<div class="box box2" id="tabbox1" style="width:100%;height: 100%;">';
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '</table>';
@@ -128,14 +128,11 @@ async function FncListTable(PLUGIN_ID){
 function FncDragiven(e){
   // アイテムのリストを取得
   const items = [...document.querySelectorAll(".item")];
-
   // ドラッグ開始イベントを定義
   const handleDragStart = (e) => {
     e.target.classList.add("dragging");
-
     // ドロップ効果の設定
     e.dataTransfer.effectAllowed = "move";
-
     // 転送するデータの設定
     const { id } = e.target;
     e.dataTransfer.setData("application/json", JSON.stringify({ id }));
@@ -143,7 +140,6 @@ function FncDragiven(e){
 
   // ドラッグ終了イベントを定義
   const handleDragEnd = (e) => e.target.classList.remove("dragging");
-
   // アイテムにイベントを登録
   for (const item of items) {
     item.addEventListener("dragstart", handleDragStart, false);
@@ -156,7 +152,6 @@ function FncDragiven(e){
     if ([...e.target.classList].includes("item")) {
       return;
     }
-
     e.target.classList.add("over");
   };
 
@@ -167,14 +162,12 @@ function FncDragiven(e){
   const handleDragOver = (e) => {
     // 要素が重なった際のブラウザ既定の処理を変更
     e.preventDefault();
-
     // 子要素へのドラッグを制限
     if ([...e.target.classList].includes("item")) {
       // ドラッグ不可のドロップ効果を設定
       e.dataTransfer.dropEffect = "none";
       return;
     }
-
     // ドロップ効果の設定
     e.dataTransfer.dropEffect = "move";
   };
@@ -189,22 +182,33 @@ function FncDragiven(e){
     if (e.dataTransfer.files.length > 0) {
       return;
     }
-
     // 転送データの取得
     const { id } = JSON.parse(e.dataTransfer.getData("application/json"));
-
     // ドロップ先に要素を追加する
     e.target.appendChild(document.getElementById(id));
   };
 
   // ドロップ先のリストを取得
   const boxes = [...document.querySelectorAll(".box")];
-
   // ドロップ先にイベントを登録
   for (const box of boxes) {
     box.addEventListener("dragenter", handleDragEnter, false);
     box.addEventListener("dragleave", handleDragLeave, false);
     box.addEventListener("dragover", handleDragOver, false);
     box.addEventListener("drop", handleDrop, false);
+  }
+
+  FncMoveheight();
+}
+
+function FncMoveheight(e){
+  const Objtabbox0 = document.getElementById("tabbox0");
+  const Objtabbox1 = document.getElementById("tabbox1");
+  if(Objtabbox0.style.height > Objtabbox1.style.height){
+    Objtabbox0.style.height = Objtabbox0.style.height;
+    Objtabbox1.style.height = Objtabbox0.style.height;
+  }else{
+    Objtabbox0.style.height = Objtabbox1.style.height;
+    Objtabbox1.style.height = Objtabbox1.style.height;
   }
 }
