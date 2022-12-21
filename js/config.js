@@ -12,8 +12,6 @@ jQuery.noConflict();
   let $tabselect = $('.tab-select');
 
   //固定オブジェクト（配列）はここで宣言
-  let $tabselect2any = $('.tab-select2');
-  let $tabselect2val = [];  //配列戻し用の変数もここで宣言
 
   if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
     throw new Error('Required elements do not exist.');
@@ -24,11 +22,6 @@ jQuery.noConflict();
     $message.val(config.message);
     $tabselect.val(config.tabselect);
 
-    //配列戻し
-    $tabselect2val = config.tabselect2.split('@44');
-    for(let i=0;i<$tabselect2val.length-1;i++){
-      $tabselect2any[i].value = $tabselect2val[i];
-    }
   }
 
   $form.on('submit', function(e) {
@@ -79,20 +72,32 @@ async function FncListTable(PLUGIN_ID){
 
     let devSpace = document.createElement('dev');
     devSpace.innerHTML = '';//タブ位置の調整
+    let tabini = 0;
+    if(config.tabselect){
+      tabini = config.tabselect;
+    }
+
+    let HtmlInnerVal='';
+    HtmlInnerVal += '<table style="width:100%;"><tr><td style="width:50%;">TOP</td><td style="width:50%;">';
+
+    let tabselect2val = [];  //配列戻し用の変数もここで宣言
+    //配列戻し
+    if(config.tabselect2){
+      tabselect2val = config.tabselect2.split('@44');
+    }
+    for(let i=0;i<=tabini;i++){
+      let ii = i +1;
+      seltop += '<input type="text" class="tab-select2" value="'+ tabselect2val[ii] +'">';
+    }
+    HtmlInnerVal += '</td></tr>';
+    HtmlInnerVal += '<tr><td>';
+    HtmlInnerVal += '<div class="grid">';
+    HtmlInnerVal += '<div class="box box1" id="tabbox0">';
 
     let tabsetval = [];
     if(config.tabset){
       tabsetval = config.tabset.split('@44');
     }
-    let tabini = 0;
-    if(config.tabselect){
-      tabini = config.tabselect;
-    }
-    let HtmlInnerVal='';
-    HtmlInnerVal += '<table style="width:100%;"><tr><td style="width:50%;">TOP</td><td style="width:50%;">タブ</td></tr>';
-    HtmlInnerVal += '<tr><td>';
-    HtmlInnerVal += '<div class="grid">';
-    HtmlInnerVal += '<div class="box box1" id="tabbox0">';
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
       let seltop = '<select name="pets" class="tabset">';
