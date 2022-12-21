@@ -47,6 +47,7 @@ var  listCnt =0;
       }
       //document.getElementById(tabboxname).children[0].id
     }
+    let $tabset = "";
     for(let i=1;i<=tabsetany.length;i++){
       $tabset += tabsetany[i] + '@44';
     }
