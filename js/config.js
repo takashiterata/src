@@ -155,7 +155,7 @@ async function FncListTable(PLUGIN_ID){
           HtmlInnerVal += '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目' + layout[ii]['type'] + iii +'</div>';
         }
       }
-    HtmlInnerVal += '</div>';
+      HtmlInnerVal += '</div>';
     }
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '</table>';
@@ -292,9 +292,9 @@ function FnccngTabini(e){
   }
   movetabbox.innerHTML=HtmlInnerVal;
 
+  FncTabonclick(1);
   FncDragiven();
   FncMoveheight();
-  FncTabonclick(1);
 }
 
 function FncTabonclick(ini){
