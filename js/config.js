@@ -224,6 +224,7 @@ function FncDragiven(e){
     const { id } = JSON.parse(e.dataTransfer.getData("application/json"));
     // ドロップ先に要素を追加する
     e.target.appendChild(document.getElementById(id));
+    FncMoveheight();
   };
 
   // ドロップ先のリストを取得
