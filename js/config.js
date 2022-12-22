@@ -125,9 +125,15 @@ async function FncListTable(PLUGIN_ID){
 
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
+      if(i >= 23){
+        continue;
+      }  
       if(tabsetval[i] == 0){
         HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
       }
+      // if(layout.length>tabsetval.length){
+      //   HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
+      // }
     }
 
     // for(let i =0;i<layout.length;i++){
