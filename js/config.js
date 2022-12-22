@@ -108,7 +108,7 @@ async function FncListTable(PLUGIN_ID){
         tabselect2val[i] = '';
       }
     }
-    for(let i=1;i<=tabini;i++){
+    for(let i=0;i<tabini;i++){
       HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[i] +'" onclick="FncTabonclick('+ i +')">';
     }
     HtmlInnerVal += '</td></tr>';
