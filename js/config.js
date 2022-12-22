@@ -125,7 +125,7 @@ async function FncListTable(PLUGIN_ID){
 
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
-      if(tabsetval[i] == 0){
+      if(tabsetval[i] == '0'){
         HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
       }
       if(tabsetval[i] =='' || tabsetval[i] =='undefined'){
