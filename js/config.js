@@ -280,7 +280,10 @@ function FnccngTabini(e){
   //初期化
   let Objtabbox =document.getElementById("tabbox0");
   for(let i=1;i<=listCnt;i++){
-    let tabboxname='item' + i;
+    if(i >= 23){
+      continue;
+    }  
+  let tabboxname='item' + i;
     Objtabbox.appendChild(document.getElementById(tabboxname));
   }
 
