@@ -125,15 +125,12 @@ async function FncListTable(PLUGIN_ID){
 
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
-      if(i >= 23){
-        continue;
-      }  
       if(tabsetval[i] == 0){
         HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
       }
-      // if(layout.length>tabsetval.length){
-      //   HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
-      // }
+      if(layout.length>tabsetval.length){
+        HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
+      }
     }
 
     // for(let i =0;i<layout.length;i++){
@@ -280,9 +277,6 @@ function FnccngTabini(e){
   //初期化
   let Objtabbox =document.getElementById("tabbox0");
   for(let i=1;i<=listCnt;i++){
-    if(i >= 23){
-      continue;
-    }  
   let tabboxname='item' + i;
     Objtabbox.appendChild(document.getElementById(tabboxname));
   }
