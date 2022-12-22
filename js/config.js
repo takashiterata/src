@@ -252,6 +252,7 @@ function FncMoveheight(e){
     for(let ii=0;ii<Objtabbox[i].childElementCount;ii++){
       boxheight += Objtabbox[i].children[ii].clientHeight+6;
     }
+    boxheight += 20;
     if(boxheight > maxheight){
       maxheight =boxheight
     }
