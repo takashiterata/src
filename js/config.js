@@ -133,20 +133,6 @@ async function FncListTable(PLUGIN_ID){
       }
     }
 
-    // for(let i =0;i<layout.length;i++){
-    //   let ii = i +1;
-    //   let seltop = '<select name="pets" class="tabset">';
-    //   for(let iii=0;iii<=tabini;iii++){
-    //     if(tabsetval[i] == iii){
-    //       seltop += '<option value="'+iii+'" selected>'+iii;
-    //     }else{
-    //       seltop += '<option value="'+iii+'">'+iii;
-    //     }
-    //   }
-    //   seltop += '</select>';
-    //   HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + seltop +'</div>';
-    // }
-
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td><td id="movetabbox">';
@@ -262,8 +248,12 @@ function FncMoveheight(e){
   }
   let maxheight =0;
   for(let i=0;i<Objtabbox.length;i++){
-    if(Objtabbox[i].clientHeight > maxheight){
-      maxheight =Objtabbox[i].clientHeight
+    let boxheight=0;
+    for(let ii=0;ii<Objtabbox[i].childElementCount;ii++){
+      boxheight += Objtabbox[i].children[ii].clientHeight;
+    }
+    if(boxheight > maxheight){
+      maxheight =boxheight
     }
   }
   for(let i=0;i<Objtabbox.length;i++){
