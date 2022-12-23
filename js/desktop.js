@@ -143,6 +143,11 @@ jQuery.noConflict();
         }
       }
 
+      let tabsetval = [];
+      if(config.tabset){
+        tabsetval = config.tabset.split('@44');
+      }
+  
       let tabsetvalTop =[];
       for(let i =0;i<layout.length;i++){
         let ii = i +1;
@@ -156,9 +161,6 @@ jQuery.noConflict();
       }
 
 /*
-      for(let i =5;i<=9;i++){
-        devSpaceh.appendChild(prmval[i][2]);
-      }
       for(let i =17;i<prmval.length;i++){
         devSpace.appendChild(prmval[i][2]);
         prmval[i][2].className = prmval[i][2].className + ' tabVclass001';
