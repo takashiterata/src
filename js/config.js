@@ -353,7 +353,7 @@ function FncTabonclick(ini){
       document.getElementById(tabboxname).style.display='none';
     }
   }
-  if(999 == ini){
+  if(999 == ini || tabselectini.value == '0'){
     document.getElementById('tabbox999').style.display='';
   }else{
     document.getElementById('tabbox999').style.display='none';
