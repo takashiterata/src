@@ -49,8 +49,8 @@ var  listCnt =0;
     }
     let tabboxname='tabbox999';
     for(let i=1;i<=document.getElementById(tabboxname).childElementCount;i++){
-      let i = i-1;
-      let rowcc = document.getElementById(tabboxname).children[iii].id.replace('item','');
+      let ii = i-1;
+      let rowcc = document.getElementById(tabboxname).children[ii].id.replace('item','');
       tabsetany[rowcc] = 999;
     }
 
@@ -263,7 +263,7 @@ function FncMoveheight(e){
     let tabboxname='tabbox' + i;
     Objtabbox[i] = document.getElementById(tabboxname);
   }
-  let fincnt = tabselectini.value + 1;
+  let fincnt = Number(tabselectini.value) + 1;
   Objtabbox[fincnt] =document.getElementById("tabbox999");
 
   let maxheight =0;
@@ -291,7 +291,7 @@ function FnccngTabini(e){
   let tabboxname='item' + i;
     Objtabbox.appendChild(document.getElementById(tabboxname));
   }
-  let fincnt = tabselectini.value + 1;
+  let fincnt = Number(tabselectini.value) + 1;
   Objtabbox[fincnt] =document.getElementById("tabbox999");
 
   const tabname = document.getElementById("tabname");
@@ -327,7 +327,7 @@ function FncTabonclick(ini){
       document.getElementById(tabboxname).style.display='none';
     }
   }
-  if(999==ini){
+  if(999 == ini){
     document.getElementById('tabbox999').style.display='';
   }else{
     document.getElementById('tabbox999').style.display='none';
