@@ -175,6 +175,9 @@ async function FncListTable(PLUGIN_ID){
     let tabsetvalBtm =[];
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
+      if(i>=tabsetval.length-1){
+        continue;
+      }
       let tabsetval2 = tabsetval[i].split('--');
       if(tabsetval2[0] == '999'){
         tabsetvalBtm[tabsetval2[1]]= '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
