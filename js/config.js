@@ -133,7 +133,7 @@ async function FncListTable(PLUGIN_ID){
 
     let tabsetvalTop =[];
     for(let i =0;i<layout.length;i++){
-      if(i<tabsetval.length){
+      if(i<tabsetval.length-1){
         continue;
       }
       let ii = i +1;
