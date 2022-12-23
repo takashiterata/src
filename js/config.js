@@ -145,7 +145,7 @@ async function FncListTable(PLUGIN_ID){
 
     for(let i =0;i<layout.length;i++){  //未設定の行
       let ii = i +1;
-      if(i >=  tabsetval.length){
+      if(i >=  tabsetval.length-1){
         HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
       }
     }
