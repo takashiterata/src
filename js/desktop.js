@@ -160,7 +160,23 @@ jQuery.noConflict();
         devSpaceh.appendChild(tabsetvalTop[i][2]);
       }
 
-/*
+
+      for(let i=1;i<=config.tabselect;i++){
+        let tabsetvalmid =[];
+        for(let ii =0;ii<layout.length;ii++){
+          let iii = ii +1;
+          let tabsetval2 = tabsetval[ii].split('--');
+          if(tabsetval2[0] == i){
+            tabsetvalmid[tabsetval2[1]]= prmval[i];
+          }
+        }
+        for(let ii=0;ii<tabsetvalmid.length;ii++){
+          devSpace.appendChild(tabsetvalmid[i][2]);
+          tabsetvalmid[i][2].className = tabsetvalmid[i][2].className + ' tabVclass' +i;
+        }
+      }
+  
+      /*
       for(let i =17;i<prmval.length;i++){
         devSpace.appendChild(prmval[i][2]);
         prmval[i][2].className = prmval[i][2].className + ' tabVclass001';
