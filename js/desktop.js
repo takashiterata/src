@@ -106,7 +106,6 @@ jQuery.noConflict();
       recordGaia.appendChild(hrSpacef2);  //デバッグ用線
       recordGaia.appendChild(devSpacef);
 
-/*
       //オブジェクトの一覧取得
       //レコード情報
       let record = event.record;
@@ -144,10 +143,19 @@ jQuery.noConflict();
         }
       }
 
-      // for(let i =0;i<prmval.length;i++){
-      //   devSpaceh.appendChild(prmval[i][2]);
-      // }
+      let tabsetvalTop =[];
+      for(let i =0;i<layout.length;i++){
+        let ii = i +1;
+        let tabsetval2 = tabsetval[i].split('--');
+        if(tabsetval2[0] == '0'){
+          tabsetvalTop[tabsetval2[1]] = prmval[i];
+        }
+      }
+      for(let i =0;i<tabsetvalTop.length;i++){
+        devSpaceh.appendChild(tabsetvalTop[i][2]);
+      }
 
+/*
       for(let i =5;i<=9;i++){
         devSpaceh.appendChild(prmval[i][2]);
       }
