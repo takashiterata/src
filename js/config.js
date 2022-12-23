@@ -169,12 +169,18 @@ async function FncListTable(PLUGIN_ID){
       HtmlInnerVal += '</div>';
     }
     HtmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;">ボトム';
+    let tabsetvalBtm =[];
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
-      if(tabsetval[i] == '999'){
-        HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
+      let tabsetval2 = tabsetval[i].split('--');
+      if(tabsetval2[0] == '999'){
+        tabsetvalBtm[tabsetval2[1]]= '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
       }
     }
+    for(let i=0;i<tabsetvalBtm.length;i++){
+      HtmlInnerVal +=tabsetvalBtm[i];
+    }
+
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '</table>';
