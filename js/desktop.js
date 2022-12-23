@@ -61,7 +61,7 @@ var  listCnt =0;
       ButtonAll.style.height = '30px';
       ButtonAll.style.width = '120px';
       ButtonAll.innerHTML = ' 全表示 ';
-      ButtonAll.onclick = function() { ViewTag('ALL'); };
+      ButtonAll.onclick = function() { ViewTag(0); };
       ButtonAll.style.borderRadius = '10px 10px 0px 0px';
 
 //設定値によりループする↓
