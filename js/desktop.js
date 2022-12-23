@@ -65,6 +65,7 @@ var  listCnt =0;
       ButtonAll.style.borderRadius = '10px 10px 0px 0px';
 
 //設定値によりループする↓
+      listCnt = config.tabselect;
       let ButtonTab = [];
       let tabname = config.tabselect2.split('@44');
       for(let i=0;i<config.tabselect;i++){
@@ -77,17 +78,7 @@ var  listCnt =0;
         ButtonTab[i].onclick = function() { ViewTag(ii); };
         ButtonTab[i].style.borderRadius = '10px 10px 0px 0px';
       }
-
-/*      let ButtonA = document.createElement('button');
-      ButtonA.id = 'aaButton';
-      ButtonA.style.height = '30px';
-      ButtonA.style.width = '120px';
-      ButtonA.innerHTML = ' AAAA ';
-      ButtonA.onclick = function() { ViewTag(1); };
-      ButtonA.style.borderRadius = '10px 10px 0px 0px'; */
 //設定値によりループする↑
-
-
       const recordGaia = document.getElementById("record-gaia").children[0];
 
       //ヘッダー、フッターの位置を作成
@@ -101,8 +92,6 @@ var  listCnt =0;
       for(let i=0;i<ButtonTab.length;i++){
         devSpace.appendChild(ButtonTab[i]);
       }
-//      devSpace.appendChild(ButtonA);
-//      devSpace.appendChild(ButtonB);
 //設定値によりループする↑
 
       recordGaia.appendChild(hrSpacef2);  //デバッグ用線
@@ -200,7 +189,6 @@ var  listCnt =0;
 
 
 function ViewTag(ViewType){
-alert(ViewType);
   let Tagparm = [];
   //設定値でループになる
   for(let i =1;i<=listCnt;i++){
