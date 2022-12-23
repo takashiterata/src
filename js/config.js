@@ -43,10 +43,17 @@ var  listCnt =0;
       for(let ii=1;ii<=document.getElementById(tabboxname).childElementCount;ii++){
         let iii = ii-1;
         let rowcc = document.getElementById(tabboxname).children[iii].id.replace('item','');
-        tabsetany[rowcc] = i
+        tabsetany[rowcc] = i;
       }
       //document.getElementById(tabboxname).children[0].id
     }
+    let tabboxname='tabbox999';
+    for(let i=1;i<=document.getElementById(tabboxname).childElementCount;i++){
+      let i = i-1;
+      let rowcc = document.getElementById(tabboxname).children[iii].id.replace('item','');
+      tabsetany[rowcc] = 999;
+    }
+
     let $tabset = "";
     for(let i=1;i<tabsetany.length;i++){
       $tabset += tabsetany[i] + '@44';
