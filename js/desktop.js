@@ -166,7 +166,7 @@ jQuery.noConflict();
           let iii = ii +1;
           let tabsetval2 = tabsetval[ii].split('--');
           if(tabsetval2[0] == i){
-            tabsetvalmid[tabsetval2[1]]= prmval[i];
+            tabsetvalmid[tabsetval2[1]]= prmval[ii];
           }
         }
         for(let ii=0;ii<tabsetvalmid.length;ii++){
@@ -174,7 +174,7 @@ jQuery.noConflict();
           tabsetvalmid[ii][2].className = tabsetvalmid[ii][2].className + ' tabVclass' +i;
         }
       }
-      //TOP
+      //BTM
       let tabsetvalBtm =[];
       for(let i =0;i<layout.length;i++){
         let ii = i +1;
