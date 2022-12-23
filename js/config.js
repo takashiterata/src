@@ -115,9 +115,10 @@ async function FncListTable(PLUGIN_ID){
       }
     }
     for(let i=1;i<=tabini;i++){
-      HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[i] +'" onclick="FncTabonclick('+ i +')">';
+      let ii=i-1;
+      HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')">';
     }
-    HtmlInnerVal += '<input type="text" class="tab-select2" value="ボトム" onclick="FncTabonclick(999)">';
+    HtmlInnerVal += '<input type="text" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)">';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
@@ -298,7 +299,7 @@ function FnccngTabini(e){
   for(let i=1;i<=tabselectini.value;i++){
     HtmlInnerVal += '<input type="text" class="tab-select2" value="" onclick="FncTabonclick('+ i +')">';
   }
-  HtmlInnerVal += '<input type="text" class="tab-select2" value="ボトム" onclick="FncTabonclick(999)">';
+  HtmlInnerVal += '<input type="text" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)">';
   tabname.innerHTML=HtmlInnerVal;
 
   const movetabbox = document.getElementById("movetabbox");
