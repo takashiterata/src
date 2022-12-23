@@ -51,7 +51,7 @@ var  listCnt =0;
     for(let i=1;i<=document.getElementById(tabboxname).childElementCount;i++){
       let ii = i-1;
       let rowcc = document.getElementById(tabboxname).children[ii].id.replace('item','');
-      tabsetany[rowcc] = 999;
+      tabsetany[rowcc] = '999'+'--'+ii;
     }
 
     let $tabset = "";
@@ -131,11 +131,20 @@ async function FncListTable(PLUGIN_ID){
       tabsetval = config.tabset.split('@44');
     }
 
+    let tabsetvalTop =[];
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
-      if(tabsetval[i] == '0'){
-        HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
+      let tabsetval2 = tabsetval[i].split('--');
+      if(tabsetval2[0] == '0'){
+        tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
       }
+    }
+    for(let i=0;i<tabsetvalTop.length;i++){
+      HtmlInnerVal +=tabsetvalTop[i];
+    }
+
+    for(let i =0;i<layout.length;i++){  //未設定の行
+      let ii = i +1;
       if(i >=  tabsetval.length){
         HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
       }
