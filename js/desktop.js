@@ -171,8 +171,8 @@ jQuery.noConflict();
           }
         }
         for(let ii=0;ii<tabsetvalmid.length;ii++){
-          devSpace.appendChild(tabsetvalmid[i][2]);
-          tabsetvalmid[i][2].className = tabsetvalmid[i][2].className + ' tabVclass' +i;
+          devSpace.appendChild(tabsetvalmid[ii][2]);
+          tabsetvalmid[ii][2].className = tabsetvalmid[ii][2].className + ' tabVclass' +i;
         }
       }
   
