@@ -1,5 +1,6 @@
 jQuery.noConflict();
 
+var  listCnt =0;
 (function($, PLUGIN_ID) {
   'use strict';
 
@@ -66,7 +67,7 @@ jQuery.noConflict();
 //設定値によりループする↓
       let ButtonTab = [];
       let tabname = config.tabselect2.split('@44');
-      for(let i=0;i<config.tabselect;i++){
+      for(let i=1;i<=config.tabselect;i++){
         ButtonTab[i] = document.createElement('button');
         ButtonTab[i].id = 'aaButton' + i;
         ButtonTab[i].style.height = '30px';
@@ -187,20 +188,7 @@ jQuery.noConflict();
         devSpacef.appendChild(tabsetvalBtm[i][2]);
       }
   
-      /*
-      for(let i =17;i<prmval.length;i++){
-        devSpace.appendChild(prmval[i][2]);
-        prmval[i][2].className = prmval[i][2].className + ' tabVclass001';
-      }
-      for(let i =0;i<=4;i++){
-        devSpace.appendChild(prmval[i][2]);
-        prmval[i][2].className = prmval[i][2].className + ' tabVclass002';
-      }
-      for(let i =10;i<=16;i++){
-        devSpacef.appendChild(prmval[i][2]);
-      }
-
-//      window.alert("完了しました。"); */
+//      window.alert("完了しました。");
     } catch (error) {  //エラー処理
       console.log(error.message);
       window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
@@ -212,10 +200,13 @@ jQuery.noConflict();
 
 function ViewTag(ViewType){
 alert(ViewType);
-  /*  let Tagparm = [];
+  let Tagparm = [];
   //設定値でループになる
-  Tagparm[1] = document.getElementsByClassName('tabVclass001');
-  Tagparm[2] = document.getElementsByClassName('tabVclass002');
+  for(let i =1;i<=listCnt;i++){
+    devSpacef.appendChild(tabsetvalBtm[i][2]);
+    let tabboxname = 'tabVclass' + i;
+    Tagparm[i] = document.getElementsByClassName(tabboxname);
+  }
 
   for(let i=1;i<Tagparm.length;i++){
     for(let ii=0;ii<Tagparm[i].length;ii++){
@@ -226,5 +217,5 @@ alert(ViewType);
       }
       
     }
-  }*/
+  }
 }
