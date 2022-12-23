@@ -43,7 +43,7 @@ var  listCnt =0;
       for(let ii=1;ii<=document.getElementById(tabboxname).childElementCount;ii++){
         let iii = ii-1;
         let rowcc = document.getElementById(tabboxname).children[iii].id.replace('item','');
-        tabsetany[rowcc] = i;
+        tabsetany[rowcc] = i+'--'+iii;
       }
       //document.getElementById(tabboxname).children[0].id
     }
