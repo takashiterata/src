@@ -109,13 +109,12 @@ async function FncListTable(PLUGIN_ID){
     //配列戻し
     if(config.tabselect2){
       tabselect2val = config.tabselect2.split('@44');
-    }
-    if(tabselect2val.length == 0){
+    }else if(tabselect2val.length == 0){
       for(let i=0;i<tabini;i++){
         tabselect2val[i] = '';
       }
     }
-    for(let i=0;i<tabini;i++){
+    for(let i=1;i<=tabini;i++){
       HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[i] +'" onclick="FncTabonclick('+ i +')">';
     }
     HtmlInnerVal += '<input type="text" class="tab-select2" value="ボトム" onclick="FncTabonclick(999)">';
