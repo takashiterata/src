@@ -147,7 +147,7 @@ jQuery.noConflict();
       if(config.tabset){
         tabsetval = config.tabset.split('@44');
       }
-  
+      //TOP
       let tabsetvalTop =[];
       for(let i =0;i<layout.length;i++){
         let ii = i +1;
@@ -159,8 +159,7 @@ jQuery.noConflict();
       for(let i =0;i<tabsetvalTop.length;i++){
         devSpaceh.appendChild(tabsetvalTop[i][2]);
       }
-
-
+      //MID
       for(let i=1;i<=config.tabselect;i++){
         let tabsetvalmid =[];
         for(let ii =0;ii<layout.length;ii++){
@@ -174,6 +173,18 @@ jQuery.noConflict();
           devSpace.appendChild(tabsetvalmid[ii][2]);
           tabsetvalmid[ii][2].className = tabsetvalmid[ii][2].className + ' tabVclass' +i;
         }
+      }
+      //TOP
+      let tabsetvalBtm =[];
+      for(let i =0;i<layout.length;i++){
+        let ii = i +1;
+        let tabsetval2 = tabsetval[i].split('--');
+        if(tabsetval2[0] == '999'){
+          tabsetvalTop[tabsetval2[1]] = prmval[i];
+        }
+      }
+      for(let i =0;i<tabsetvalBtm.length;i++){
+        devSpacef.appendChild(tabsetvalBtm[i][2]);
       }
   
       /*
