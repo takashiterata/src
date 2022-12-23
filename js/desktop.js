@@ -192,7 +192,6 @@ function ViewTag(ViewType){
   let Tagparm = [];
   //設定値でループになる
   for(let i =1;i<=listCnt;i++){
-    devSpacef.appendChild(tabsetvalBtm[i][2]);
     let tabboxname = 'tabVclass' + i;
     Tagparm[i] = document.getElementsByClassName(tabboxname);
   }
