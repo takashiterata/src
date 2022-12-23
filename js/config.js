@@ -171,7 +171,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;">ボトム';
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
-      if(tabsetval[i] == '999--'){
+      if(tabsetval[i] == '999'){
         HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
       }
     }
