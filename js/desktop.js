@@ -180,7 +180,7 @@ jQuery.noConflict();
         let ii = i +1;
         let tabsetval2 = tabsetval[i].split('--');
         if(tabsetval2[0] == '999'){
-          tabsetvalTop[tabsetval2[1]] = prmval[i];
+          tabsetvalBtm[tabsetval2[1]] = prmval[i];
         }
       }
       for(let i =0;i<tabsetvalBtm.length;i++){
