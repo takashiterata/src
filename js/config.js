@@ -187,7 +187,8 @@ async function FncListTable(PLUGIN_ID){
             tabsetvalmid[tabsetval2[1]] += '<div class="row-gaia clearFix-cybozu" style="position: relative;">';
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
               if(layout[ii]['fields'][i4]['type']=='SPACER'){
-                tabsetvalmid[tabsetval2[1]] += 'スペース　　';
+                FncClehtml(layout[ii]['fields'][i4]);
+                //tabsetvalmid[tabsetval2[1]] += 'スペース　　';
               }else if(layout[ii]['fields'][i4]['type']=='LABEL'){
                 tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
 
@@ -397,4 +398,18 @@ function FncTabonclick(ini){
 }
 
 function FncClehtml(valhtml){
+let htmlaa = '';
+if(valhtml['type']=='SPACER'){
+  htmlaa = '<div class="control-etc-gaia control-spacer-field-gaia " style="box-sizing: border-box; min-width: ' + valhtml[size][width] + 'px; min-height: ' + valhtml[size][height] + 'px;"><div class="spacer-cybozu"></div></div>';
+  tabsetvalmid[tabsetval2[1]] += 'スペース　　';
+}else if(valhtml['type']=='LABEL'){
+  tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
+
+}else if(valhtml['type']=='HR'){
+  tabsetvalmid[tabsetval2[1]] += '罫線　　';
+}else{
+  tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
+}
+
+return htmlaa;
 }
