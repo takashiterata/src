@@ -168,7 +168,7 @@ async function FncListTable(PLUGIN_ID){
             tabsetvalmid[tabsetval2[1]] += '';
           }else if(layout[ii]['type'] == 'GROUP'){
             for(let i4=0;i4 <layout[ii]['layout'].length;i4++){
-              for(let i5=0;i5 <layout[ii]['fields'].length;i5++){
+              for(let i5=0;i5 <layout[ii]['layout'][i4]['fields'].length;i5++){
                 tabsetvalmid[tabsetval2[1]] += layout[ii]['layout'][i4]['fields'][i5]['code'] + '　　';
               }
             }
