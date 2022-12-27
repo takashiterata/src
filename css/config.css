@@ -38,6 +38,8 @@
 .row-gaia .control-gaia.control-label-field-gaia {
   background-color: #f5f5f5;
   margin: 4px 0;
+  display:flex;
+  overflow: hidden;
 }
 
 .row-gaia .control-gaia {
