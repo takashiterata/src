@@ -187,15 +187,17 @@ async function FncListTable(PLUGIN_ID){
             tabsetvalmid[tabsetval2[1]] += '<div class="row-gaia clearFix-cybozu" style="position: relative;">';
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
               if(layout[ii]['fields'][i4]['type']=='SPACER'){
-                FncClehtml(layout[ii]['fields'][i4]);
+                tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]);
                 //tabsetvalmid[tabsetval2[1]] += 'スペース　　';
               }else if(layout[ii]['fields'][i4]['type']=='LABEL'){
+                FncClehtml(layout[ii]['fields'][i4]);
                 tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
-
               }else if(layout[ii]['fields'][i4]['type']=='HR'){
-                tabsetvalmid[tabsetval2[1]] += '罫線　　';
+                tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]);
+                //tabsetvalmid[tabsetval2[1]] += '罫線　　';
               }else{
-                tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
+                tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]);
+                //tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
               }
             }
             tabsetvalmid[tabsetval2[1]] += '</div>';
@@ -403,11 +405,19 @@ if(valhtml['type']=='SPACER'){
   htmlaa = '<div class="control-etc-gaia control-spacer-field-gaia " style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;"><div class="spacer-cybozu"></div></div>';
   //tabsetvalmid[tabsetval2[1]] += 'スペース　　';
 }else if(valhtml['type']=='LABEL'){
-  tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
+  htmlaa += '<div class="control-gaia control-label-field-gaia " style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
+  htmlaa += '<div class="control-inner-gaia"><span class="control-value-label-gaia">' + valhtml['label'] + '</span></div></div>';
+  //tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
 }else if(valhtml['type']=='HR'){
   htmlaa = '<div class="control-etc-gaia control-hr-field-gaia " style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;"><hr class="hr-cybozu"></div>';
   //tabsetvalmid[tabsetval2[1]] += '罫線　　';
 }else{
+  htmlaa += '<div class="control-gaia control-single_line_text-field-gaia field-5523298 control-show-gaia" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
+  htmlaa += '<div class="control-label-gaia label-5523298" style=""><span class="control-label-text-gaia">文字列 (1行)</span></div>';
+  htmlaa += '<div class="control-value-gaia value-5523298"><span class="control-value-content-gaia"></span></div>';
+  htmlaa += '<div class="control-design-gaia"></div>';
+  htmlaa += '</div>';
+
   //tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
 }
 
