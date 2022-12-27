@@ -172,14 +172,13 @@ async function FncListTable(PLUGIN_ID){
             for(let i4=0;i4 <layout[ii]['layout'].length;i4++){
               for(let i5=0;i5 <layout[ii]['layout'][i4]['fields'].length;i5++){
                 if(layout[ii]['layout'][i4]['fields'][i5]['type']=='SPACER'){
-                  tabsetvalmid[tabsetval2[1]] += 'スペース　　';
+                  tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]['fields'][i5]);
                 }else if(layout[ii]['layout'][i4]['fields'][i5]['type']=='LABEL'){
-                  tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
-
+                  tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]['fields'][i5]);
                 }else if(layout[ii]['layout'][i4]['fields'][i5]['type']=='HR'){
-                  tabsetvalmid[tabsetval2[1]] += '罫線　　';
+                  tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]['fields'][i5]);
                 }else{
-                  tabsetvalmid[tabsetval2[1]] += layout[ii]['layout'][i4]['fields'][i5]['code'] + '　　';
+                  tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]['fields'][i5]);
                 }
               }
             }
