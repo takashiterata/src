@@ -402,21 +402,21 @@ function FncTabonclick(ini){
 function FncClehtml(valhtml){
 let htmlaa = '';
 if(valhtml['type']=='SPACER'){
-  htmlaa = '<div class="control-etc-gaia control-spacer-field-gaia " style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;"><div class="spacer-cybozu"></div></div>';
+  htmlaa = '<span class="control-etc-gaia control-spacer-field-gaia " style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;"><div class="spacer-cybozu"></div></span>';
   //tabsetvalmid[tabsetval2[1]] += 'スペース　　';
 }else if(valhtml['type']=='LABEL'){
-  htmlaa += '<div class="control-gaia control-label-field-gaia " style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
-  htmlaa += '<div class="control-inner-gaia"><span class="control-value-label-gaia">' + valhtml['label'] + '</span></div></div>';
+  htmlaa += '<span class="control-gaia control-label-field-gaia " style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
+  htmlaa += '<div class="control-inner-gaia"><span class="control-value-label-gaia">' + valhtml['label'] + '</span></div></span>';
   //tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
 }else if(valhtml['type']=='HR'){
-  htmlaa = '<div class="control-etc-gaia control-hr-field-gaia " style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;"><hr class="hr-cybozu"></div>';
+  htmlaa = '<span class="control-etc-gaia control-hr-field-gaia " style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;"><hr class="hr-cybozu"></span>';
   //tabsetvalmid[tabsetval2[1]] += '罫線　　';
 }else{
-  htmlaa += '<div class="control-gaia control-single_line_text-field-gaia field-5523298 control-show-gaia" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
+  htmlaa += '<span class="control-gaia control-single_line_text-field-gaia field-5523298 control-show-gaia" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
   htmlaa += '<div class="control-label-gaia label-5523298" style=""><span class="control-label-text-gaia">文字列 (1行)</span></div>';
   htmlaa += '<div class="control-value-gaia value-5523298"><span class="control-value-content-gaia"></span></div>';
   htmlaa += '<div class="control-design-gaia"></div>';
-  htmlaa += '</div>';
+  htmlaa += '</span>';
 
   //tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
 }
