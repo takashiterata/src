@@ -165,7 +165,9 @@ async function FncListTable(PLUGIN_ID){
         if(tabsetval2[0] == i){
           tabsetvalmid[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目' + layout[ii]['type'] + iii;
           if(layout[ii]['type'] == 'SUBTABLE'){
-            tabsetvalmid[tabsetval2[1]] += '';
+            for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
+              tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
+            }
           }else if(layout[ii]['type'] == 'GROUP'){
             for(let i4=0;i4 <layout[ii]['layout'].length;i4++){
               for(let i5=0;i5 <layout[ii]['layout'][i4]['fields'].length;i5++){
