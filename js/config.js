@@ -169,12 +169,30 @@ async function FncListTable(PLUGIN_ID){
           }else if(layout[ii]['type'] == 'GROUP'){
             for(let i4=0;i4 <layout[ii]['layout'].length;i4++){
               for(let i5=0;i5 <layout[ii]['layout'][i4]['fields'].length;i5++){
-                tabsetvalmid[tabsetval2[1]] += layout[ii]['layout'][i4]['fields'][i5]['code'] + '　　';
+                if(layout[ii]['layout'][i4]['fields'][i5]['type']=='SPACER'){
+                  tabsetvalmid[tabsetval2[1]] += 'スペース　　';
+                }else if(layout[ii]['layout'][i4]['fields'][i5]['type']=='LABEL'){
+                  tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
+
+                }else if(layout[ii]['layout'][i4]['fields'][i5]['type']=='HR'){
+                  tabsetvalmid[tabsetval2[1]] += '罫線　　';
+                }else{
+                  tabsetvalmid[tabsetval2[1]] += layout[ii]['layout'][i4]['fields'][i5]['code'] + '　　';
+                }
               }
             }
           }else{
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
-              tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
+              if(layout[ii]['fields'][i4]['type']=='SPACER'){
+                tabsetvalmid[tabsetval2[1]] += 'スペース　　';
+              }else if(layout[ii]['fields'][i4]['type']=='LABEL'){
+                tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
+
+              }else if(layout[ii]['fields'][i4]['type']=='HR'){
+                tabsetvalmid[tabsetval2[1]] += '罫線　　';
+              }else{
+                tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
+              }
             }
           }
           tabsetvalmid[tabsetval2[1]] += '</div>';
