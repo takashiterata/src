@@ -167,8 +167,8 @@ async function FncListTable(PLUGIN_ID){
           if(layout[ii]['type'] == 'SUBTABLE'){
             tabsetvalmid[tabsetval2[1]] += '';
           }else if(layout[ii]['type'] == 'GROUP'){
-            for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
-              tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
+            for(let i4=0;i4 <layout[ii]['layout'].length;i4++){
+              tabsetvalmid[tabsetval2[1]] += layout[ii]['layout'][i4]['code'] + '　　';
             }
           }else{
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
