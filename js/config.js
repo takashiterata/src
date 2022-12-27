@@ -170,7 +170,7 @@ async function FncListTable(PLUGIN_ID){
             tabsetvalmid[tabsetval2[1]] += '';
           }else{
             for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-              tabsetvalmid[tabsetval2[1]] += layout[ii]['type']['code'] + '　　';
+              tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
             }
           }
           tabsetvalmid[tabsetval2[1]] += '</div>';
