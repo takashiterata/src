@@ -401,14 +401,14 @@ function FncClehtml(valhtml){
 let htmlaa = '';
 if(valhtml['type']=='SPACER'){
   htmlaa = '<div class="control-etc-gaia control-spacer-field-gaia " style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;"><div class="spacer-cybozu"></div></div>';
-  tabsetvalmid[tabsetval2[1]] += 'スペース　　';
+  //tabsetvalmid[tabsetval2[1]] += 'スペース　　';
 }else if(valhtml['type']=='LABEL'){
   tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
-
 }else if(valhtml['type']=='HR'){
-  tabsetvalmid[tabsetval2[1]] += '罫線　　';
+  htmlaa = '<div class="control-etc-gaia control-hr-field-gaia " style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;"><hr class="hr-cybozu"></div>';
+  //tabsetvalmid[tabsetval2[1]] += '罫線　　';
 }else{
-  tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
+  //tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
 }
 
 return htmlaa;
