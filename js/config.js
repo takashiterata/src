@@ -184,6 +184,7 @@ async function FncListTable(PLUGIN_ID){
               }
             }
           }else{
+            tabsetvalmid[tabsetval2[1]] += '<div class="row-gaia clearFix-cybozu" style="position: relative;">';
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
               if(layout[ii]['fields'][i4]['type']=='SPACER'){
                 tabsetvalmid[tabsetval2[1]] += 'スペース　　';
@@ -196,6 +197,7 @@ async function FncListTable(PLUGIN_ID){
                 tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
               }
             }
+            tabsetvalmid[tabsetval2[1]] += '</div>';
           }
           tabsetvalmid[tabsetval2[1]] += '</div>';
         }
@@ -393,4 +395,6 @@ function FncTabonclick(ini){
     document.getElementById('tabbox999').style.display='none';
   }
 }
-  
+
+function FncClehtml(valhtml){
+}
