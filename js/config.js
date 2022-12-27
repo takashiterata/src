@@ -400,7 +400,7 @@ function FncTabonclick(ini){
 function FncClehtml(valhtml){
 let htmlaa = '';
 if(valhtml['type']=='SPACER'){
-  htmlaa = '<div class="control-etc-gaia control-spacer-field-gaia " style="box-sizing: border-box; min-width: ' + valhtml[size][width] + 'px; min-height: ' + valhtml[size][height] + 'px;"><div class="spacer-cybozu"></div></div>';
+  htmlaa = '<div class="control-etc-gaia control-spacer-field-gaia " style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;"><div class="spacer-cybozu"></div></div>';
   tabsetvalmid[tabsetval2[1]] += 'スペース　　';
 }else if(valhtml['type']=='LABEL'){
   tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
