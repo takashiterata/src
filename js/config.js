@@ -163,7 +163,7 @@ async function FncListTable(PLUGIN_ID){
         let iii = ii +1;
         let tabsetval2 = tabsetval[ii].split('--');
         if(tabsetval2[0] == i){
-          tabsetvalmid[tabsetval2[1]] += '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目' + layout[ii]['type'] + iii;
+          tabsetvalmid[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目' + layout[ii]['type'] + iii;
           if(layout[ii]['type'] == 'SUBTABLE'){
             tabsetvalmid[tabsetval2[1]] += '';
           }else if(layout[ii]['type'] == 'GROUP'){
