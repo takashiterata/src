@@ -190,7 +190,7 @@ async function FncListTable(PLUGIN_ID){
                 tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]);
                 //tabsetvalmid[tabsetval2[1]] += 'スペース　　';
               }else if(layout[ii]['fields'][i4]['type']=='LABEL'){
-                FncClehtml(layout[ii]['fields'][i4]);
+                tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]);
                 //tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
               }else if(layout[ii]['fields'][i4]['type']=='HR'){
                 tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]);
