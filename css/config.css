@@ -35,3 +35,17 @@
   margin-left: 10px;
   margin-bottom: 12px;
 }
+.control-etc-gaia {
+  position: relative;
+  float: left;
+}
+.row-gaia .control-gaia.control-label-field-gaia {
+  background-color: #f5f5f5;
+  margin: 4px 0;
+}
+
+.row-gaia .control-gaia {
+  position: relative;
+  float: left;
+  padding: 0 8px;
+}
