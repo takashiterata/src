@@ -140,11 +140,18 @@ var  listCnt =0;
       }
       //TOP
       let tabsetvalTop =[];
+      let iicnt = 0;
       for(let i =0;i<layout.length;i++){
         let ii = i +1;
-        let tabsetval2 = tabsetval[i].split('--');
-        if(tabsetval2[0] == '0'){
-          tabsetvalTop[tabsetval2[1]] = prmval[i];
+        if(i<tabsetval.length-1){
+          let tabsetval2 = tabsetval[i].split('--');
+          if(tabsetval2[0] == '0'){
+            tabsetvalTop[tabsetval2[1]] = prmval[i];
+            iicnt = iicnt + 1;
+          }
+        }else{
+          tabsetvalTop[iicnt] = prmval[i];
+          iicnt = iicnt + 1;
         }
       }
       for(let i =0;i<tabsetvalTop.length;i++){
