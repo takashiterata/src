@@ -191,7 +191,10 @@ async function FncListTable(PLUGIN_ID){
       HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;background-color:#f5f5f5;">'+ i;
       let tabsetvalmid =[];
       for(let ii =0;ii<layout.length;ii++){
-        let iii = ii +1;
+        if(ii>=tabsetval.length-1){
+          continue;
+        }
+          let iii = ii +1;
         let tabsetval2 = tabsetval[ii].split('--');
         if(tabsetval2[0] == i){
           tabsetvalmid[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目';
