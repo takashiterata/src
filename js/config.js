@@ -140,7 +140,7 @@ async function FncListTable(PLUGIN_ID){
       let tabsetval2 = tabsetval[i].split('--');
       if(tabsetval2[0] == '0'){
         //tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
-        tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[ii]['type'] + ii;
+        tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii;
         if(layout[i]['type'] == 'SUBTABLE'){
           tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
@@ -226,7 +226,7 @@ async function FncListTable(PLUGIN_ID){
       let tabsetval2 = tabsetval[i].split('--');
       if(tabsetval2[0] == '999'){
         //tabsetvalBtm[tabsetval2[1]]= '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
-        tabsetvalBtm[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[ii]['type'] + ii;
+        tabsetvalBtm[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii;
         if(layout[i]['type'] == 'SUBTABLE'){
           tabsetvalBtm[tabsetval2[1]] += '<div class="" style="position: relative;">';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
