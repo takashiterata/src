@@ -201,7 +201,7 @@ async function FncListTable(PLUGIN_ID){
       }
       HtmlInnerVal += '</div>';
     }
-    HtmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;">ボトム';
+    HtmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;background-color:#f5f5f5;">ボトム';
     let tabsetvalBtm =[];
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
