@@ -161,7 +161,7 @@ var  listCnt =0;
       for(let i=1;i<=config.tabselect;i++){
         let tabsetvalmid =[];
         for(let ii =0;ii<layout.length;ii++){
-          if(i>=tabsetval.length-1){
+          if(ii>=tabsetval.length-1){
             continue;
           }
           let iii = ii +1;
