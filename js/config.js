@@ -196,7 +196,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td><td id="movetabbox">';
     for(let i=1;i<=tabini;i++){
-      HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;">'+ i;
+      HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;">';
       let tabsetvalmid =[];
       for(let ii =0;ii<layout.length;ii++){
         if(ii>=tabsetval.length-1){
@@ -235,7 +235,7 @@ async function FncListTable(PLUGIN_ID){
       }
       HtmlInnerVal += '</div>';
     }
-    HtmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;">ボトム';
+    HtmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;">';
     let tabsetvalBtm =[];
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
@@ -423,9 +423,9 @@ function FnccngTabini(e){
   const movetabbox = document.getElementById("movetabbox");
   HtmlInnerVal ="";
   for(let i=1;i<=tabselectini.value;i++){
-    HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;">'+ i +'</div>';
+    HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;"></div>';
   }
-  HtmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;">ボトム</div>';
+  HtmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;"></div>';
   movetabbox.innerHTML=HtmlInnerVal;
 
   FncTabonclick(1);
