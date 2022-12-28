@@ -210,7 +210,6 @@ async function FncListTable(PLUGIN_ID){
       }
       let tabsetval2 = tabsetval[i].split('--');
       if(tabsetval2[0] == '999'){
-        //tabsetvalBtm[tabsetval2[1]]= '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
         tabsetvalBtm[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
           tabsetvalBtm[tabsetval2[1]] += '<div class="" style="position: relative;">';
@@ -428,7 +427,6 @@ if(valhtml['type']=='SPACER'){
 }else if(valhtml['type']=='HR'){
   htmlaa = '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;"><hr class=""></div>';
   //tabsetvalmid[tabsetval2[1]] += '罫線　　';
-
 }else if(valhtml['type']=='REFERENCE_TABLE'){
   htmlaa += '<div class="" style="box-sizing: border-box;; height: auto;">';
   htmlaa += '<div class="" style=""><span class="control-label-text-gaia">' + valhtml['code'] + '</span></div>';
