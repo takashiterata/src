@@ -161,6 +161,9 @@ var  listCnt =0;
       for(let i=1;i<=config.tabselect;i++){
         let tabsetvalmid =[];
         for(let ii =0;ii<layout.length;ii++){
+          if(i>=tabsetval.length-1){
+            continue;
+          }
           let iii = ii +1;
           let tabsetval2 = tabsetval[ii].split('--');
           if(tabsetval2[0] == i){
@@ -175,6 +178,9 @@ var  listCnt =0;
       //BTM
       let tabsetvalBtm =[];
       for(let i =0;i<layout.length;i++){
+        if(i>=tabsetval.length-1){
+          continue;
+        }
         let ii = i +1;
         let tabsetval2 = tabsetval[i].split('--');
         if(tabsetval2[0] == '999'){
