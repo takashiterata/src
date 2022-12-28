@@ -318,6 +318,9 @@ function FncDragiven(e){
     if ([...e.target.classList].includes("item")) {
       return;
     }
+    if(!e.target.id.includes("tabbox")){
+      return;
+    }
     e.target.classList.add("over");
   };
 
