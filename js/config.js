@@ -137,7 +137,7 @@ async function FncListTable(PLUGIN_ID){
         if(layout[i]['type'] == 'SUBTABLE'){
           tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4]);
+            tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
           tabsetvalTop[tabsetval2[1]] += '</div>';
         }else if(layout[i]['type'] == 'GROUP'){
@@ -170,7 +170,7 @@ async function FncListTable(PLUGIN_ID){
         if(layout[i]['type'] == 'SUBTABLE'){
           HtmlInnerVal += '<div class="" style="position: relative;">';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            HtmlInnerVal += FncClehtml(layout[i]['fields'][i4]);
+            HtmlInnerVal += FncClehtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
           HtmlInnerVal += '</div>';
         }else if(layout[i]['type'] == 'GROUP'){
@@ -209,7 +209,7 @@ async function FncListTable(PLUGIN_ID){
           if(layout[ii]['type'] == 'SUBTABLE'){
             tabsetvalmid[tabsetval2[1]] += '<div class="" style="position: relative;">';
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
-              tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]);
+              tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4],layout[i]['type'],layout[i]['code']);
             }
             tabsetvalmid[tabsetval2[1]] += '</div>';
           }else if(layout[ii]['type'] == 'GROUP'){
@@ -248,7 +248,7 @@ async function FncListTable(PLUGIN_ID){
         if(layout[i]['type'] == 'SUBTABLE'){
           tabsetvalBtm[tabsetval2[1]] += '<div class="" style="position: relative;">';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            tabsetvalBtm[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4]);
+            tabsetvalBtm[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
           tabsetvalBtm[tabsetval2[1]] += '</div>';
         }else if(layout[i]['type'] == 'GROUP'){
@@ -449,7 +449,7 @@ function FncTabonclick(ini){
   }
 }
 
-function FncClehtml(valhtml){
+function FncClehtml(valhtml,valtype='no',valname='no'){
 let htmlaa = '';
 if(valhtml['type']=='SPACER'){
   htmlaa = '<div class="" style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;"><div class="spacer-cybozu"></div></div>';
@@ -467,6 +467,13 @@ if(valhtml['type']=='SPACER'){
   htmlaa += '<div class="control-value-gaia"><span class="control-value-content-gaia">'+ valhtml['code'] +'</span></div>';
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
+}else if(valtype == 'SUBTABLE'){
+  htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
+  htmlaa += '<div class="" style=""><span class="control-label-text-gaia">' + gproperties[valname][fields][valhtml['code']].label + '</span></div>';
+  htmlaa += '<div class="control-value-gaia"><span class="control-value-content-gaia">'+ valhtml['code'] +'</span></div>';
+  htmlaa += '<div class=""></div>';
+  htmlaa += '</div>';
+
 }else{
   htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
   htmlaa += '<div class="" style=""><span class="control-label-text-gaia">' + gproperties[valhtml['code']].label + '</span></div>';
