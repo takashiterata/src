@@ -104,7 +104,7 @@ async function FncListTable(PLUGIN_ID){
       let ii=i-1;
       HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')">';
     }
-    HtmlInnerVal += '<input type="text" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)">';
+    HtmlInnerVal += '<input type="text" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;borderRadius:10px 10px 0px 0px;">';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
