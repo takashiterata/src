@@ -440,9 +440,16 @@ if(valhtml['type']=='SPACER'){
 }else if(valhtml['type']=='HR'){
   htmlaa = '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;"><hr class=""></div>';
   //tabsetvalmid[tabsetval2[1]] += '罫線　　';
+
+}else if(valhtml['type']=='REFERENCE_TABLE'){
+  htmlaa += '<div class="" style="box-sizing: border-box;; height: auto;">';
+  htmlaa += '<div class="" style=""><span class="control-label-text-gaia">' + valhtml['code'] + '</span></div>';
+  htmlaa += '<div class=""><span class="control-value-content-gaia"></span></div>';
+  htmlaa += '<div class=""></div>';
+  htmlaa += '</div>';
 }else{
   htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
-  htmlaa += '<div class="" style=""><span class="control-label-text-gaia">文字列 (1行)</span></div>';
+  htmlaa += '<div class="" style=""><span class="control-label-text-gaia">' + valhtml['code'] + '</span></div>';
   htmlaa += '<div class=""><span class="control-value-content-gaia"></span></div>';
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
