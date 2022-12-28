@@ -462,7 +462,7 @@ if(valhtml['type']=='SPACER'){
 }else{
   htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
   htmlaa += '<div class="" style=""><span class="control-label-text-gaia">' + valhtml['code'] + '</span></div>';
-  htmlaa += '<div class=""><span class="control-value-content-gaia"></span></div>';
+  htmlaa += '<div class="control-value-gaia"><span class="control-value-content-gaia"></span></div>';
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
 
