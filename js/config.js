@@ -158,29 +158,29 @@ async function FncListTable(PLUGIN_ID){
       let ii = i +1;
       if(i >=  tabsetval.length-1){
         //HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
-        tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
+        HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
-          tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          HtmlInnerVal += '<div class="" style="position: relative;">';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4]);
+            HtmlInnerVal += FncClehtml(layout[i]['fields'][i4]);
           }
-          tabsetvalTop[tabsetval2[1]] += '</div>';
+          HtmlInnerVal += '</div>';
         }else if(layout[i]['type'] == 'GROUP'){
-          tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          HtmlInnerVal += '<div class="" style="position: relative;">';
           for(let i4=0;i4 <layout[i]['layout'].length;i4++){
             for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
-              tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['layout'][i4]['fields'][i5]);
+              HtmlInnerVal += FncClehtml(layout[i]['layout'][i4]['fields'][i5]);
             }
           }
-          tabsetvalTop[tabsetval2[1]] += '</div>';
+          HtmlInnerVal += '</div>';
         }else{
-          tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          HtmlInnerVal += '<div class="" style="position: relative;">';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4]);
+            HtmlInnerVal += FncClehtml(layout[i]['fields'][i4]);
           }
-          tabsetvalTop[tabsetval2[1]] += '</div>';
+          HtmlInnerVal += '</div>';
         }
-        tabsetvalTop[tabsetval2[1]] += '</div>';
+        HtmlInnerVal += '</div>';
       }
     }
 
