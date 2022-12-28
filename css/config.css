@@ -31,3 +31,12 @@
 .over {
   background-color: rgba(255, 255, 0, 0.3);
 }
+
+.showlayout-gaia .row-gaia .control-value-gaia {
+  border-color: #d8d8d8;
+  border-width: 1px;
+  border-style: solid;
+  padding: 4px 8px;
+  background-color: #eee;
+  word-wrap: break-word;
+}
