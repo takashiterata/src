@@ -108,7 +108,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
-    HtmlInnerVal += '<div class="box box1" id="tabbox0">';
+    HtmlInnerVal += '<div class="box box1" id="tabbox0" style="width:100%;background-color:#f5f5f5;">';
 
     listCnt =layout.length;
 
@@ -157,7 +157,30 @@ async function FncListTable(PLUGIN_ID){
     for(let i =0;i<layout.length;i++){  //未設定の行
       let ii = i +1;
       if(i >=  tabsetval.length-1){
-        HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
+        //HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
+        tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
+        if(layout[i]['type'] == 'SUBTABLE'){
+          tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+            tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4]);
+          }
+          tabsetvalTop[tabsetval2[1]] += '</div>';
+        }else if(layout[i]['type'] == 'GROUP'){
+          tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          for(let i4=0;i4 <layout[i]['layout'].length;i4++){
+            for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
+              tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['layout'][i4]['fields'][i5]);
+            }
+          }
+          tabsetvalTop[tabsetval2[1]] += '</div>';
+        }else{
+          tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+            tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4]);
+          }
+          tabsetvalTop[tabsetval2[1]] += '</div>';
+        }
+        tabsetvalTop[tabsetval2[1]] += '</div>';
       }
     }
 
@@ -165,7 +188,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td><td id="movetabbox">';
     for(let i=1;i<=tabini;i++){
-      HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;">'+ i;
+      HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;background-color:#f5f5f5;">'+ i;
       let tabsetvalmid =[];
       for(let ii =0;ii<layout.length;ii++){
         let iii = ii +1;
