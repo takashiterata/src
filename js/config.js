@@ -139,7 +139,30 @@ async function FncListTable(PLUGIN_ID){
       let ii = i +1;
       let tabsetval2 = tabsetval[i].split('--');
       if(tabsetval2[0] == '0'){
-        tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
+        //tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
+        tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[ii]['type'] + ii;
+        if(layout[i]['type'] == 'SUBTABLE'){
+          tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+            tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4]);
+          }
+          tabsetvalTop[tabsetval2[1]] += '</div>';
+        }else if(layout[i]['type'] == 'GROUP'){
+          tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          for(let i4=0;i4 <layout[i]['layout'].length;i4++){
+            for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
+              tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['layout'][i4]['fields'][i5]);
+            }
+          }
+          tabsetvalTop[tabsetval2[1]] += '</div>';
+        }else{
+          tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+            tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4]);
+          }
+          tabsetvalTop[tabsetval2[1]] += '</div>';
+        }
+        tabsetvalTop[tabsetval2[1]] += '</div>';
       }
     }
     for(let i=0;i<tabsetvalTop.length;i++){
@@ -226,7 +249,7 @@ async function FncListTable(PLUGIN_ID){
           tabsetvalBtm[tabsetval2[1]] += '</div>';
         }
         tabsetvalBtm[tabsetval2[1]] += '</div>';
-    }
+      }
     }
     for(let i=0;i<tabsetvalBtm.length;i++){
       HtmlInnerVal +=tabsetvalBtm[i];
