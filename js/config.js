@@ -1,6 +1,7 @@
 jQuery.noConflict();
 
 var  listCnt =0;
+var  gproperties =[];
 (function($, PLUGIN_ID) {
   'use strict';
 
@@ -82,13 +83,20 @@ async function FncListTable(PLUGIN_ID){
       { app: kintone.app.getId() }
     );
 
+    //フォームの設定情報
+    let { properties } = await kintone.api(
+      kintone.api.url('/k/v1/app/form/fields.json', true),
+      'GET',
+      { app: kintone.app.getId() }
+    );
+    gproperties = properties;
+
     let devSpace = document.createElement('dev');
     devSpace.innerHTML = '';//タブ位置の調整
     let tabini = 0;
     if(config.tabselect){
       tabini = config.tabselect;
     }
-
     let HtmlInnerVal='';
     HtmlInnerVal += '<table style="width:100%;background-color:#f5f5f5;"><tr><td style="width:50%;">TOP</td><td style="width:50%;" id="tabname">';
     let tabselect2val = [];  //配列戻し用の変数もここで宣言
