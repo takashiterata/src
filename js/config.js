@@ -116,7 +116,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
-    HtmlInnerVal += '<div class="box box1" id="tabbox0" style="width:100%;background-color:#f5f5f5;">';
+    HtmlInnerVal += '<div class="box box1" id="tabbox0" style="width:100%;">';
 
     listCnt =layout.length;
 
@@ -196,7 +196,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td><td id="movetabbox">';
     for(let i=1;i<=tabini;i++){
-      HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;background-color:#f5f5f5;">'+ i;
+      HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;">'+ i;
       let tabsetvalmid =[];
       for(let ii =0;ii<layout.length;ii++){
         if(ii>=tabsetval.length-1){
@@ -235,7 +235,7 @@ async function FncListTable(PLUGIN_ID){
       }
       HtmlInnerVal += '</div>';
     }
-    HtmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;background-color:#f5f5f5;">ボトム';
+    HtmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;">ボトム';
     let tabsetvalBtm =[];
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
@@ -415,9 +415,9 @@ function FnccngTabini(e){
   const tabname = document.getElementById("tabname");
   let HtmlInnerVal ="";
   for(let i=1;i<=tabselectini.value;i++){
-    HtmlInnerVal += '<input type="text" class="tab-select2" value="" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;">';
+    HtmlInnerVal += '<input type="text" class="tab-select2" value="" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;">';
   }
-  HtmlInnerVal += '<input type="text" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;">';
+  HtmlInnerVal += '<input type="text" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;">';
   tabname.innerHTML=HtmlInnerVal;
 
   const movetabbox = document.getElementById("movetabbox");
