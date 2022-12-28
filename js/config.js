@@ -165,15 +165,19 @@ async function FncListTable(PLUGIN_ID){
         if(tabsetval2[0] == i){
           tabsetvalmid[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目' + layout[ii]['type'] + iii;
           if(layout[ii]['type'] == 'SUBTABLE'){
+            tabsetvalmid[tabsetval2[1]] += '<div class="" style="position: relative;">';
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
               tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4]);
             }
+            tabsetvalmid[tabsetval2[1]] += '</div>';
           }else if(layout[ii]['type'] == 'GROUP'){
+            tabsetvalmid[tabsetval2[1]] += '<div class="" style="position: relative;">';
             for(let i4=0;i4 <layout[ii]['layout'].length;i4++){
               for(let i5=0;i5 <layout[ii]['layout'][i4]['fields'].length;i5++){
                 tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['layout'][i4]['fields'][i5]);
               }
             }
+            tabsetvalmid[tabsetval2[1]] += '</div>';
           }else{
             tabsetvalmid[tabsetval2[1]] += '<div class="" style="position: relative;">';
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
@@ -198,8 +202,31 @@ async function FncListTable(PLUGIN_ID){
       }
       let tabsetval2 = tabsetval[i].split('--');
       if(tabsetval2[0] == '999'){
-        tabsetvalBtm[tabsetval2[1]]= '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
-      }
+        //tabsetvalBtm[tabsetval2[1]]= '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
+        tabsetvalBtm[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目' + layout[ii]['type'] + iii;
+        if(layout[i]['type'] == 'SUBTABLE'){
+          tabsetvalBtm[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+            tabsetvalBtm[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4]);
+          }
+          tabsetvalBtm[tabsetval2[1]] += '</div>';
+        }else if(layout[i]['type'] == 'GROUP'){
+          tabsetvalBtm[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          for(let i4=0;i4 <layout[i]['layout'].length;i4++){
+            for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
+              tabsetvalBtm[tabsetval2[1]] += FncClehtml(layout[i]['layout'][i4]['fields'][i5]);
+            }
+          }
+          tabsetvalBtm[tabsetval2[1]] += '</div>';
+        }else{
+          tabsetvalBtm[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+            tabsetvalBtm[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4]);
+          }
+          tabsetvalBtm[tabsetval2[1]] += '</div>';
+        }
+        tabsetvalBtm[tabsetval2[1]] += '</div>';
+    }
     }
     for(let i=0;i<tabsetvalBtm.length;i++){
       HtmlInnerVal +=tabsetvalBtm[i];
