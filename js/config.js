@@ -90,7 +90,7 @@ async function FncListTable(PLUGIN_ID){
     }
 
     let HtmlInnerVal='';
-    HtmlInnerVal += '<table style="width:100%;"><tr><td style="width:50%;">TOP</td><td style="width:50%;" id="tabname">';
+    HtmlInnerVal += '<table style="width:100%;background-color:#f5f5f5;"><tr><td style="width:50%;">TOP</td><td style="width:50%;" id="tabname">';
     let tabselect2val = [];  //配列戻し用の変数もここで宣言
     //配列戻し
     if(config.tabselect2){
@@ -102,7 +102,7 @@ async function FncListTable(PLUGIN_ID){
     }
     for(let i=1;i<=tabini;i++){
       let ii=i-1;
-      HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')">';
+      HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;">';
     }
     HtmlInnerVal += '<input type="text" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;">';
     HtmlInnerVal += '</td></tr>';
@@ -404,9 +404,9 @@ function FnccngTabini(e){
   const tabname = document.getElementById("tabname");
   let HtmlInnerVal ="";
   for(let i=1;i<=tabselectini.value;i++){
-    HtmlInnerVal += '<input type="text" class="tab-select2" value="" onclick="FncTabonclick('+ i +')">';
+    HtmlInnerVal += '<input type="text" class="tab-select2" value="" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;">';
   }
-  HtmlInnerVal += '<input type="text" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)">';
+  HtmlInnerVal += '<input type="text" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;">';
   tabname.innerHTML=HtmlInnerVal;
 
   const movetabbox = document.getElementById("movetabbox");
