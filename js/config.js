@@ -11,7 +11,6 @@ var  listCnt =0;
   let $cancelButton = $('.js-cancel-button');
   let $message = $('.js-text-message');
   let $tabselect = $('.tab-select');
-
   //固定オブジェクト（配列）はここで宣言
 
   if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
@@ -22,20 +21,15 @@ var  listCnt =0;
   if (config.message) {  //格納設定値セット
     $message.val(config.message);
     $tabselect.val(config.tabselect);
-
   }
-
   $form.on('submit', function(e) {
     e.preventDefault();
-
     //配列の設定↓ *プラグインの設定値は配列を格納できないので文字列連結でsplit;
     let $tabselect2any = $('.tab-select2');
     let $tabselect2 = "";
     for(let i=0;i<$tabselect2any.length;i++){
       $tabselect2 += $tabselect2any[i].value + '@44';
     }
-
-
     const tabselectini = document.getElementById("tabselectini");
     let tabsetany = [];
     for(let i=0;i<=tabselectini.value;i++){
@@ -45,7 +39,6 @@ var  listCnt =0;
         let rowcc = document.getElementById(tabboxname).children[iii].id.replace('item','');
         tabsetany[rowcc] = i+'--'+iii;
       }
-      //document.getElementById(tabboxname).children[0].id
     }
     let tabboxname='tabbox999';
     for(let i=1;i<=document.getElementById(tabboxname).childElementCount;i++){
@@ -58,13 +51,6 @@ var  listCnt =0;
     for(let i=1;i<tabsetany.length;i++){
       $tabset += tabsetany[i] + '@44';
     }
-
-
-    // let $tabsetany = $('.tabset');
-    // let $tabset = "";
-    // for(let i=0;i<$tabsetany.length;i++){
-    //   $tabset += $tabsetany[i].value + '@44';
-    // }
     //配列の設定↑
 
     //Configへ値のセット
@@ -139,8 +125,7 @@ async function FncListTable(PLUGIN_ID){
       let ii = i +1;
       let tabsetval2 = tabsetval[i].split('--');
       if(tabsetval2[0] == '0'){
-        //tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
-        tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii;
+        tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
           tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
@@ -186,7 +171,7 @@ async function FncListTable(PLUGIN_ID){
         let iii = ii +1;
         let tabsetval2 = tabsetval[ii].split('--');
         if(tabsetval2[0] == i){
-          tabsetvalmid[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目' + layout[ii]['type'] + iii;
+          tabsetvalmid[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目';
           if(layout[ii]['type'] == 'SUBTABLE'){
             tabsetvalmid[tabsetval2[1]] += '<div class="" style="position: relative;">';
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
@@ -226,7 +211,7 @@ async function FncListTable(PLUGIN_ID){
       let tabsetval2 = tabsetval[i].split('--');
       if(tabsetval2[0] == '999'){
         //tabsetvalBtm[tabsetval2[1]]= '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
-        tabsetvalBtm[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii;
+        tabsetvalBtm[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
           tabsetvalBtm[tabsetval2[1]] += '<div class="" style="position: relative;">';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
