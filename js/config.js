@@ -332,6 +332,9 @@ function FncDragiven(e){
     }
     // 転送データの取得
     const { id } = JSON.parse(e.dataTransfer.getData("application/json"));
+    if(!e.target.id.includes("tabbox")){
+      return;
+    }
     // ドロップ先に要素を追加する
     e.target.appendChild(document.getElementById(id));
     FncMoveheight();
