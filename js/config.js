@@ -198,7 +198,9 @@ async function FncListTable(PLUGIN_ID){
 
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</div>';
-    HtmlInnerVal += '</td><td id="movetabbox">';
+    HtmlInnerVal += '</td><td>';
+    HtmlInnerVal += '<div id="movetabbox" class="grid">';
+
     for(let i=1;i<=tabini;i++){
       HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;">';
       let tabsetvalmid =[];
@@ -277,6 +279,7 @@ async function FncListTable(PLUGIN_ID){
       HtmlInnerVal +=tabsetvalBtm[i];
     }
 
+    HtmlInnerVal += '</div>';
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '</table>';
