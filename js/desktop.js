@@ -57,10 +57,11 @@ var  listCnt =0;
 
 //固定tab
       let ButtonAll = document.createElement('button');
-      ButtonAll.id = 'eeButton';
+      ButtonAll.id = 'aaButton0';
       ButtonAll.style.height = '30px';
       ButtonAll.style.width = '120px';
       ButtonAll.innerHTML = ' 全表示 ';
+      ButtonAll.className = "tabbottnname";
       ButtonAll.onclick = function() { ViewTag(0); };
       ButtonAll.style.borderRadius = '10px 10px 0px 0px';
 
@@ -205,11 +206,30 @@ var  listCnt =0;
 
 function ViewTag(ViewType){
   let Tagparm = [];
+  let TagparmTab = [];
   //設定値でループになる
   for(let i =1;i<=listCnt;i++){
     let tabboxname = 'tabVclass' + i;
     Tagparm[i] = document.getElementsByClassName(tabboxname);
   }
+  let strint=1;
+  if(2<=listCnt){
+    TagparmTab[0] = document.getElementById('aaButton0');
+    strint=0;
+  }
+  for(let i =1;i<=listCnt;i++){
+    let tabboxname = 'aaButton' + i;
+    TagparmTab[i] = document.getElementById(tabboxname);
+  }
+  for(let i=strint;i<TagparmTab.length;i++){
+    if(ViewType == i){
+      TagparmTab[i].style.background = '#fff0f0';
+    }else{
+      TagparmTab[i].style.background = '#ccf0f0';
+    }
+  }
+
+
 
   for(let i=1;i<Tagparm.length;i++){
     for(let ii=0;ii<Tagparm[i].length;ii++){
@@ -218,7 +238,6 @@ function ViewTag(ViewType){
       }else{
         Tagparm[i][ii].style.display = 'none';
       }
-      
     }
   }
 }
