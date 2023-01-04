@@ -472,13 +472,11 @@ if(valhtml['type']=='SPACER'){  //スペース
   htmlaa += '<div class="" style="box-sizing: border-box;; height: auto;display:inline-block">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']].label + '</span></div>';
   for(let i=0;i< gproperties[valhtml['code']]['referenceTable']['displayFields'].length;i++){
-    htmlaa += '<div class="subtable-label-gaiatab" style="box-sizing:border-box;height:auto;display:inline-block">';
+    htmlaa += '<div class="subtable-label-gaiatab" style="box-sizing:border-box;width: ' + valhtml['size']['width'] + 'px;height:auto;display:inline-block">';
     htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']]['referenceTable']['displayFields'][i] + '</span></div>';
-    // htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
+    htmlaa += '<div class=""></div>';
+    htmlaa += '</div>';
   }
-
-  // htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
-
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
 }else if(valtype == 'SUBTABLE'){  //テーブル
