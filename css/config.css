@@ -14,8 +14,7 @@
 
 .box {
   border: 1px solid black;
-  /*display: flex;*/
-  /*flex-flow: row nowrap;*/
+  white-space: nowrap;
   overflow: hidden;
 }
 

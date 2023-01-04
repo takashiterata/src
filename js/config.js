@@ -459,30 +459,30 @@ function FncTabonclick(ini){
 function FncClehtml(valhtml,valtype='no',valname='no'){
 let htmlaa = '';
 if(valhtml['type']=='SPACER'){
-  htmlaa = '<div class="" style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;"><div class="spacer-cybozu"></div></div>';
+  htmlaa = '<div class="" style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;display:inline-block"><div class="spacer-cybozu"></div></div>';
   //tabsetvalmid[tabsetval2[1]] += 'スペース　　';
 }else if(valhtml['type']=='LABEL'){
-  htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
+  htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block">';
   htmlaa += '<div class=""><span class="">' + valhtml['label'] + '</span></div></div>';
   //tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
 }else if(valhtml['type']=='HR'){
-  htmlaa = '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;"><hr class=""></div>';
+  htmlaa = '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block"><hr class=""></div>';
   //tabsetvalmid[tabsetval2[1]] += '罫線　　';
 }else if(valhtml['type']=='REFERENCE_TABLE'){
-  htmlaa += '<div class="" style="box-sizing: border-box;; height: auto;">';
+  htmlaa += '<div class="" style="box-sizing: border-box;; height: auto;display:inline-block">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']].label + '</span></div>';
   htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
 }else if(valtype == 'SUBTABLE'){
-  htmlaa += '<div class="subtable-label-gaiatab" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
+  htmlaa += '<div class="subtable-label-gaiatab" style="box-sizing:border-box;width: ' + valhtml['size']['width'] + 'px;height:auto;display:inline-block">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valname]['fields'][valhtml['code']].label + '</span></div>';
   htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
 
 }else{
-  htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
+  htmlaa += '<div class="" style="box-sizing:border-box;width: ' + valhtml['size']['width'] + 'px;height:auto;display:inline-block">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']].label + '</span></div>';
   htmlaa += '<div class="cocontrol-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
   htmlaa += '<div class=""></div>';
