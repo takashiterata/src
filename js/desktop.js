@@ -228,9 +228,9 @@ function ViewTag(ViewType){
   }
   for(let i=strint;i<TagparmTab.length;i++){
     if(ViewType == i){
-      TagparmTab[i].style.background = '#fff0f0';
+      TagparmTab[i].style.background = '#f0f0f0';
     }else{
-      TagparmTab[i].style.background = '#ccf0f0';
+      TagparmTab[i].style.background = '#969998';
     }
   }
 
