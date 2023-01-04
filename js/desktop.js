@@ -4,26 +4,26 @@ var  listCnt =0;
 (function($, PLUGIN_ID) {
   'use strict';
 
-  kintone.events.on('app.record.index.show', function() {
-    var config = kintone.plugin.app.getConfig(PLUGIN_ID);
+  // kintone.events.on('app.record.index.show', function() {
+  //   var config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
-    var spaceElement = kintone.app.getHeaderSpaceElement();
-    if (spaceElement === null) {
-      throw new Error('The header element is unavailable on this page');
-    }
-    var fragment = document.createDocumentFragment();
-    var headingEl = document.createElement('h3');
-    var messageEl = document.createElement('p');
+  //   var spaceElement = kintone.app.getHeaderSpaceElement();
+  //   if (spaceElement === null) {
+  //     throw new Error('The header element is unavailable on this page');
+  //   }
+  //   var fragment = document.createDocumentFragment();
+  //   var headingEl = document.createElement('h3');
+  //   var messageEl = document.createElement('p');
 
-    messageEl.classList.add('plugin-space-message');
-    messageEl.textContent = '入力メッセージ：'+ config.message;
-    headingEl.classList.add('plugin-space-heading');
-    headingEl.textContent = 'タブ数：'+ config.tabselect;
+  //   messageEl.classList.add('plugin-space-message');
+  //   messageEl.textContent = '入力メッセージ：'+ config.message;
+  //   headingEl.classList.add('plugin-space-heading');
+  //   headingEl.textContent = 'タブ数：'+ config.tabselect;
 
-    fragment.appendChild(headingEl);
-    fragment.appendChild(messageEl);
-    spaceElement.appendChild(fragment);
-  });
+  //   fragment.appendChild(headingEl);
+  //   fragment.appendChild(messageEl);
+  //   spaceElement.appendChild(fragment);
+  // });
 
   const appId = kintone.app.getId();
   kintone.events.on(['app.record.detail.show','app.record.edit.show','app.record.create.show'], function(event) {
