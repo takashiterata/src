@@ -139,7 +139,7 @@ async function FncListTable(PLUGIN_ID){
       if(tabsetval2[0] == '0'){
         tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
-          tabsetvalTop[tabsetval2[1]] += '<div class="" style="padding-left:8px;padding-bottom:1px;">'+gproperties[layout[i]['code']].label+'<br>';
+          tabsetvalTop[tabsetval2[1]] += '<div class="pplb" style="">'+gproperties[layout[i]['code']].label+'<br>';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
             tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
@@ -172,7 +172,7 @@ async function FncListTable(PLUGIN_ID){
         //HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
         HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
-          HtmlInnerVal += '<div class="" style="padding-left:8px;padding-bottom:1px;">'+gproperties[layout[i]['code']].label+'<br>';
+          HtmlInnerVal += '<div class="pplb" style="">'+gproperties[layout[i]['code']].label+'<br>';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
             HtmlInnerVal += FncClehtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
@@ -213,7 +213,7 @@ async function FncListTable(PLUGIN_ID){
         if(tabsetval2[0] == i){
           tabsetvalmid[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目';
           if(layout[ii]['type'] == 'SUBTABLE'){
-            tabsetvalmid[tabsetval2[1]] += '<div class="" style="padding-left:8px;padding-bottom:1px;">'+gproperties[layout[i]['code']].label+'<br>';
+            tabsetvalmid[tabsetval2[1]] += '<div class="pplb" style="">'+gproperties[layout[i]['code']].label+'<br>';
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
               tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4],layout[i]['type'],layout[i]['code']);
             }
@@ -252,7 +252,7 @@ async function FncListTable(PLUGIN_ID){
       if(tabsetval2[0] == '999'){
         tabsetvalBtm[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
-          tabsetvalBtm[tabsetval2[1]] += '<div class="" style="padding-left:8px;padding-bottom:1px;">'+gproperties[layout[i]['code']].label+'<br>';
+          tabsetvalBtm[tabsetval2[1]] += '<div class="pplb" style="">'+gproperties[layout[i]['code']].label+'<br>';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
             tabsetvalBtm[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
@@ -462,15 +462,14 @@ function FncTabonclick(ini){
 function FncClehtml(valhtml,valtype='no',valname='no'){
 let htmlaa = '';
 if(valhtml['type']=='SPACER'){  //スペース
-  // htmlaa = '<div class="" style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;display:inline-block"><div class="spacer-cybozu">spacer</div></div>';
   htmlaa = '<div class="" style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px;display:inline-block"><div class="spacer-cybozu">spacer</div></div>';
 }else if(valhtml['type']=='LABEL'){  //ラベル
-  htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block;padding-left:8px;padding-bottom:1px;">';
+  htmlaa += '<div class="pplb" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block;">';
   htmlaa += '<div class=""><span class="">' + valhtml['label'] + '</span></div></div>';
 }else if(valhtml['type']=='HR'){  //罫線
   htmlaa = '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block"><hr class=""></div>';
 }else if(valhtml['type']=='REFERENCE_TABLE'){  //関連レコード一覧
-  htmlaa += '<div class="" style="box-sizing: border-box;; height: auto;display:inline-block;padding-left:8px;padding-bottom:1px;">';
+  htmlaa += '<div class="pplb" style="box-sizing: border-box; height: auto;display:inline-block;">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']].label + '</span></div>';
   for(let i=0;i< gproperties[valhtml['code']]['referenceTable']['displayFields'].length;i++){
     htmlaa += '<div class="subtable-label-gaiatab" style="box-sizing:border-box;height:auto;display:inline-block">';
@@ -488,13 +487,11 @@ if(valhtml['type']=='SPACER'){  //スペース
   htmlaa += '</div>';
 
 }else{
-  htmlaa += '<div class="" style="box-sizing:border-box;width: ' + valhtml['size']['width'] + 'px;height:auto;display:inline-block;padding-left:8px;padding-bottom:1px;">';
+  htmlaa += '<div class="pplb" style="box-sizing:border-box;width: ' + valhtml['size']['width'] + 'px;height:auto;display:inline-block;">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']].label + '</span></div>';
   htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
-
-  //tabsetvalmid[tabsetval2[1]] += layout[ii]['fields'][i4]['code'] + '　　';
 }
 
 return htmlaa;
