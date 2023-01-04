@@ -475,11 +475,11 @@ if(valhtml['type']=='SPACER'){
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
 }else if(valtype == 'SUBTABLE'){
-  htmlaa += '<div class="subtable-label-gaiatab" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
-  htmlaa += '<div class="" style=""><span class="">' + gproperties[valname]['fields'][valhtml['code']].label + '</span></div>';
-  htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
-  htmlaa += '<div class=""></div>';
-  htmlaa += '</div>';
+  htmlaa += '<span class="subtable-label-gaiatab" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
+  htmlaa += '<span class="" style=""><span class="">' + gproperties[valname]['fields'][valhtml['code']].label + '</span></span>';
+  htmlaa += '<span class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></span>';
+  htmlaa += '<span class=""></span>';
+  htmlaa += '</span>';
 
 }else{
   htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;">';
