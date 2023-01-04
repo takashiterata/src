@@ -87,7 +87,9 @@ var  listCnt =0;
       //recordGaia.appendChild(hrSpacef3);  //デバッグ用線
 
       recordGaia.appendChild(devSpace);
-      devSpace.appendChild(ButtonAll);
+      if(2<=config.tabselect){
+        devSpace.appendChild(ButtonAll);
+      }
 //設定値によりループする↓
       for(let i=0;i<ButtonTab.length;i++){
         devSpace.appendChild(ButtonTab[i]);
