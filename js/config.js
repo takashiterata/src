@@ -213,9 +213,9 @@ async function FncListTable(PLUGIN_ID){
         if(tabsetval2[0] == i){
           tabsetvalmid[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目';
           if(layout[ii]['type'] == 'SUBTABLE'){
-            tabsetvalmid[tabsetval2[1]] += '<div class="pplb" style="">'+gproperties[layout[i]['code']].label+'<br>';
+            tabsetvalmid[tabsetval2[1]] += '<div class="pplb" style="">'+gproperties[layout[ii]['code']].label+'<br>';
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
-              tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4],layout[i]['type'],layout[i]['code']);
+              tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4],layout[ii]['type'],layout[ii]['code']);
             }
             tabsetvalmid[tabsetval2[1]] += '</div>';
           }else if(layout[ii]['type'] == 'GROUP'){
