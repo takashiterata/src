@@ -28,8 +28,13 @@ var  gproperties =[];
     //配列の設定↓ *プラグインの設定値は配列を格納できないので文字列連結でsplit;
     let $tabselect2any = $('.tab-select2');
     let $tabselect2 = "";
+    let tabflg =0;
     for(let i=0;i<$tabselect2any.length;i++){
       $tabselect2 += $tabselect2any[i].value + '@44';
+      tabflg = 1;
+    }
+    if(tabflg == 0){
+      $tabselect2 = '@44';
     }
     const tabselectini = document.getElementById("tabselectini");
     let tabsetany = [];
