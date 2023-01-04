@@ -10,17 +10,17 @@ var  gproperties =[];
   //固定オブジェクトはここで宣言
   let $form = $('.js-submit-settings');
   let $cancelButton = $('.js-cancel-button');
-  let $message = $('.js-text-message');
+  //let $message = $('.js-text-message');
   let $tabselect = $('.tab-select');
   //固定オブジェクト（配列）はここで宣言
 
-  if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
-    throw new Error('Required elements do not exist.');
-  }
+  // if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
+  //   throw new Error('Required elements do not exist.');
+  // }
   let config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
-  if (config.message) {  //格納設定値セット
-    $message.val(config.message);
+  if (config.tabselect) {  //格納設定値セット
+    //$message.val(config.message);
     $tabselect.val(config.tabselect);
   }
   $form.on('submit', function(e) {
@@ -56,8 +56,7 @@ var  gproperties =[];
 
     //Configへ値のセット
     kintone.plugin.app.setConfig({
-      message: $message.val()
-      ,tabselect: $tabselect.val()
+      tabselect: $tabselect.val()
       ,tabselect2: $tabselect2
       ,tabset: $tabset
     }, function() {
