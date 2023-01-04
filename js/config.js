@@ -471,13 +471,13 @@ if(valhtml['type']=='SPACER'){  //スペース
 }else if(valhtml['type']=='REFERENCE_TABLE'){  //関連レコード一覧
   htmlaa += '<div class="" style="box-sizing: border-box;; height: auto;display:inline-block">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']].label + '</span></div>';
-  for(let i=0;0< gproperties[valhtml['code']]['referenceTable']['displayFields'].length;i++){
+  for(let i=0;i< gproperties[valhtml['code']]['referenceTable']['displayFields'].length;i++){
     htmlaa += '<div class="subtable-label-gaiatab" style="box-sizing:border-box;height:auto;display:inline-block">';
     htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']]['referenceTable']['displayFields'][i] + '</span></div>';
     // htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
   }
 
-  htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
+  // htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
 
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
