@@ -65,7 +65,7 @@ var  gproperties =[];
       ,tabselect2: $tabselect2
       ,tabset: $tabset
     }, function() {
-      alert('The plug-in settings have been saved. Please update the app!');
+      alert('プラグインの設定が保存されました。 アプリの更新をしてください！');
       window.location.href = '../../flow?app=' + kintone.app.getId();
     });
   });
