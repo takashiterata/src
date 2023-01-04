@@ -40,3 +40,15 @@
   background-color: #eee;
   word-wrap: break-word;
 }
+.subtable-label-gaiatab {
+  background-color: #3498db;
+  border-color: #3498db;
+  height: 40px;
+  color: #fff;
+  box-sizing: border-box;
+  text-align: left;
+  font-weight: 400;
+  font-size: 12px;
+  white-space: nowrap;
+  border-width: 2px 2px 2px 0;
+}
