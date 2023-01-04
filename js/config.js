@@ -139,7 +139,7 @@ async function FncListTable(PLUGIN_ID){
       if(tabsetval2[0] == '0'){
         tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
-          tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          tabsetvalTop[tabsetval2[1]] += '<div class="" style="position: relative;">'+gproperties[layout[i]['code']].label;
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
             tabsetvalTop[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
@@ -172,7 +172,7 @@ async function FncListTable(PLUGIN_ID){
         //HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
         HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
-          HtmlInnerVal += '<div class="" style="position: relative;">';
+          HtmlInnerVal += '<div class="" style="position: relative;">'+gproperties[layout[i]['code']].label;
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
             HtmlInnerVal += FncClehtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
@@ -211,7 +211,7 @@ async function FncListTable(PLUGIN_ID){
         if(tabsetval2[0] == i){
           tabsetvalmid[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目';
           if(layout[ii]['type'] == 'SUBTABLE'){
-            tabsetvalmid[tabsetval2[1]] += '<div class="" style="position: relative;">';
+            tabsetvalmid[tabsetval2[1]] += '<div class="" style="position: relative;">'+gproperties[layout[i]['code']].label;
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
               tabsetvalmid[tabsetval2[1]] += FncClehtml(layout[ii]['fields'][i4],layout[i]['type'],layout[i]['code']);
             }
@@ -250,7 +250,7 @@ async function FncListTable(PLUGIN_ID){
       if(tabsetval2[0] == '999'){
         tabsetvalBtm[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
-          tabsetvalBtm[tabsetval2[1]] += '<div class="" style="position: relative;">';
+          tabsetvalBtm[tabsetval2[1]] += '<div class="" style="position: relative;">'+gproperties[layout[i]['code']].label;
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
             tabsetvalBtm[tabsetval2[1]] += FncClehtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
