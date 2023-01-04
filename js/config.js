@@ -462,9 +462,9 @@ function FncTabonclick(ini){
 function FncClehtml(valhtml,valtype='no',valname='no'){
 let htmlaa = '';
 if(valhtml['type']=='SPACER'){  //スペース
-  htmlaa = '<div class="" style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;display:inline-block"><div class="spacer-cybozu"></div></div>';
+  htmlaa = '<div class="" style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;display:inline-block"><div class="spacer-cybozu">spacer</div></div>';
 }else if(valhtml['type']=='LABEL'){  //ラベル
-  htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block">';
+  htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block;padding-left:8px;">';
   htmlaa += '<div class=""><span class="">' + valhtml['label'] + '</span></div></div>';
 }else if(valhtml['type']=='HR'){  //罫線
   htmlaa = '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block"><hr class=""></div>';
@@ -482,7 +482,7 @@ if(valhtml['type']=='SPACER'){  //スペース
 }else if(valtype == 'SUBTABLE'){  //テーブル
   htmlaa += '<div class="subtable-label-gaiatab" style="box-sizing:border-box;width: ' + valhtml['size']['width'] + 'px;height:auto;display:inline-block">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valname]['fields'][valhtml['code']].label + '</span></div>';
-  htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
+  htmlaa += '<div class="control-value-gaiatab"><span class="" style="color:#000;">'+ valhtml['code'] +'</span></div>';
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
 
