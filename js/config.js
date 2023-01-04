@@ -461,23 +461,27 @@ function FncTabonclick(ini){
 
 function FncClehtml(valhtml,valtype='no',valname='no'){
 let htmlaa = '';
-if(valhtml['type']=='SPACER'){
+if(valhtml['type']=='SPACER'){  //スペース
   htmlaa = '<div class="" style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px; min-height: ' + valhtml['size']['height'] + 'px;display:inline-block"><div class="spacer-cybozu"></div></div>';
-  //tabsetvalmid[tabsetval2[1]] += 'スペース　　';
-}else if(valhtml['type']=='LABEL'){
+}else if(valhtml['type']=='LABEL'){  //ラベル
   htmlaa += '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block">';
   htmlaa += '<div class=""><span class="">' + valhtml['label'] + '</span></div></div>';
-  //tabsetvalmid[tabsetval2[1]] += 'ラベル　　';
-}else if(valhtml['type']=='HR'){
+}else if(valhtml['type']=='HR'){  //罫線
   htmlaa = '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block"><hr class=""></div>';
-  //tabsetvalmid[tabsetval2[1]] += '罫線　　';
-}else if(valhtml['type']=='REFERENCE_TABLE'){
+}else if(valhtml['type']=='REFERENCE_TABLE'){  //関連レコード一覧
   htmlaa += '<div class="" style="box-sizing: border-box;; height: auto;display:inline-block">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']].label + '</span></div>';
+  for(let i=0;0< gproperties[valhtml['code']]['referenceTable']['displayFields'].length;i++){
+    htmlaa += '<div class="subtable-label-gaiatab" style="box-sizing:border-box;height:auto;display:inline-block">';
+    htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']]['referenceTable']['displayFields'][i] + '</span></div>';
+    // htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
+  }
+
   htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
+
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
-}else if(valtype == 'SUBTABLE'){
+}else if(valtype == 'SUBTABLE'){  //テーブル
   htmlaa += '<div class="subtable-label-gaiatab" style="box-sizing:border-box;width: ' + valhtml['size']['width'] + 'px;height:auto;display:inline-block">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valname]['fields'][valhtml['code']].label + '</span></div>';
   htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
@@ -485,7 +489,7 @@ if(valhtml['type']=='SPACER'){
   htmlaa += '</div>';
 
 }else{
-  htmlaa += '<div class="" style="box-sizing:border-box;width: ' + valhtml['size']['width'] + 'px;height:auto;display:inline-block">';
+  htmlaa += '<div class="" style="box-sizing:border-box;width: ' + valhtml['size']['width'] + 'px;height:auto;display:inline-block;padding-left: 8px;">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']].label + '</span></div>';
   htmlaa += '<div class="control-value-gaiatab"><span class="">'+ valhtml['code'] +'</span></div>';
   htmlaa += '<div class=""></div>';
