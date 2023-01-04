@@ -114,9 +114,9 @@ async function FncListTable(PLUGIN_ID){
     }
     for(let i=1;i<=tabini;i++){
       let ii=i-1;
-      HtmlInnerVal += '<input type="text" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;">';
+      HtmlInnerVal += '<input type="text" id="aaButton' + ii + '" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;">';
     }
-    HtmlInnerVal += '<input type="text" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;">';
+    HtmlInnerVal += '<input type="text" id="aaButton0" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;">';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
@@ -422,9 +422,9 @@ function FnccngTabini(e){
   const tabname = document.getElementById("tabname");
   let HtmlInnerVal ="";
   for(let i=1;i<=tabselectini.value;i++){
-    HtmlInnerVal += '<input type="text" class="tab-select2" value="" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;">';
+    HtmlInnerVal += '<input type="text" id="aaButton' + ii + '" class="tab-select2" value="" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;">';
   }
-  HtmlInnerVal += '<input type="text" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;">';
+  HtmlInnerVal += '<input type="text" id="aaButton0" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;">';
   tabname.innerHTML=HtmlInnerVal;
 
   const movetabbox = document.getElementById("movetabbox");
@@ -444,18 +444,25 @@ function FncTabonclick(ini){
   const tabselectini = document.getElementById("tabselectini");
   let Objtabbox=[];
   Objtabbox[0] =document.getElementById("tabbox0");
+  let Objtabbtn=[];
+
   for(let i=1;i<=tabselectini.value;i++){
     let tabboxname='tabbox' + i;
+    let tabboxbtan='aaButton' + i;
     if(i==ini){
       document.getElementById(tabboxname).style.display='';
+      document.getElementById(tabboxbtan).style.background = '#f0f0f0';
     }else{
       document.getElementById(tabboxname).style.display='none';
+      document.getElementById(tabboxbtan).style.background = '#969998';
     }
   }
   if(999 == ini || tabselectini.value == '0'){
     document.getElementById('tabbox999').style.display='';
+    document.getElementById('aaButton0').style.background = '#f0f0f0';
   }else{
     document.getElementById('tabbox999').style.display='none';
+    document.getElementById('aaButton0').style.background = '#969998';
   }
 }
 

@@ -233,9 +233,6 @@ function ViewTag(ViewType){
       TagparmTab[i].style.background = '#969998';
     }
   }
-
-
-
   for(let i=1;i<Tagparm.length;i++){
     for(let ii=0;ii<Tagparm[i].length;ii++){
       if(ViewType == 0 || ViewType == i){
