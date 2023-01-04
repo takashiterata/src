@@ -82,9 +82,9 @@ var  listCnt =0;
       const recordGaia = document.getElementById("record-gaia").children[0];
 
       //ヘッダー、フッターの位置を作成
-      recordGaia.appendChild(hrSpacef1);  //デバッグ用線
+      //recordGaia.appendChild(hrSpacef1);  //デバッグ用線
       recordGaia.appendChild(devSpaceh);
-      recordGaia.appendChild(hrSpacef3);  //デバッグ用線
+      //recordGaia.appendChild(hrSpacef3);  //デバッグ用線
 
       recordGaia.appendChild(devSpace);
       devSpace.appendChild(ButtonAll);
@@ -94,7 +94,7 @@ var  listCnt =0;
       }
 //設定値によりループする↑
 
-      recordGaia.appendChild(hrSpacef2);  //デバッグ用線
+      //recordGaia.appendChild(hrSpacef2);  //デバッグ用線
       recordGaia.appendChild(devSpacef);
 
       //オブジェクトの一覧取得
