@@ -199,6 +199,11 @@ var  listCnt =0;
       console.log(error.message);
       window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
     } finally {  //後処理
+      let strint=1;
+      if(2<=listCnt){
+        strint=0;
+      }
+      ViewTag(strint);
     }
   }  
 })(jQuery, kintone.$PLUGIN_ID);
