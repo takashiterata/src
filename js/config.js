@@ -102,7 +102,7 @@ async function FncListTable(PLUGIN_ID){
       tabini = config.tabselect;
     }
     let HtmlInnerVal='';
-    HtmlInnerVal += '<table style="width:100%;background-color:#f5f5f5;"><tr><td style="width:50%;">TOP</td><td style="width:50%;" id="tabname">';
+    HtmlInnerVal += '<table style="font-size: 16px;width:100%;background-color:#f5f5f5;"><tr><td style="width:50%;">TOP</td><td style="width:50%;" id="tabname">';
     let tabselect2val = [];  //配列戻し用の変数もここで宣言
     //配列戻し
     if(config.tabselect2){
