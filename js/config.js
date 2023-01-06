@@ -114,9 +114,9 @@ async function FncListTable(PLUGIN_ID){
     }
     for(let i=1;i<=tabini;i++){
       let ii=i-1;
-      HtmlInnerVal += '<input type="text" id="aaButton' + i + '" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center.">';
+      HtmlInnerVal += '<input type="text" id="aaButton' + i + '" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;">';
     }
-    HtmlInnerVal += '<input type="text" id="aaButton0" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center." readonly>';
+    HtmlInnerVal += '<input type="text" id="aaButton0" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" readonly>';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
@@ -422,9 +422,9 @@ function FnccngTabini(e){
   const tabname = document.getElementById("tabname");
   let HtmlInnerVal ="";
   for(let i=1;i<=tabselectini.value;i++){
-    HtmlInnerVal += '<input type="text" id="aaButton' + i + '" class="tab-select2" value="" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center.">';
+    HtmlInnerVal += '<input type="text" id="aaButton' + i + '" class="tab-select2" value="" onclick="FncTabonclick('+ i +')" style="width:120px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;">';
   }
-  HtmlInnerVal += '<input type="text" id="aaButton0" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center." readonly>';
+  HtmlInnerVal += '<input type="text" id="aaButton0" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:120px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" readonly>';
   tabname.innerHTML=HtmlInnerVal;
 
   const movetabbox = document.getElementById("movetabbox");
