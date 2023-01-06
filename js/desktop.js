@@ -54,6 +54,7 @@ var  listCnt =0;
 //tab用の箱
       let devSpace = document.createElement('dev');
       devSpace.innerHTML = '　';//タブ位置の調整
+      let devSpaceb = document.createElement('dev');
 
 //固定tab
       let ButtonAll = document.createElement('button');
@@ -97,6 +98,7 @@ var  listCnt =0;
         devSpace.appendChild(ButtonTab[i]);
       }
 //設定値によりループする↑
+      recordGaia.appendChild(devSpaceb);
 
       //recordGaia.appendChild(hrSpacef2);  //デバッグ用線
       recordGaia.appendChild(devSpacef);
@@ -175,7 +177,7 @@ var  listCnt =0;
           }
         }
         for(let ii=0;ii<tabsetvalmid.length;ii++){
-          devSpace.appendChild(tabsetvalmid[ii][2]);
+          devSpaceb.appendChild(tabsetvalmid[ii][2]);
           tabsetvalmid[ii][2].className = tabsetvalmid[ii][2].className + ' tabVclass' +i;
         }
       }
