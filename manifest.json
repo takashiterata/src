@@ -8,7 +8,7 @@
       "https://takashiterata.github.io/src/js/desktop.js"
     ],
     "css": [
-      "https://takashiterata.github.io/src/css/51-modern-default.css",
+      "css/51-modern-default.css",
       "https://takashiterata.github.io/src/css/desktop.css"
     ]
   },
@@ -20,7 +20,7 @@
       "https://takashiterata.github.io/src/js/config.js"
     ],
     "css": [
-      "https://takashiterata.github.io/src/css/51-modern-default.css",
+      "css/51-modern-default.css",
       "https://takashiterata.github.io/src/css/config.css"
     ],
     "required_params": [
