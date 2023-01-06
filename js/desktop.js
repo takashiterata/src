@@ -75,6 +75,7 @@ var  listCnt =0;
         ButtonTab[i].id = 'aaButton' + ii;
         ButtonTab[i].style.height = '30px';
         ButtonTab[i].style.width = '120px';
+        ButtonTab[i].style.overflow = 'hidden';
         ButtonTab[i].innerHTML = tabname[i];
         ButtonTab[i].onclick = function() { ViewTag(ii); };
         ButtonTab[i].style.borderRadius = '10px 10px 0px 0px';
