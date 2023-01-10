@@ -145,6 +145,7 @@ async function FncListTable(PLUGIN_ID){
           }
           tabsetvalTop[tabsetval2[1]] += '</div>';
         }else if(layout[i]['type'] == 'GROUP'){
+          tabsetvalTop[tabsetval2[1]] += 'GROUP:'+layout[i]['code'];
           tabsetvalTop[tabsetval2[1]] += '<div class="" style="">';
           for(let i4=0;i4 <layout[i]['layout'].length;i4++){
             for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
@@ -178,6 +179,7 @@ async function FncListTable(PLUGIN_ID){
           }
           HtmlInnerVal += '</div>';
         }else if(layout[i]['type'] == 'GROUP'){
+          HtmlInnerVal += 'GROUP:'+layout[i]['code'];
           HtmlInnerVal += '<div class="" style="">';
           for(let i4=0;i4 <layout[i]['layout'].length;i4++){
             for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
@@ -219,6 +221,7 @@ async function FncListTable(PLUGIN_ID){
             }
             tabsetvalmid[tabsetval2[1]] += '</div>';
           }else if(layout[ii]['type'] == 'GROUP'){
+            tabsetvalmid[tabsetval2[1]] += 'GROUP:'+layout[ii]['code'];
             tabsetvalmid[tabsetval2[1]] += '<div class="" style="">';
             for(let i4=0;i4 <layout[ii]['layout'].length;i4++){
               for(let i5=0;i5 <layout[ii]['layout'][i4]['fields'].length;i5++){
