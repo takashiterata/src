@@ -5,11 +5,11 @@
   "desktop": {
     "js": [
       "https://js.cybozu.com/jquery/3.3.1/jquery.min.js",
-      "js/desktop.js"
+      "https://takashiterata.github.io/src/js/desktop.js"
     ],
     "css": [
       "css/51-modern-default.css",
-      "css/desktop.css"
+      "https://takashiterata.github.io/src/desktop.css"
     ]
   },
   "icon": "image/icon.png",
@@ -17,11 +17,11 @@
     "html": "html/config.html",
     "js": [
       "https://js.cybozu.com/jquery/3.3.1/jquery.min.js",
-      "js/config.js"
+      "https://takashiterata.github.io/src/js/config.js"
     ],
     "css": [
       "css/51-modern-default.css",
-      "css/config.css"
+      "https://takashiterata.github.io/src/css/config.css"
     ],
     "required_params": [
       "tabselect"

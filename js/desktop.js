@@ -118,6 +118,9 @@ var  listCnt =0;
       let subtablerowgaia = document.getElementsByClassName('subtable-row-gaia');
 
       let cntRowgaia = 0;
+      if(rowgaia[0].children[0].children[0].className == 'gaia-app-statusbar'){
+        cntRowgaia = 1; //ステータスバーを飛ばす
+      }
       let cntSubtablerowgaia = 0;
       let prmval=[];
       for(let i =0;i<layout.length;i++){
