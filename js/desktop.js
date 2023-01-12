@@ -209,6 +209,15 @@ var  listCnt =0;
       if(2<=listCnt){
         strint=0;
       }
+
+      let r = document.cookie.split(';');//split(';')を使用しデータを1つずつに分ける
+      r.forEach(function(value) {
+        let content = value.split('=');//split('=')を使用しcookie名と値に分ける
+        if(content[0] == 'Tagiji'){
+          strint = content[1];
+        }
+      })
+
       ViewTag(strint);
     }
   }  
