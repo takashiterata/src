@@ -381,7 +381,6 @@ function FncDragiven(e){
     box.addEventListener("dragover", handleDragOver, false);
     box.addEventListener("drop", handleDrop, false);
   }
-
 }
 
 function FncMoveheight(e){
