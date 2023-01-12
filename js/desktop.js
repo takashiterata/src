@@ -216,6 +216,7 @@ var  listCnt =0;
 
 
 function ViewTag(ViewType){
+  document.cookie = 'Tagiji=' + ViewType;
   let Tagparm = [];
   let TagparmTab = [];
   //設定値でループになる
