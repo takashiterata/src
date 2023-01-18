@@ -367,11 +367,21 @@ function FncDragiven(e){
     }
     // 転送データの取得
     const { id } = JSON.parse(e.dataTransfer.getData("application/json"));
-    if(!e.target.id.includes("tabbox")){
+    if(e.target.id.includes("tabbox")){
+    // ドロップ先に要素を追加する
+    e.target.appendChild(document.getElementById("V" + id));
+    e.target.appendChild(document.getElementById(id));
+    }else if(e.target.id.includes("Vitem")){
+      let CitmeID = e.target.id;
+      let VitmeID = document.getElementById(e.target.id).parentElement.id;
+      let Objtabbox = document.getElementById(VitmeID);
+      for(let i=0;i<Objtabbox.childElementCount;i++){
+        Objtabbox.appendChild(document.getElementById(Objtabbox.children[i].id));
+      }
+  
+    }else{
       return;
     }
-    // ドロップ先に要素を追加する
-    e.target.appendChild(document.getElementById(id));
     FncMoveheight();
   };
 
