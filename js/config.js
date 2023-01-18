@@ -137,7 +137,7 @@ async function FncListTable(PLUGIN_ID){
       let ii = i +1;
       let tabsetval2 = tabsetval[i].split('--');
       if(tabsetval2[0] == '0'){
-        tabsetvalTop[tabsetval2[1]] = '<div class="Vitem" id="Vitem' + iii +'"></div>';
+        tabsetvalTop[tabsetval2[1]] = '<div class="Vitem" id="Vitem' + ii +'"></div>';
         tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
           tabsetvalTop[tabsetval2[1]] += '<div class="pplb" style="">'+gproperties[layout[i]['code']].label+'<br>';
