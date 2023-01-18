@@ -332,10 +332,11 @@ function FncDragiven(e){
     if ([...e.target.classList].includes("item")) {
       return;
     }
-    if(!e.target.id.includes("tabbox")){
+    if(e.target.id.includes("tabbox") || e.target.id.includes("Vitem")){
+      e.target.classList.add("over");
+    }else{
       return;
     }
-    e.target.classList.add("over");
   };
 
   // 要素が離れた際のイベントを定義
@@ -420,7 +421,7 @@ function FncMoveheight(e){
   for(let i=0;i<Objtabbox.length;i++){
     let boxheight=0;
     for(let ii=0;ii<Objtabbox[i].childElementCount;ii++){
-      boxheight += Objtabbox[i].children[ii].clientHeight+11;
+      boxheight += Objtabbox[i].children[ii].clientHeight+1;
     }
     boxheight += 40;
     if(boxheight > maxheight){
