@@ -436,7 +436,9 @@ function FnccngTabini(e){
   //初期化
   let Objtabbox =document.getElementById("tabbox0");
   for(let i=1;i<=listCnt;i++){
-  let tabboxname='item' + i;
+    let tabboxname='item' + i;
+    let Vtabboxname='Vitem' + i;
+    Objtabbox.appendChild(document.getElementById(Vtabboxname));
     Objtabbox.appendChild(document.getElementById(tabboxname));
   }
   let fincnt = Number(tabselectini.value) + 1;
