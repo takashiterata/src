@@ -383,9 +383,16 @@ function FncDragiven(e){
         ObjtabboxC[i] = Objtabbox.children[i].id;
       }
       for(let i=0;i<ObjtabboxCnt;i++){
+        if(id == ObjtabboxC[i]){
+          continue;
+        }
+        if("V" + id == ObjtabboxC[i]){
+          continue;
+        }
+
         if(CitmeID == ObjtabboxC[i]){
-          Objtabbox.appendChild(document.getElementById("V" + id));
-          Objtabbox.appendChild(document.getElementById(id));
+        Objtabbox.appendChild(document.getElementById("V" + id));
+        Objtabbox.appendChild(document.getElementById(id));
         }
         Objtabbox.appendChild(document.getElementById(ObjtabboxC[i]));
       }
