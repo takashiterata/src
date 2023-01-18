@@ -41,7 +41,7 @@ var  gproperties =[];
     for(let i=0;i<=tabselectini.value;i++){
       let tabboxname='tabbox' + i;
       for(let ii=1;ii<=document.getElementById(tabboxname).childElementCount;ii++){
-        let iii = ii-1;
+        let iii = Math.floor(ii / 2)-1;
         if(document.getElementById(tabboxname).children[iii].id.includes("Vitem")){
           continue;
         }
@@ -52,7 +52,7 @@ var  gproperties =[];
     }
     let tabboxname='tabbox999';
     for(let i=1;i<=document.getElementById(tabboxname).childElementCount;i++){
-      let ii = i-1;
+      let ii = Math.floor(i / 2)-1;
       if(document.getElementById(tabboxname).children[ii].id.includes("Vitem")){
         continue;
       }
