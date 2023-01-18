@@ -376,15 +376,17 @@ function FncDragiven(e){
       let VitmeID = document.getElementById(e.target.id).parentElement.id;
       let Objtabbox = document.getElementById(VitmeID);
       let ObjtabboxC = [];
+      let ObjtabboxCnt = Objtabbox.childElementCount;
+
       for(let i=0;i<Objtabbox.childElementCount;i++){
         ObjtabboxC[i] = Objtabbox.children[i].id;
       }
-      for(let i=0;i<Objtabbox.childElementCount;i++){
+      for(let i=0;i<ObjtabboxCnt;i++){
         if(CitmeID == ObjtabboxC[i]){
           Objtabbox.appendChild(document.getElementById("V" + id));
           Objtabbox.appendChild(document.getElementById(id));
         }
-        Objtabbox.appendChild(document.createTextNode(document.getElementById(ObjtabboxC[i])));
+        Objtabbox.appendChild(document.getElementById(ObjtabboxC[i]));
       }
     }else{
       return;
