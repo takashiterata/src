@@ -19,7 +19,7 @@
 }
 
 .item {
-  margin: 10px;
+  margin: 0px;
   border: 1px solid black;
 }
 
@@ -55,4 +55,8 @@
 .pplb {
   padding-left:8px;
   padding-bottom:5px;
+}
+
+.Vitem {
+  height: 10px;
 }

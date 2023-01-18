@@ -137,6 +137,7 @@ async function FncListTable(PLUGIN_ID){
       let ii = i +1;
       let tabsetval2 = tabsetval[i].split('--');
       if(tabsetval2[0] == '0'){
+        tabsetvalTop[tabsetval2[1]] = '<div class="Vitem" id="Vitem' + iii +'"></div>';
         tabsetvalTop[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
           tabsetvalTop[tabsetval2[1]] += '<div class="pplb" style="">'+gproperties[layout[i]['code']].label+'<br>';
@@ -170,7 +171,7 @@ async function FncListTable(PLUGIN_ID){
     for(let i =0;i<layout.length;i++){  //未設定の行
       let ii = i +1;
       if(i >=  tabsetval.length-1){
-        //HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目' + layout[i]['type'] + ii +'</div>';
+        HtmlInnerVal += '<div class="Vitem" id="Vitem' + ii +'"></div>';
         HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
           HtmlInnerVal += '<div class="pplb" style="">'+gproperties[layout[i]['code']].label+'<br>';
@@ -213,6 +214,7 @@ async function FncListTable(PLUGIN_ID){
           let iii = ii +1;
         let tabsetval2 = tabsetval[ii].split('--');
         if(tabsetval2[0] == i){
+          tabsetvalmid[tabsetval2[1]] = '<div class="Vitem" id="Vitem' + iii +'"></div>';
           tabsetvalmid[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目';
           if(layout[ii]['type'] == 'SUBTABLE'){
             tabsetvalmid[tabsetval2[1]] += '<div class="pplb" style="">'+gproperties[layout[ii]['code']].label+'<br>';
@@ -253,6 +255,7 @@ async function FncListTable(PLUGIN_ID){
       }
       let tabsetval2 = tabsetval[i].split('--');
       if(tabsetval2[0] == '999'){
+        tabsetvalBtm[tabsetval2[1]] = '<div class="Vitem" id="Vitem' + iii +'"></div>';
         tabsetvalBtm[tabsetval2[1]] = '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
           tabsetvalBtm[tabsetval2[1]] += '<div class="pplb" style="">'+gproperties[layout[i]['code']].label+'<br>';
