@@ -440,7 +440,7 @@ function FncMoveheight(e){
     if(dispFlg== 0){
       Objtabbox[i].style.display = 'none';      
     }
-    boxheight += 40;
+    boxheight += 20;
     if(boxheight > maxheight){
       maxheight =boxheight
     }
