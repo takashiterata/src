@@ -42,6 +42,10 @@ var  gproperties =[];
       let tabboxname='tabbox' + i;
       for(let ii=1;ii<=document.getElementById(tabboxname).childElementCount;ii++){
         let iii = ii-1;
+        if(document.getElementById(tabboxname).children[iii].id.includes("Vitem")){
+          continue;
+        }
+
         let rowcc = document.getElementById(tabboxname).children[iii].id.replace('item','');
         tabsetany[rowcc] = i+'--'+iii;
       }
@@ -49,6 +53,9 @@ var  gproperties =[];
     let tabboxname='tabbox999';
     for(let i=1;i<=document.getElementById(tabboxname).childElementCount;i++){
       let ii = i-1;
+      if(document.getElementById(tabboxname).children[ii].id.includes("Vitem")){
+        continue;
+      }
       let rowcc = document.getElementById(tabboxname).children[ii].id.replace('item','');
       tabsetany[rowcc] = '999'+'--'+ii;
     }
