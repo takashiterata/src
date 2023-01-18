@@ -427,8 +427,18 @@ function FncMoveheight(e){
   let maxheight =0;
   for(let i=0;i<Objtabbox.length;i++){
     let boxheight=0;
+    let dispFlg=0;
+    if(Objtabbox[i].style.display == ''){
+      dispFlg=1;
+    }else{
+      Objtabbox[i].style.display = '';      
+    }
+
     for(let ii=0;ii<Objtabbox[i].childElementCount;ii++){
       boxheight += Objtabbox[i].children[ii].clientHeight+1;
+    }
+    if(dispFlg== 0){
+      Objtabbox[i].style.display = 'none';      
     }
     boxheight += 40;
     if(boxheight > maxheight){
