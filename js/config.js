@@ -384,7 +384,7 @@ function FncDragiven(e){
           Objtabbox.appendChild(document.getElementById("V" + id));
           Objtabbox.appendChild(document.getElementById(id));
         }
-        Objtabbox.appendChild(document.getElementById(ObjtabboxC[i]));
+        Objtabbox.appendChild(document.createTextNode(document.getElementById(ObjtabboxC[i])));
       }
     }else{
       return;
