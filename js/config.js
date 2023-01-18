@@ -375,8 +375,16 @@ function FncDragiven(e){
       let CitmeID = e.target.id;
       let VitmeID = document.getElementById(e.target.id).parentElement.id;
       let Objtabbox = document.getElementById(VitmeID);
+      let ObjtabboxC = []];
       for(let i=0;i<Objtabbox.childElementCount;i++){
-        Objtabbox.appendChild(document.getElementById(Objtabbox.children[i].id));
+        ObjtabboxC[i] = Objtabbox.children[i].id;
+      }
+      for(let i=0;i<Objtabbox.childElementCount;i++){
+        if(CitmeID == ObjtabboxC[i]){
+          Objtabbox.appendChild(document.getElementById("V" + id));
+          Objtabbox.appendChild(document.getElementById(id));
+        }
+        Objtabbox.appendChild(document.getElementById(ObjtabboxC[i]));
       }
   
     }else{
