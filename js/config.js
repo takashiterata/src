@@ -375,7 +375,7 @@ function FncDragiven(e){
       let CitmeID = e.target.id;
       let VitmeID = document.getElementById(e.target.id).parentElement.id;
       let Objtabbox = document.getElementById(VitmeID);
-      let ObjtabboxC = []];
+      let ObjtabboxC = [];
       for(let i=0;i<Objtabbox.childElementCount;i++){
         ObjtabboxC[i] = Objtabbox.children[i].id;
       }
@@ -386,7 +386,6 @@ function FncDragiven(e){
         }
         Objtabbox.appendChild(document.getElementById(ObjtabboxC[i]));
       }
-  
     }else{
       return;
     }
