@@ -41,23 +41,25 @@ var  gproperties =[];
     for(let i=0;i<=tabselectini.value;i++){
       let tabboxname='tabbox' + i;
       for(let ii=1;ii<=document.getElementById(tabboxname).childElementCount;ii++){
-        let iii = Math.floor(ii / 2)-1;
+        let iii = ii-1;
+        let i4 = Math.floor(ii / 2)-1;
         if(document.getElementById(tabboxname).children[iii].id.includes("Vitem")){
           continue;
         }
 
         let rowcc = document.getElementById(tabboxname).children[iii].id.replace('item','');
-        tabsetany[rowcc] = i+'--'+iii;
+        tabsetany[rowcc] = i+'--'+i4;
       }
     }
     let tabboxname='tabbox999';
     for(let i=1;i<=document.getElementById(tabboxname).childElementCount;i++){
-      let ii = Math.floor(i / 2)-1;
+      let ii = i -1;
+      let i4 = Math.floor(i / 2)-1;
       if(document.getElementById(tabboxname).children[ii].id.includes("Vitem")){
         continue;
       }
       let rowcc = document.getElementById(tabboxname).children[ii].id.replace('item','');
-      tabsetany[rowcc] = '999'+'--'+ii;
+      tabsetany[rowcc] = '999'+'--'+i4;
     }
 
     let $tabset = "";
