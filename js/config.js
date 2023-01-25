@@ -57,6 +57,7 @@ var  gproperties =[];
       if(document.getElementById(tabboxname).children[ii].id.includes("Vitem")){
         continue;
       }
+      
       let rowcc = document.getElementById(tabboxname).children[ii].id.replace('item','');
       tabsetany[rowcc] = '999'+'--'+i4;
     }
