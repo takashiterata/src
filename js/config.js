@@ -46,7 +46,6 @@ var  gproperties =[];
         if(document.getElementById(tabboxname).children[iii].id.includes("Vitem")){
           continue;
         }
-
         let rowcc = document.getElementById(tabboxname).children[iii].id.replace('item','');
         tabsetany[rowcc] = i+'--'+i4;
       }
