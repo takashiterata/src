@@ -534,7 +534,7 @@ function FncAddTab() {
   const tabs = document.getElementById('tabname');
   const tabBoxs = document.getElementById('movetabbox');
   var newTab = document.createElement('div');
-  newTab.class = 'tab-area';
+  newTab.setAttribute('class', `tab-area`);
   var newAddDeleteArea = document.createElement('div');
   var newAddTab = document.createElement('span');
   newAddTab.setAttribute('class', `tab-button`);
@@ -574,6 +574,7 @@ function FncAddTab() {
     tabs.appendChild(newTab);
     tabBoxs.appendChild(newTabBox);
   }
+  FncTabonclick(tabIndex)
 }
 
 function FncClehtml(valhtml,valtype='no',valname='no'){
