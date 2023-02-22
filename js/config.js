@@ -423,6 +423,7 @@ function FncDragiven(e){
 }
 
 function FncMoveheight(e){
+  console.log("FncMoveheight");
   const tabselectini = document.getElementById("tabselectini");
   let Objtabbox=[];
   Objtabbox[0] =document.getElementById("tabbox0");
