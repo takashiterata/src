@@ -562,9 +562,9 @@ function FncAddTab() {
   newTab.appendChild(newInput);
 
   var newTabBox = document.createElement('div');
+  newTabBox.setAttribute('class', 'box box2');
   newTabBox.setAttribute('id', `tabbox${tabIndex}`);
-  newTabBox.setAttribute('class', `box box2`);
-  newTabBox.setAttribute('style', `width: 100%; height: 554px; display: none;`);
+  newTabBox.setAttribute('style', 'width: 100%;');
 
   // 新しいタブを右端(ボトムを除く)に追加
   if (document.getElementById('tabbox999') != null) {
@@ -575,6 +575,8 @@ function FncAddTab() {
     tabBoxs.appendChild(newTabBox);
   }
   FncTabonclick(tabIndex)
+  FncDragiven();
+  FncMoveheight();
 }
 
 function FncClehtml(valhtml,valtype='no',valname='no'){
