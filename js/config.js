@@ -547,7 +547,7 @@ function FncAddTab() {
   newInput.setAttribute('maxlength', '20');
 
   // ボトムを覗いたタブの数を取得
-  var tabCount = doncument.querySelectorAll('.tab-area').length;
+  var tabCount = document.querySelectorAll('.tab-area').length;
   console.log(tabCount);
   var tabIndex = tabCount + 1;
   newDeleteTab.setAttribute('onclick', `FncDeleteTab(${tabIndex})`);
