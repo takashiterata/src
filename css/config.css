@@ -75,3 +75,7 @@
   appearance: none;
   display: inline;
 }
+
+.tab-button {
+  cursor: default;
+}
