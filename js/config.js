@@ -564,8 +564,8 @@ function FncAddTab() {
   var newTabBox = document.createElement('div');
   newTabBox.setAttribute('class', 'box box2');
   newTabBox.setAttribute('id', `tabbox${tabIndex}`);
-  var height = getComputedStyle(tabBoxs.lastChild.clientHeight).height;
-  newTabBox.setAttribute('style', `width: 100%; height:${height};`);
+  var boxStyle = getComputedStyle(tabBoxs.lastChild.clientHeight);
+  newTabBox.setAttribute('style', `width: 100%; height:${boxStyle.height};`);
 
   // 新しいタブを右端(ボトムを除く)に追加
   if (document.getElementById('tabbox999') != null) {
