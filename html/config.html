@@ -1,8 +1,12 @@
 <!--link rel="stylesheet" type="text/css" href="../css/config.css"-->
 <section class="settings">
   <h2 class="settings-heading">Settings for tabtest</h2>
-  <p class="kintoneplugin-desc">保存後はアプリの更新を行ってください。タブ数変更後は行の設定はリセットされます。</p>
   <form class="js-submit-settings">
+    <p class="kintoneplugin-row">
+        <button type="button" class="js-cancel-button kintoneplugin-button-dialog-cancel">キャンセル</button>
+        <button class="kintoneplugin-button-dialog-ok">保存</button>
+    </p>
+    <p class="kintoneplugin-desc">保存後はアプリの更新を行ってください。タブ数変更後は行の設定はリセットされます。</p>
     タブ数:
     <select name="pets" class="tab-select" id="tabselectini">
       <option value="0">0</option>
@@ -14,9 +18,5 @@
     </select>
     <br>
     <div id="ListTable"></div>
-    <p class="kintoneplugin-row">
-        <button type="button" class="js-cancel-button kintoneplugin-button-dialog-cancel">キャンセル</button>
-        <button class="kintoneplugin-button-dialog-ok">保存</button>
-    </p>
   </form>
 </section>

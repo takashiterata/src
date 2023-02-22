@@ -61,3 +61,17 @@
 .Vitem {
   height: 11px;
 }
+
+.tab-area {
+  display: inline-block;
+}
+
+#ListTable button {
+  background: none;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline;
+}

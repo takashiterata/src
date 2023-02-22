@@ -123,7 +123,11 @@ async function FncListTable(PLUGIN_ID){
     }
     for(let i=1;i<=tabini;i++){
       let ii=i-1;
-      HtmlInnerVal += '<input type="text" id="aaButton' + i + '" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')" style="width:99px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" maxlength="20">';
+      HtmlInnerVal += '<div class="tab-area"><div></div>';
+      HtmlInnerVal += '<div><button onclick="FncDeleteTab('+ i +')">ー</button>';
+      HtmlInnerVal += '<button onclick="FncAddTab()>＋</button></div>';
+      HtmlInnerVal += '<input type="text" id="aaButton' + i + '" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')" style="width:99px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" maxlength="20">'
+      HtmlInnerVal += '</div>'
     }
     HtmlInnerVal += '<input type="text" id="aaButton0" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:99px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" readonly>';
     HtmlInnerVal += '</td></tr>';
@@ -423,7 +427,6 @@ function FncDragiven(e){
 }
 
 function FncMoveheight(e){
-  console.log("FncMoveheight");
   const tabselectini = document.getElementById("tabselectini");
   let Objtabbox=[];
   Objtabbox[0] =document.getElementById("tabbox0");
@@ -518,6 +521,57 @@ function FncTabonclick(ini){
   }else{
     document.getElementById('tabbox999').style.display='none';
     document.getElementById('aaButton0').style.background = '#969998';
+  }
+}
+
+function FncDeleteTab() {
+  console.log("マイナス押下");
+}
+/**
+ * 新しいタブを追加する
+ */
+function FncAddTab() {
+  // 
+  const tabs = document.getElementById('tabname');
+  const tabBoxs = document.getElementById('movetabbox');
+  var newTab = document.createElement('div');
+  newTab.class = 'tab-area';
+  var newAddDeleteArea = document.createElement('div');
+  var newAddTab = document.createElement('button');
+  newAddTab.textContent = '＋';
+  newAddTab.setAttribute('onclick', 'FncAddTab()');
+  var newDeleteTab = document.createElement('button');
+  newDeleteTab.textContent = 'ー';
+  var newInput = document.createElement('input');
+  newInput.setAttribute('type', 'text');
+  newInput.setAttribute('maxlength', '20');
+
+  // ボトムを覗いたタブの数を取得
+  var tabCount = doncument.querySelectorAll('.tab-area').length;
+  console.log(tabCount);
+  var tabIndex = tabCount + 1;
+  newDeleteTab.setAttribute('onclick', `FncDeleteTab(${tabIndex})`);
+  newInput.setAttribute('id', `aaButton${tabIndex}`);
+  newInput.setAttribute('class', `tab-select2`);
+  newInput.setAttribute('onclick', `FncTabonclick(${tabIndex})`);
+  newInput.setAttribute('style', 'width:99px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;');
+  newAddDeleteArea.appendChild(newDeleteTab);
+  newAddDeleteArea.appendChild(newAddTab);
+  newTab.appendChild(newAddDeleteArea);
+  newTab.appendChild(newInput);
+
+  var newTabBox = document.createElement('div');
+  newTabBox.setAttribute('id', `tabbox${tabIndex}`);
+  newTabBox.setAttribute('class', `box box2`);
+  newTabBox.setAttribute('style', `width: 100%; height: 554px; display: none;`);
+
+  // 新しいタブを右端(ボトムを除く)に追加
+  if (document.getElementById('tabbox999') != null) {
+    tabs.lastElementChild.before(newTab);
+    tabBoxs.lastElementChild.before(newTabBox);
+  } else {
+    tabs.appendChild(newTab);
+    tabBoxs.appendChild(newTabBox);
   }
 }
 
