@@ -130,16 +130,12 @@ async function FncListTable(PLUGIN_ID){
       HtmlInnerVal += '</div>'
     }
     HtmlInnerVal += '<input type="text" id="aaButton0" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:99px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" readonly>';
+    HtmlInnerVal += '<input type="text" id="aaButtonAll" class="tab-select3" value="全表示" onclick="FncTabonclick(000)" style="width:99px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" readonly>';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
     HtmlInnerVal += '<div class="box box1" id="tabbox0" style="width:100%;">';
     
-    HtmlInnerVal += '<input type="text" id="aaButtonAll" class="tab-select3" value="ボトム" onclick="FncTabonclick(000)" style="width:99px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" readonly>';
-    HtmlInnerVal += '</td></tr>';
-    HtmlInnerVal += '<tr><td>';
-    HtmlInnerVal += '<div class="grid">';
-    HtmlInnerVal += '<div class="box box1" id="tabboxAll" style="width:100%;">';
 
     listCnt =layout.length;
 
