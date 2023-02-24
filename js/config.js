@@ -126,7 +126,7 @@ async function FncListTable(PLUGIN_ID){
       HtmlInnerVal += '<div class="tab-area">';
       HtmlInnerVal += '<div><span class="tab-button" onclick="FncDeleteTab('+ i +')">ー</span>';
       HtmlInnerVal += '<span class="tab-button" onclick="FncAddTab()">＋</span></div>';
-      HtmlInnerVal += '<input type="text" id="aaButton' + i + '" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')"width:99px;style="border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" maxlength="20" size="'+tabselect2val[ii].length+'">'
+      HtmlInnerVal += '<input type="text" id="aaButton' + i + '" class="tab-select2" value="'+ tabselect2val[ii] +'" onclick="FncTabonclick('+ i +')"style="width:99px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" maxlength="20" size="'+tabselect2val[ii].length+'">'
       HtmlInnerVal += '</div>'
     }
     HtmlInnerVal += '<input type="text" id="aaButton0" class="tab-select3" value="ボトム" onclick="FncTabonclick(999)" style="width:99px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" readonly>';
@@ -218,7 +218,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td><td>';
     HtmlInnerVal += '<div id="movetabbox" class="grid">';
-    // 全表示タブの要素を挿入する変数
+    // 全表示タブ部分の変数
     var tabSetValMidAll = '';
     for(let i=1;i<=tabini;i++){
       HtmlInnerVal += '<div class="box box2" id="tabbox'+i+'" style="width:100%;">';
@@ -303,7 +303,7 @@ async function FncListTable(PLUGIN_ID){
     }
 
     HtmlInnerVal += '</div>';
-    HtmlInnerVal += '</div>';
+
     // 全表示タブ生成
     var HtmlInnerValAll = '';
     HtmlInnerValAll += '<div class="box box2" id="tabboxAll" style="width:100%;">';
@@ -311,6 +311,7 @@ async function FncListTable(PLUGIN_ID){
     HtmlInnerValAll += '</div>';
     HtmlInnerVal    += HtmlInnerValAll;
 
+    HtmlInnerVal += '</div>';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '</table>';
     devSpace.innerHTML = HtmlInnerVal;
