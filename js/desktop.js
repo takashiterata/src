@@ -60,7 +60,6 @@ var  listCnt =0;
       let ButtonAll = document.createElement('button');
       ButtonAll.id = 'aaButton0';
       ButtonAll.style.height = '30px';
-      ButtonAll.style.width = '120px';
       ButtonAll.innerHTML = ' 全表示 ';
       ButtonAll.className = "tabbottnname";
       ButtonAll.onclick = function() { ViewTag(0); };
@@ -75,7 +74,6 @@ var  listCnt =0;
         ButtonTab[i] = document.createElement('button');
         ButtonTab[i].id = 'aaButton' + ii;
         ButtonTab[i].style.height = '30px';
-        ButtonTab[i].style.width = '120px';
         ButtonTab[i].style.overflow = 'hidden';
         ButtonTab[i].innerHTML = tabname[i];
         ButtonTab[i].onclick = function() { ViewTag(ii); };
@@ -90,15 +88,16 @@ var  listCnt =0;
       //recordGaia.appendChild(hrSpacef3);  //デバッグ用線
 
       recordGaia.appendChild(devSpace);
-      if(2<=config.tabselect){
-        devSpace.appendChild(ButtonAll);
-      }
 //設定値によりループする↓
       for(let i=0;i<ButtonTab.length;i++){
         devSpace.appendChild(ButtonTab[i]);
       }
 //設定値によりループする↑
-      recordGaia.appendChild(devSpaceb);
+//全表示タブ
+      if(2<=config.tabselect){
+        devSpace.appendChild(ButtonAll);
+      }
+      recordGaia.appendChild(devSpaceb); 
 
       //recordGaia.appendChild(hrSpacef2);  //デバッグ用線
       recordGaia.appendChild(devSpacef);
@@ -206,9 +205,6 @@ var  listCnt =0;
       window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
     } finally {  //後処理
       let strint=1;
-      if(2<=listCnt){
-        strint=0;
-      }
 
       let r = document.cookie.split(';');//split(';')を使用しデータを1つずつに分ける
       r.forEach(function(value) {
