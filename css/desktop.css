@@ -8,3 +8,9 @@
   margin: 0.8rem;
   margin-top: 0;
 }
+
+#record-tab-area {
+  display: block;
+  margin-left: 18px;
+  margin-top: 25px;
+}

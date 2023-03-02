@@ -53,7 +53,7 @@ var  listCnt =0;
 
 //tab用の箱
       let devSpace = document.createElement('dev');
-      devSpace.innerHTML = '　';//タブ位置の調整
+      devSpace.id = 'record-tab-area';
       let devSpaceb = document.createElement('dev');
 
 //固定tab
