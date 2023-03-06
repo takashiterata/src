@@ -118,7 +118,7 @@ async function FncListTable(PLUGIN_ID){
     if (MAX_TAB === Number(tabini)) {
       isHiddenAdd = 'is-hidden';
     } else if (MIN_TAB === Number(tabini)) {
-      var isHiddenAdd = 'is-hidden';
+      var isHiddenDelete = 'is-hidden';
     }
 
 
@@ -137,7 +137,7 @@ async function FncListTable(PLUGIN_ID){
     // タブが一つもない場合
     if (tabini === 0) {
       HtmlInnerVal += '<div id="tab_1" class="tab-area">';
-      HtmlInnerVal += '<div><span class="delete-button" onclick="FncDeleteTab(1)" style="display: none;">ー</span>';
+      HtmlInnerVal += '<div><span class="delete-button '+ isHiddenDelete +'" onclick="FncDeleteTab(1)"">ー</span>';
       HtmlInnerVal += '<span class="add-button" onclick="FncAddTab()">＋</span></div>';
       HtmlInnerVal += '<input type="text" id="aaButton_1" class="tab-select2" value="" onclick="FncTabonclick(1)"style="width:70px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" maxlength="20" placeholder="タブ">'
       HtmlInnerVal += '<span id="input-value_1" class="input-value-span"></span></div>';
@@ -673,6 +673,7 @@ function FncAddTab() {
   FncDragiven();
   FncMoveheight();
   FncTabonclick(tabIndex);
+  newInput.addEventListener('input', SetTabWidthInput);
 }
 
 /**
