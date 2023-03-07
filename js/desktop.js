@@ -11,7 +11,7 @@ let listCnt =0;
   //移動対象のリストを取得
   async  function DeleteList(event){
     try {
-      let config = kintone.plugin.app.getConfig(PLUGIN_ID);
+      const config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
       //ヘッダースペース
       let devSpaceh = document.createElement('dev');
@@ -39,7 +39,7 @@ let listCnt =0;
       //設定値によりループする↓
       listCnt = config.tabselect;
       let ButtonTab = [];
-      let tabname = config.tabselect2.split('@44');
+      const tabname = config.tabselect2.split('@44');
       for(let i=0;i<config.tabselect;i++){
         let ii=i+1;
         ButtonTab[i] = document.createElement('button');
@@ -73,18 +73,16 @@ let listCnt =0;
       recordGaia.appendChild(devSpacef);
 
       //オブジェクトの一覧取得
-      //レコード情報
-      let record = event.record;
 
       //フォームの設定情報
-      let { layout } = await kintone.api(
+      const { layout } = await kintone.api(
         kintone.api.url('/k/v1/app/form/layout.json', true),
         'GET',
         { app: kintone.app.getId() }
       );
 
-      let rowgaia = document.getElementsByClassName('row-gaia');
-      let subtablerowgaia = document.getElementsByClassName('subtable-row-gaia');
+      const rowgaia = document.getElementsByClassName('row-gaia');
+      const subtablerowgaia = document.getElementsByClassName('subtable-row-gaia');
 
       let cntRowgaia = 0;
       if(rowgaia[0].children[0].children[0].className == 'gaia-app-statusbar'){
@@ -174,7 +172,7 @@ let listCnt =0;
     } finally {  //後処理
       let strint=1;
 
-      let r = document.cookie.split(';');//split(';')を使用しデータを1つずつに分ける
+      const r = document.cookie.split(';');//split(';')を使用しデータを1つずつに分ける
       r.forEach(function(value) {
         let content = value.split('=');//split('=')を使用しcookie名と値に分ける
         if(content[0] == 'Tagiji'){

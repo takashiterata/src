@@ -81,16 +81,16 @@ const MIN_TAB = 1;
 //移動対象のリストを取得
 async function FncListTable(PLUGIN_ID){
   try{
-    let config = kintone.plugin.app.getConfig(PLUGIN_ID);
+    const config = kintone.plugin.app.getConfig(PLUGIN_ID);
     const ListTable = document.getElementById("ListTable");
     //フォームの設定情報
-    let { layout } = await kintone.api(
+    const { layout } = await kintone.api(
       kintone.api.url('/k/v1/app/form/layout.json', true),
       'GET',
       { app: kintone.app.getId() }
     );
     //フォームの設定情報
-    let { properties } = await kintone.api(
+    const { properties } = await kintone.api(
       kintone.api.url('/k/v1/app/form/fields.json', true),
       'GET',
       { app: kintone.app.getId() }
@@ -108,7 +108,7 @@ async function FncListTable(PLUGIN_ID){
     if (MAX_TAB === Number(tabini)) {
       isHiddenAdd = 'is-hidden';
     } else if (MIN_TAB === Number(tabini)) {
-      let isHiddenDelete = 'is-hidden';
+      isHiddenDelete = 'is-hidden';
     }
 
 
@@ -411,8 +411,8 @@ function FncDragiven(e){
     e.target.appendChild(document.getElementById("V" + id));
     e.target.appendChild(document.getElementById(id));
     }else if(e.target.id.includes("Vitem")){
-      let CitmeID = e.target.id;
-      let VitmeID = document.getElementById(e.target.id).parentElement.id;
+      const CitmeID = e.target.id;
+      const VitmeID = document.getElementById(e.target.id).parentElement.id;
       let Objtabbox = document.getElementById(VitmeID);
       let ObjtabboxC = [];
       let ObjtabboxCnt = Objtabbox.childElementCount;
@@ -459,7 +459,7 @@ function FncMoveheight(e){
     let tabboxname='tabbox' + i;
     Objtabbox[i] = document.getElementById(tabboxname);
   }
-  let fincnt = Number(tabAreaCount) + 1;
+  const fincnt = Number(tabAreaCount) + 1;
   Objtabbox[fincnt] =document.getElementById("tabbox999");
 
   let maxheight =0;
@@ -492,7 +492,6 @@ function FncTabonclick(ini){
   const tabAreaCount = document.getElementsByClassName('tab-area').length;
   let Objtabbox=[];
   Objtabbox[0] =document.getElementById("tabbox0");
-  let Objtabbtn=[];
   for(let i=1;i<=tabAreaCount;i++){
     let tabboxname='tabbox' + i;
     let tabboxbtan='aaButton_' + i;
@@ -553,7 +552,7 @@ function FncDeleteTab(index) {
     displayFirstDeleteBtn(true);
   }
 
-  let focusTabIndex = index > 1 ? index - 1: index;
+  const focusTabIndex = index > 1 ? index - 1: index;
   FncTabonclick(focusTabIndex);
 
 }
@@ -587,7 +586,7 @@ function FncAddTab() {
   let newInput = document.createElement('input');
   
   // ボトムを除いたタブの数を取得
-  let tabCount = document.getElementsByClassName('tab-area').length;
+  const tabCount = document.getElementsByClassName('tab-area').length;
   if (MIN_TAB === tabCount) {
     displayFirstDeleteBtn(false);
   }
@@ -640,7 +639,7 @@ function FncAddTab() {
   
   // 追加したタブと対になる設定箇所を生成
   let newTabBox = document.createElement('div');
-  let height = getComputedStyle(tabBoxs.lastChild).height;
+  const height = getComputedStyle(tabBoxs.lastChild).height;
   // 設定箇所に class/id/style を設定
   newTabBox.setAttribute('class', 'box box2 tab-box-mid');
   newTabBox.setAttribute('id', `tabbox${tabIndex}`);
