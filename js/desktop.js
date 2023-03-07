@@ -14,18 +14,18 @@ let listCnt =0;
       const config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
       //ヘッダースペース
-      let devSpaceh = document.createElement('dev');
-      devSpaceh.id = 'tabDivH';
+      let devSpaceH = document.createElement('dev');
+      devSpaceH.id = 'tabDivH';
 
 
       //フッタースペース
-      let devSpacef = document.createElement('dev');
-      devSpacef.id = 'tabDivF';
+      let devSpaceF = document.createElement('dev');
+      devSpaceF.id = 'tabDivF';
 
       //tab用の箱
       let devSpace = document.createElement('dev');
       devSpace.id = 'record-tab-area';
-      let devSpaceb = document.createElement('dev');
+      let devSpaceB = document.createElement('dev');
 
       //固定tab
       let ButtonAll = document.createElement('button');
@@ -39,14 +39,14 @@ let listCnt =0;
       //設定値によりループする↓
       listCnt = config.tabselect;
       let ButtonTab = [];
-      const tabname = config.tabselect2.split('@44');
+      const tabName = config.tabselect2.split('@44');
       for(let i=0;i<config.tabselect;i++){
         let ii=i+1;
         ButtonTab[i] = document.createElement('button');
         ButtonTab[i].id = 'aaButton' + ii;
         ButtonTab[i].style.height = '30px';
         ButtonTab[i].style.overflow = 'hidden';
-        ButtonTab[i].innerHTML = tabname[i];
+        ButtonTab[i].innerHTML = tabName[i];
         ButtonTab[i].onclick = function() { ViewTag(ii); };
         ButtonTab[i].style.borderRadius = '10px 10px 0px 0px';
       }
@@ -54,7 +54,7 @@ let listCnt =0;
 
       const recordGaia = document.getElementById("record-gaia").children[0];
       //ヘッダー、フッターの位置を作成
-      recordGaia.appendChild(devSpaceh);
+      recordGaia.appendChild(devSpaceH);
 
       recordGaia.appendChild(devSpace);
 
@@ -68,9 +68,9 @@ let listCnt =0;
       if(2<=config.tabselect){
         devSpace.appendChild(ButtonAll);
       }
-      recordGaia.appendChild(devSpaceb); 
+      recordGaia.appendChild(devSpaceB); 
 
-      recordGaia.appendChild(devSpacef);
+      recordGaia.appendChild(devSpaceF);
 
       //オブジェクトの一覧取得
 
@@ -81,106 +81,103 @@ let listCnt =0;
         { app: kintone.app.getId() }
       );
 
-      const rowgaia = document.getElementsByClassName('row-gaia');
-      const subtablerowgaia = document.getElementsByClassName('subtable-row-gaia');
+      const rowGaia = document.getElementsByClassName('row-gaia');
+      const subTableRowGaia = document.getElementsByClassName('subtable-row-gaia');
 
-      let cntRowgaia = 0;
-      if(rowgaia[0].children[0].children[0].className == 'gaia-app-statusbar'){
-        cntRowgaia = 1; //ステータスバーを飛ばす
+      let cntRowGaia = 0;
+      if(rowGaia[0].children[0].children[0].className == 'gaia-app-statusbar'){
+        cntRowGaia = 1; //ステータスバーを飛ばす
       }
-      let cntSubtablerowgaia = 0;
-      let prmval=[];
+      let cntSubTableRowGaia = 0;
+      let layoutValues=[];
       for(let i =0;i<layout.length;i++){
-        prmval[i]=[];
+        layoutValues[i]=[];
         if(layout[i]['type'] == 'SUBTABLE'){
-          prmval[i][0] = 'SUBTABLE';
-          prmval[i][1] = cntSubtablerowgaia;
-          prmval[i][2] = subtablerowgaia[cntSubtablerowgaia];
-          cntSubtablerowgaia = cntSubtablerowgaia + 1;
+          layoutValues[i][0] = 'SUBTABLE';
+          layoutValues[i][1] = cntSubTableRowGaia;
+          layoutValues[i][2] = subTableRowGaia[cntSubTableRowGaia];
+          cntSubTableRowGaia = cntSubTableRowGaia + 1;
         }else if(layout[i]['type'] == 'GROUP'){
-          prmval[i][0] = 'ROW';
-          prmval[i][1] = cntRowgaia;
-          prmval[i][2] = rowgaia[cntRowgaia];
-          cntRowgaia = cntRowgaia + layout[i]['layout'].length + 1;
+          layoutValues[i][0] = 'ROW';
+          layoutValues[i][1] = cntRowGaia;
+          layoutValues[i][2] = rowGaia[cntRowGaia];
+          cntRowGaia = cntRowGaia + layout[i]['layout'].length + 1;
         }else{
-          prmval[i][0] = 'ROW';
-          prmval[i][1] = cntRowgaia;
-          prmval[i][2] = rowgaia[cntRowgaia];
-          cntRowgaia = cntRowgaia + 1;
+          layoutValues[i][0] = 'ROW';
+          layoutValues[i][1] = cntRowGaia;
+          layoutValues[i][2] = rowGaia[cntRowGaia];
+          cntRowGaia = cntRowGaia + 1;
         }
       }
 
-      let tabsetval = [];
+      let tabSetVal = [];
       if(config.tabset){
-        tabsetval = config.tabset.split('@44');
+        tabSetVal = config.tabset.split('@44');
       }
       //TOP
-      let tabsetvalTop =[];
-      let iicnt = 0;
+      let tabSetValTop =[];
+      let iiCnt = 0;
       for(let i =0;i<layout.length;i++){
-        let ii = i +1;
-        if(i<tabsetval.length-1){
-          let tabsetval2 = tabsetval[i].split('--');
-          if(tabsetval2[0] == '0'){
-            tabsetvalTop[tabsetval2[1]] = prmval[i];
-            iicnt = iicnt + 1;
+        if(i<tabSetVal.length-1){
+          let tabSetVal2 = tabSetVal[i].split('--');
+          if(tabSetVal2[0] == '0'){
+            tabSetValTop[tabSetVal2[1]] = layoutValues[i];
+            iiCnt = iiCnt + 1;
           }
         }else{
-          tabsetvalTop[iicnt] = prmval[i];
-          iicnt = iicnt + 1;
+          tabSetValTop[iiCnt] = layoutValues[i];
+          iiCnt = iiCnt + 1;
         }
       }
-      for(let i =0;i<tabsetvalTop.length;i++){
-        devSpaceh.appendChild(tabsetvalTop[i][2]);
+      for(let i =0;i<tabSetValTop.length;i++){
+        devSpaceH.appendChild(tabSetValTop[i][2]);
       }
       //MID
       for(let i=1;i<=config.tabselect;i++){
-        let tabsetvalmid =[];
+        let tabSetValMid =[];
         for(let ii =0;ii<layout.length;ii++){
-          if(ii>=tabsetval.length-1){
+          if(ii>=tabSetVal.length-1){
             continue;
           }
-          let iii = ii +1;
-          let tabsetval2 = tabsetval[ii].split('--');
-          if(tabsetval2[0] == i){
-            tabsetvalmid[tabsetval2[1]]= prmval[ii];
+          let tabSetVal2 = tabSetVal[ii].split('--');
+          if(tabSetVal2[0] == i){
+            tabSetValMid[tabSetVal2[1]]= layoutValues[ii];
           }
         }
-        for(let ii=0;ii<tabsetvalmid.length;ii++){
-          devSpaceb.appendChild(tabsetvalmid[ii][2]);
-          tabsetvalmid[ii][2].className = tabsetvalmid[ii][2].className + ' tabVclass' +i;
+        for(let ii=0;ii<tabSetValMid.length;ii++){
+          devSpaceB.appendChild(tabSetValMid[ii][2]);
+          tabSetValMid[ii][2].className = tabSetValMid[ii][2].className + ' tabVclass' +i;
         }
       }
       //BTM
-      let tabsetvalBtm =[];
+      let tabSetValBtm =[];
       for(let i =0;i<layout.length;i++){
-        if(i>=tabsetval.length-1){
+        if(i>=tabSetVal.length-1){
           continue;
         }
-        let ii = i +1;
-        let tabsetval2 = tabsetval[i].split('--');
-        if(tabsetval2[0] == '999'){
-          tabsetvalBtm[tabsetval2[1]] = prmval[i];
+        let tabSetVal2 = tabSetVal[i].split('--');
+        if(tabSetVal2[0] == '999'){
+          tabSetValBtm[tabSetVal2[1]] = layoutValues[i];
         }
       }
-      for(let i =0;i<tabsetvalBtm.length;i++){
-        devSpacef.appendChild(tabsetvalBtm[i][2]);
+      for(let i =0;i<tabSetValBtm.length;i++){
+        devSpaceF.appendChild(tabSetValBtm[i][2]);
       }
     } catch (error) {  //エラー処理
       console.log(error.message);
       window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
     } finally {  //後処理
-      let strint=1;
+      let strInt=1;
 
       const r = document.cookie.split(';');//split(';')を使用しデータを1つずつに分ける
       r.forEach(function(value) {
         let content = value.split('=');//split('=')を使用しcookie名と値に分ける
         if(content[0] == 'Tagiji'){
-          strint = content[1];
+          strInt = content[1];
         }
       })
 
-      ViewTag(strint);
+      ViewTag(strInt);
     }
   }  
 })(jQuery, kintone.$PLUGIN_ID);
@@ -188,35 +185,35 @@ let listCnt =0;
 
 function ViewTag(ViewType){
   document.cookie = 'Tagiji=' + ViewType;
-  let Tagparm = [];
-  let TagparmTab = [];
+  let TagArray = [];
+  let TagParmTab = [];
   //設定値でループになる
   for(let i =1;i<=listCnt;i++){
-    let tabboxname = 'tabVclass' + i;
-    Tagparm[i] = document.getElementsByClassName(tabboxname);
+    let tabBoxName = 'tabVclass' + i;
+    TagArray[i] = document.getElementsByClassName(tabBoxName);
   }
-  let strint=1;
+  let strInt=1;
   if(2<=listCnt){
-    TagparmTab[0] = document.getElementById('aaButton0');
-    strint=0;
+    TagParmTab[0] = document.getElementById('aaButton0');
+    strInt=0;
   }
   for(let i =1;i<=listCnt;i++){
-    let tabboxname = 'aaButton' + i;
-    TagparmTab[i] = document.getElementById(tabboxname);
+    let tabBoxName = 'aaButton' + i;
+    TagParmTab[i] = document.getElementById(tabBoxName);
   }
-  for(let i=strint;i<TagparmTab.length;i++){
+  for(let i=strInt;i<TagParmTab.length;i++){
     if(ViewType == i){
-      TagparmTab[i].style.background = '#f0f0f0';
+      TagParmTab[i].style.background = '#f0f0f0';
     }else{
-      TagparmTab[i].style.background = '#969998';
+      TagParmTab[i].style.background = '#969998';
     }
   }
-  for(let i=1;i<Tagparm.length;i++){
-    for(let ii=0;ii<Tagparm[i].length;ii++){
+  for(let i=1;i<TagArray.length;i++){
+    for(let ii=0;ii<TagArray[i].length;ii++){
       if(ViewType == 0 || ViewType == i){
-        Tagparm[i][ii].style.display = '';
+        TagArray[i][ii].style.display = '';
       }else{
-        Tagparm[i][ii].style.display = 'none';
+        TagArray[i][ii].style.display = 'none';
       }
     }
   }
