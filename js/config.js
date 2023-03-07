@@ -41,7 +41,7 @@ const MIN_TAB = 1;
           continue;
         }
         
-        let row = document.getElementById(tabBoxName).children[iii].id.replace('item','');
+        let row = document.getElementById(tabBoxName).children[iii].id.split('_')[1];
         tabSetAny[row] = i+'--'+i4;
       }
     }
@@ -52,7 +52,7 @@ const MIN_TAB = 1;
       if(document.getElementById(tabBoxName).children[ii].id.includes("Vitem_")){
         continue;
       }
-      let row = document.getElementById(tabBoxName).children[ii].id.replace('item','');
+      let row = document.getElementById(tabBoxName).children[ii].id.split('_')[1];
       tabSetAny[row] = '999'+'--'+i4;
     }
     
