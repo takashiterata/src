@@ -37,7 +37,7 @@ const MIN_TAB = 1;
       for(let ii=1;ii<=document.getElementById(tabBoxName).childElementCount;ii++){
         let iii = ii-1;
         let i4 = Math.floor(ii / 2)-1;
-        if(document.getElementById(tabBoxName).children[iii].id.includes("Vitem")){
+        if(document.getElementById(tabBoxName).children[iii].id.includes("Vitem_")){
           continue;
         }
         
@@ -49,7 +49,7 @@ const MIN_TAB = 1;
     for(let i=1;i<=document.getElementById(tabBoxName).childElementCount;i++){
       let ii = i -1;
       let i4 = Math.floor(i / 2)-1;
-      if(document.getElementById(tabBoxName).children[ii].id.includes("Vitem")){
+      if(document.getElementById(tabBoxName).children[ii].id.includes("Vitem_")){
         continue;
       }
       let row = document.getElementById(tabBoxName).children[ii].id.replace('item','');
@@ -166,8 +166,8 @@ async function FncCreateTabList(PLUGIN_ID){
       let ii = i +1;
       let tabSetVal2 = tabSetVal[i].split('--');
       if(tabSetVal2[0] == '0'){
-        tabSetValTop[tabSetVal2[1]] = '<div class="Vitem" id="Vitem' + ii +'"></div>';
-        tabSetValTop[tabSetVal2[1]] += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
+        tabSetValTop[tabSetVal2[1]] = '<div class="Vitem" id="Vitem_' + ii +'"></div>';
+        tabSetValTop[tabSetVal2[1]] += '<div class="item" draggable="true" id="item_' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
           tabSetValTop[tabSetVal2[1]] += '<div class="pplb" style="">'+propertiesArray[layout[i]['code']].label+'<br>';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
@@ -201,8 +201,8 @@ async function FncCreateTabList(PLUGIN_ID){
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
       if(i >=  tabSetVal.length-1){
-        HtmlInnerVal += '<div class="Vitem" id="Vitem' + ii +'"></div>';
-        HtmlInnerVal += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
+        HtmlInnerVal += '<div class="Vitem" id="Vitem_' + ii +'"></div>';
+        HtmlInnerVal += '<div class="item" draggable="true" id="item_' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
           HtmlInnerVal += '<div class="pplb" style="">'+propertiesArray[layout[i]['code']].label+'<br>';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
@@ -248,8 +248,8 @@ async function FncCreateTabList(PLUGIN_ID){
           let iii = ii +1;
         let tabSetVal2 = tabSetVal[ii].split('--');
         if(tabSetVal2[0] == i){
-          tabSetValMid[tabSetVal2[1]] = '<div class="Vitem" id="Vitem' + iii +'"></div>';
-          tabSetValMid[tabSetVal2[1]] += '<div class="item" draggable="true" id="item' + iii +'">' +iii + '行目';
+          tabSetValMid[tabSetVal2[1]] = '<div class="Vitem" id="Vitem_' + iii +'"></div>';
+          tabSetValMid[tabSetVal2[1]] += '<div class="item" draggable="true" id="item_' + iii +'">' +iii + '行目';
           if(layout[ii]['type'] == 'SUBTABLE'){
             tabSetValMid[tabSetVal2[1]] += '<div class="pplb" style="">'+propertiesArray[layout[ii]['code']].label+'<br>';
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
@@ -289,8 +289,8 @@ async function FncCreateTabList(PLUGIN_ID){
       }
       let tabSetVal2 = tabSetVal[i].split('--');
       if(tabSetVal2[0] == '999'){
-        tabSetValBtm[tabSetVal2[1]] = '<div class="Vitem" id="Vitem' + ii +'"></div>';
-        tabSetValBtm[tabSetVal2[1]] += '<div class="item" draggable="true" id="item' + ii +'">' +ii + '行目';
+        tabSetValBtm[tabSetVal2[1]] = '<div class="Vitem" id="Vitem_' + ii +'"></div>';
+        tabSetValBtm[tabSetVal2[1]] += '<div class="item" draggable="true" id="item_' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
           tabSetValBtm[tabSetVal2[1]] += '<div class="pplb" style="">'+propertiesArray[layout[i]['code']].label+'<br>';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
@@ -329,7 +329,7 @@ async function FncCreateTabList(PLUGIN_ID){
 
   } catch (error) {
     //エラー処理
-    window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
+    window.alert("タブプラグインでエラーが発生しました。");
   } finally {
     //後処理
     FncDragField();
@@ -371,7 +371,7 @@ function FncDragField(e){
     if ([...e.target.classList].includes("item")) {
       return;
     }
-    if(e.target.id.includes("tabbox") || e.target.id.includes("Vitem")){
+    if(e.target.id.includes("tabbox") || e.target.id.includes("Vitem_")){
       e.target.classList.add("over");
     }else{
       return;
@@ -411,7 +411,7 @@ function FncDragField(e){
     // ドロップ先に要素を追加する
     e.target.appendChild(document.getElementById("V" + id));
     e.target.appendChild(document.getElementById(id));
-    }else if(e.target.id.includes("Vitem")){
+    }else if(e.target.id.includes("Vitem_")){
       const cItemID = e.target.id;
       const vItemID = document.getElementById(e.target.id).parentElement.id;
       let objTabBox = document.getElementById(vItemID);
@@ -519,12 +519,45 @@ function FncTabOnClick(ini){
 function FncDeleteTab(index) {
 
   const tabAreaLengthIni = document.getElementsByClassName('tab-area').length;
-  const isHideAddButton = (MAX_TAB === tabAreaLengthIni)?? false;
+  const isHiddenAddButton = (MAX_TAB === tabAreaLengthIni)?? false;
 
+  // 削除するタブ
+  const deleteTabBoxItems = document.getElementById(`tabbox${index}`).getElementsByClassName('item');
+
+  // フィールド移動先（トップ）
+  const tabBoxTop = document.getElementById('tabbox0');
+  const tabBoxTopVItems = tabBoxTop.getElementsByClassName('Vitem');
+
+  const deleteTabBoxItemsArray = [...deleteTabBoxItems];
+  const tabBoxTopVItemsArray = [...tabBoxTopVItems];
+
+  // 削除タブに設定されているフィールドをTOPに戻す
+  for (let itemKey = 0; itemKey < deleteTabBoxItemsArray.length; itemKey++) {
+    let moveItemIndex = Number(deleteTabBoxItemsArray[itemKey].id.split('_')[1]);
+
+    for (let vItemKey = 0; vItemKey < tabBoxTopVItemsArray.length; vItemKey++) {
+      let tabBoxIndex = Number(tabBoxTopVItemsArray[vItemKey].id.split('_')[1]);
+      const moveVItem = document.getElementById(`Vitem_${moveItemIndex}`);
+      const insertBeforeItem = document.getElementById(`item_${moveItemIndex}`);
+
+      if (moveItemIndex < tabBoxIndex) {
+        tabBoxTop.insertBefore(deleteTabBoxItemsArray[itemKey], tabBoxTopVItemsArray[vItemKey]);
+        tabBoxTop.insertBefore(moveVItem, insertBeforeItem);
+        break;
+      }
+      if (vItemKey + 1 === tabBoxTopVItemsArray.length) {
+        tabBoxTop.appendChild(moveVItem);
+        tabBoxTop.appendChild(deleteTabBoxItemsArray[itemKey]);
+      } 
+    }
+  }
+
+  // タブとタプ設定箇所を削除
   document.getElementById(`tab_${index}`).remove();
   document.getElementById(`tabbox${index}`).remove();
   
   const tabAreaElements = document.getElementsByClassName('tab-area');
+  // タブのid,クリックイベントを振り直し
   for (let i = 0; i < tabAreaElements.length; i++) {
     tabAreaElements[i].setAttribute('id', `tab_${i + 1}`);
 
@@ -532,30 +565,32 @@ function FncDeleteTab(index) {
     deleteButton.setAttribute('onClick', `FncDeleteTab(${i + 1})`);
 
     let input = tabAreaElements[i].querySelector('input');
+    let inputSpan = tabAreaElements[i].querySelector('.input-value-span');
     input.setAttribute('onClick', `FncTabOnClick(${i + 1})`);
     input.setAttribute('id', `aaButton_${i + 1}`);
+    inputSpan.setAttribute('id', `input-value_${i + 1}`);
   
   }
-
+  // タブ設定箇所のidを振り直し
   const tabBoxMidElements = document.getElementsByClassName('tab-box-mid');
   for (let i = 0; i < tabBoxMidElements.length; i++) {
     tabBoxMidElements[i].setAttribute('id', `tabbox${i + 1}`);
   }
-
-  if (isHideAddButton) {
+  // タブが20個未満の場合「＋」ボタンを表示にする
+  if (isHiddenAddButton) {
     const addButtons = document.getElementsByClassName('add-button');
     for (let i = 0; i < addButtons.length; i++) {
       addButtons[i].classList.remove('is-hidden');
     }
   }
-
+  // タブが1個の場合「ー」ボタンを非表示にする
   if (MIN_TAB === tabAreaElements.length) {
     displayFirstDeleteBtn(true);
   }
 
   const focusTabIndex = index > 1 ? index - 1: index;
   FncTabOnClick(focusTabIndex);
-
+  FncMoveHeight();
 }
 
 /**

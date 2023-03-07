@@ -163,8 +163,7 @@ let listCnt =0;
         devSpaceFooter.appendChild(tabSetValBtm[i][2]);
       }
     } catch (error) {  //エラー処理
-      console.log(error.message);
-      window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
+      window.alert("タブプラグインでエラーが発生しました。");
     } finally {  //後処理
       let strInt=1;
 
