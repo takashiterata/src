@@ -14,18 +14,17 @@ let listCnt =0;
       const config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
       //ヘッダースペース
-      let devSpaceH = document.createElement('dev');
-      devSpaceH.id = 'tabDivH';
-
+      let devSpaceHeader = document.createElement('dev');
+      devSpaceHeader.id = 'tabDivH';
 
       //フッタースペース
-      let devSpaceF = document.createElement('dev');
-      devSpaceF.id = 'tabDivF';
+      let devSpaceFooter = document.createElement('dev');
+      devSpaceFooter.id = 'tabDivF';
 
       //tab用の箱
-      let devSpace = document.createElement('dev');
-      devSpace.id = 'record-tab-area';
-      let devSpaceB = document.createElement('dev');
+      let devSpaceTab = document.createElement('dev');
+      devSpaceTab.id = 'record-tab-area';
+      let devSpaceBottom = document.createElement('dev');
 
       //固定tab
       let ButtonAll = document.createElement('button');
@@ -54,23 +53,23 @@ let listCnt =0;
 
       const recordGaia = document.getElementById("record-gaia").children[0];
       //ヘッダー、フッターの位置を作成
-      recordGaia.appendChild(devSpaceH);
+      recordGaia.appendChild(devSpaceHeader);
 
-      recordGaia.appendChild(devSpace);
+      recordGaia.appendChild(devSpaceTab);
 
       //設定値によりループする↓
       for(let i=0;i<ButtonTab.length;i++){
-        devSpace.appendChild(ButtonTab[i]);
+        devSpaceTab.appendChild(ButtonTab[i]);
       }
       //設定値によりループする↑
 
       //全表示タブ
       if(2<=config.tabselect){
-        devSpace.appendChild(ButtonAll);
+        devSpaceTab.appendChild(ButtonAll);
       }
-      recordGaia.appendChild(devSpaceB); 
+      recordGaia.appendChild(devSpaceBottom); 
 
-      recordGaia.appendChild(devSpaceF);
+      recordGaia.appendChild(devSpaceFooter);
 
       //オブジェクトの一覧取得
 
@@ -130,7 +129,7 @@ let listCnt =0;
         }
       }
       for(let i =0;i<tabSetValTop.length;i++){
-        devSpaceH.appendChild(tabSetValTop[i][2]);
+        devSpaceHeader.appendChild(tabSetValTop[i][2]);
       }
       //MID
       for(let i=1;i<=config.tabselect;i++){
@@ -145,7 +144,7 @@ let listCnt =0;
           }
         }
         for(let ii=0;ii<tabSetValMid.length;ii++){
-          devSpaceB.appendChild(tabSetValMid[ii][2]);
+          devSpaceBottom.appendChild(tabSetValMid[ii][2]);
           tabSetValMid[ii][2].className = tabSetValMid[ii][2].className + ' tabVclass' +i;
         }
       }
@@ -161,7 +160,7 @@ let listCnt =0;
         }
       }
       for(let i =0;i<tabSetValBtm.length;i++){
-        devSpaceF.appendChild(tabSetValBtm[i][2]);
+        devSpaceFooter.appendChild(tabSetValBtm[i][2]);
       }
     } catch (error) {  //エラー処理
       console.log(error.message);
