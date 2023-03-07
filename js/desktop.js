@@ -1,31 +1,9 @@
 jQuery.noConflict();
 
-var  listCnt =0;
+let listCnt =0;
 (function($, PLUGIN_ID) {
   'use strict';
-
-  // kintone.events.on('app.record.index.show', function() {
-  //   var config = kintone.plugin.app.getConfig(PLUGIN_ID);
-
-  //   var spaceElement = kintone.app.getHeaderSpaceElement();
-  //   if (spaceElement === null) {
-  //     throw new Error('The header element is unavailable on this page');
-  //   }
-  //   var fragment = document.createDocumentFragment();
-  //   var headingEl = document.createElement('h3');
-  //   var messageEl = document.createElement('p');
-
-  //   messageEl.classList.add('plugin-space-message');
-  //   messageEl.textContent = '入力メッセージ：'+ config.message;
-  //   headingEl.classList.add('plugin-space-heading');
-  //   headingEl.textContent = 'タブ数：'+ config.tabselect;
-
-  //   fragment.appendChild(headingEl);
-  //   fragment.appendChild(messageEl);
-  //   spaceElement.appendChild(fragment);
-  // });
-
-  const appId = kintone.app.getId();
+  
   kintone.events.on(['app.record.detail.show','app.record.edit.show','app.record.create.show'], function(event) {
     DeleteList(event);
   });
@@ -35,28 +13,21 @@ var  listCnt =0;
     try {
       let config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
-      //タブの箱作成
-      //箱はフォームの最も下に配置する
-
-      let hrSpacef1 = document.createElement('hr');
-      let hrSpacef2 = document.createElement('hr');
-      let hrSpacef3 = document.createElement('hr');
-
-//ヘッダースペース
+      //ヘッダースペース
       let devSpaceh = document.createElement('dev');
       devSpaceh.id = 'tabDivH';
 
 
-//フッタースペース
+      //フッタースペース
       let devSpacef = document.createElement('dev');
       devSpacef.id = 'tabDivF';
 
-//tab用の箱
+      //tab用の箱
       let devSpace = document.createElement('dev');
       devSpace.id = 'record-tab-area';
       let devSpaceb = document.createElement('dev');
 
-//固定tab
+      //固定tab
       let ButtonAll = document.createElement('button');
       ButtonAll.id = 'aaButton0';
       ButtonAll.style.height = '30px';
@@ -65,7 +36,7 @@ var  listCnt =0;
       ButtonAll.onclick = function() { ViewTag(0); };
       ButtonAll.style.borderRadius = '10px 10px 0px 0px';
 
-//設定値によりループする↓
+      //設定値によりループする↓
       listCnt = config.tabselect;
       let ButtonTab = [];
       let tabname = config.tabselect2.split('@44');
@@ -79,27 +50,26 @@ var  listCnt =0;
         ButtonTab[i].onclick = function() { ViewTag(ii); };
         ButtonTab[i].style.borderRadius = '10px 10px 0px 0px';
       }
-//設定値によりループする↑
-      const recordGaia = document.getElementById("record-gaia").children[0];
+      //設定値によりループする↑
 
+      const recordGaia = document.getElementById("record-gaia").children[0];
       //ヘッダー、フッターの位置を作成
-      //recordGaia.appendChild(hrSpacef1);  //デバッグ用線
       recordGaia.appendChild(devSpaceh);
-      //recordGaia.appendChild(hrSpacef3);  //デバッグ用線
 
       recordGaia.appendChild(devSpace);
-//設定値によりループする↓
+
+      //設定値によりループする↓
       for(let i=0;i<ButtonTab.length;i++){
         devSpace.appendChild(ButtonTab[i]);
       }
-//設定値によりループする↑
-//全表示タブ
+      //設定値によりループする↑
+
+      //全表示タブ
       if(2<=config.tabselect){
         devSpace.appendChild(ButtonAll);
       }
       recordGaia.appendChild(devSpaceb); 
 
-      //recordGaia.appendChild(hrSpacef2);  //デバッグ用線
       recordGaia.appendChild(devSpacef);
 
       //オブジェクトの一覧取得
@@ -198,8 +168,6 @@ var  listCnt =0;
       for(let i =0;i<tabsetvalBtm.length;i++){
         devSpacef.appendChild(tabsetvalBtm[i][2]);
       }
-  
-//      window.alert("完了しました。");
     } catch (error) {  //エラー処理
       console.log(error.message);
       window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);

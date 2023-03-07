@@ -1,31 +1,20 @@
 jQuery.noConflict();
 
-var  listCnt =0;
-var  gproperties =[];
+let listCnt =0;
+let gproperties =[];
 const MAX_TAB = 20;
 const MIN_TAB = 1;
 (function($, PLUGIN_ID) {
   'use strict';
 
-  FncListTable(PLUGIN_ID);  //API呼び出しで、同期解除の為別関数で呼び出し　動的配列も関数内で設定する。
+  //API呼び出しで、同期解除の為別関数で呼び出し　動的配列も関数内で設定する。
+  FncListTable(PLUGIN_ID);
 
   //固定オブジェクトはここで宣言
   let $form = $('.js-submit-settings');
   let $cancelButton = $('.js-cancel-button');
-  //let $message = $('.js-text-message');
-  //固定オブジェクト（配列）はここで宣言
 
-  // if (!($form.length > 0 && $cancelButton.length > 0 && $message.length > 0)) {
-  //   throw new Error('Required elements do not exist.');
-  // }
-  let config = kintone.plugin.app.getConfig(PLUGIN_ID);
-
-  if (config.tabselect) {  //格納設定値セット
-    //$message.val(config.message);
-    // $tabselect.val(config.tabselect);
-  }
   $form.on('submit', function(e) {
-    var aa = kintone.plugin.app.getConfig(PLUGIN_ID);
   
     e.preventDefault();
     //配列の設定↓ *プラグインの設定値は配列を格納できないので文字列連結でsplit;
@@ -71,6 +60,7 @@ const MIN_TAB = 1;
       $tabset += tabsetany[i] + '@44';
     }
     //配列の設定↑
+
     //Configへ値のセット
     kintone.plugin.app.setConfig({
       tabselect: $tabCount
@@ -113,18 +103,19 @@ async function FncListTable(PLUGIN_ID){
       tabini = config.tabselect;
     }
 
-    var isHiddenDelete = '';
-    var isHiddenAdd = '';
+    let isHiddenDelete = '';
+    let isHiddenAdd = '';
     if (MAX_TAB === Number(tabini)) {
       isHiddenAdd = 'is-hidden';
     } else if (MIN_TAB === Number(tabini)) {
-      var isHiddenDelete = 'is-hidden';
+      let isHiddenDelete = 'is-hidden';
     }
 
 
     let HtmlInnerVal='';
     HtmlInnerVal += '<table style="font-size: 16px;width:100%;background-color:#f5f5f5;"><tr><td style="width:50%;">TOP</td><td style="width:50%;" id="tabname">';
-    let tabselect2val = [];  //配列戻し用の変数もここで宣言
+    //配列戻し用の変数もここで宣言
+    let tabselect2val = [];
     //配列戻し
     if(config.tabselect2){
       tabselect2val = config.tabselect2.split('@44');
@@ -205,7 +196,8 @@ async function FncListTable(PLUGIN_ID){
       HtmlInnerVal +=tabsetvalTop[i];
     }
 
-    for(let i =0;i<layout.length;i++){  //未設定の行
+    //未設定の行
+    for(let i =0;i<layout.length;i++){
       let ii = i +1;
       if(i >=  tabsetval.length-1){
         HtmlInnerVal += '<div class="Vitem" id="Vitem' + ii +'"></div>';
@@ -334,10 +326,11 @@ async function FncListTable(PLUGIN_ID){
     devSpace.innerHTML = HtmlInnerVal;
     ListTable.appendChild(devSpace); 
 
-  } catch (error) {  //エラー処理
-  
+  } catch (error) {
+    //エラー処理
     window.alert("エラーが発生した為、処理をキャンセルしました。\n" + error.message);
-  } finally {  //後処理
+  } finally {
+    //後処理
     FncDragiven();
     FncMoveheight();
     FncTabonclick(1);
@@ -535,10 +528,10 @@ function FncDeleteTab(index) {
   for (let i = 0; i < tabAreaElements.length; i++) {
     tabAreaElements[i].setAttribute('id', `tab_${i + 1}`);
 
-    var deleteButton = tabAreaElements[i].querySelector('.delete-button');
+    let deleteButton = tabAreaElements[i].querySelector('.delete-button');
     deleteButton.setAttribute('onClick', `FncDeleteTab(${i + 1})`);
 
-    var input = tabAreaElements[i].querySelector('input');
+    let input = tabAreaElements[i].querySelector('input');
     input.setAttribute('onClick', `FncTabonclick(${i + 1})`);
     input.setAttribute('id', `aaButton_${i + 1}`);
   
@@ -560,7 +553,7 @@ function FncDeleteTab(index) {
     displayFirstDeleteBtn(true);
   }
 
-  var focusTabIndex = index > 1 ? index - 1: index;
+  let focusTabIndex = index > 1 ? index - 1: index;
   FncTabonclick(focusTabIndex);
 
 }
@@ -585,31 +578,31 @@ function FncAddTab() {
   const tabs = document.getElementById('tabname');
   const tabBoxs = document.getElementById('movetabbox');
   // タブの大枠のdiv生成
-  var newTab = document.createElement('div');
+  let newTab = document.createElement('div');
   // タブを追加・削除するボタンエリア生成
-  var newAddDeleteArea = document.createElement('div');
+  let newAddDeleteArea = document.createElement('div');
   // タブを削除する「ー」ボタン生成
-  var newDeleteTab = document.createElement('span');
+  let newDeleteTab = document.createElement('span');
   // タブ名部分生成
-  var newInput = document.createElement('input');
+  let newInput = document.createElement('input');
   
   // ボトムを除いたタブの数を取得
-  var tabCount = document.getElementsByClassName('tab-area').length;
+  let tabCount = document.getElementsByClassName('tab-area').length;
   if (MIN_TAB === tabCount) {
     displayFirstDeleteBtn(false);
   }
 
-  var tabIndex = tabCount + 1;
+  let tabIndex = tabCount + 1;
   
   // タブを追加する「＋」ボタン生成
-  var newAddTab = document.createElement('span');
+  let newAddTab = document.createElement('span');
   
   // タブを追加する「＋」ボタンに class/イベント を設定
   newAddTab.setAttribute('class', `add-button`);
   newAddTab.textContent = '＋';
   newAddTab.setAttribute('onclick', 'FncAddTab()');
 
-  var newInputValueSpan = document.createElement('span');
+  let newInputValueSpan = document.createElement('span');
   newInputValueSpan.setAttribute('id', `input-value_${tabIndex}`);
   newInputValueSpan.setAttribute('class', 'input-value-span');
 
@@ -646,8 +639,8 @@ function FncAddTab() {
   newTab.appendChild(newInputValueSpan);
   
   // 追加したタブと対になる設定箇所を生成
-  var newTabBox = document.createElement('div');
-  var height = getComputedStyle(tabBoxs.lastChild).height;
+  let newTabBox = document.createElement('div');
+  let height = getComputedStyle(tabBoxs.lastChild).height;
   // 設定箇所に class/id/style を設定
   newTabBox.setAttribute('class', 'box box2 tab-box-mid');
   newTabBox.setAttribute('id', `tabbox${tabIndex}`);
@@ -700,14 +693,18 @@ function SetTabWidthInput (e) {
 
 function FncClehtml(valhtml,valtype='no',valname='no'){
 let htmlaa = '';
-if(valhtml['type']=='SPACER'){  //スペース
+if(valhtml['type']=='SPACER'){
+  //スペース
   htmlaa = '<div class="" style="box-sizing: border-box; min-width: ' + valhtml['size']['width'] + 'px;display:inline-block"><div class="spacer-cybozu">spacer</div></div>';
-}else if(valhtml['type']=='LABEL'){  //ラベル
+}else if(valhtml['type']=='LABEL'){
+  //ラベル
   htmlaa += '<div class="pplb" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block;">';
   htmlaa += '<div class=""><span class="">' + valhtml['label'] + '</span></div></div>';
-}else if(valhtml['type']=='HR'){  //罫線
+}else if(valhtml['type']=='HR'){
+  //罫線
   htmlaa = '<div class="" style="box-sizing: border-box; width: ' + valhtml['size']['width'] + 'px; height: auto;display:inline-block"><hr class=""></div>';
-}else if(valhtml['type']=='REFERENCE_TABLE'){  //関連レコード一覧
+}else if(valhtml['type']=='REFERENCE_TABLE'){
+  //関連レコード一覧
   htmlaa += '<div class="pplb" style="box-sizing: border-box; height: auto;display:inline-block;">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valhtml['code']].label + '</span></div>';
   for(let i=0;i< gproperties[valhtml['code']]['referenceTable']['displayFields'].length;i++){
@@ -718,7 +715,8 @@ if(valhtml['type']=='SPACER'){  //スペース
   }
   htmlaa += '<div class=""></div>';
   htmlaa += '</div>';
-}else if(valtype == 'SUBTABLE'){  //テーブル
+}else if(valtype == 'SUBTABLE'){
+  //テーブル
   htmlaa += '<div class="subtable-label-gaiatab" style="box-sizing:border-box;width: ' + valhtml['size']['width'] + 'px;height:auto;display:inline-block">';
   htmlaa += '<div class="" style=""><span class="">' + gproperties[valname]['fields'][valhtml['code']].label + '</span></div>';
   htmlaa += '<div class="control-value-gaiatab"><span class="" style="color:#000;">'+ valhtml['code'] +'</span></div>';
