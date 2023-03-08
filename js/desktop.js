@@ -1,6 +1,9 @@
 jQuery.noConflict();
 
 let listCnt =0;
+let strInt=1;
+let config = null;
+let layout = null;
 (function($, PLUGIN_ID) {
   'use strict';
   
@@ -11,7 +14,30 @@ let listCnt =0;
   //移動対象のリストを取得
   async  function DeleteList(event){
     try {
-      const config = kintone.plugin.app.getConfig(PLUGIN_ID);
+      config = kintone.plugin.app.getConfig(PLUGIN_ID);
+      //フォームの設定情報
+      const layoutApiResponse = layout = await kintone.api(
+        kintone.api.url('/k/v1/app/form/layout.json', true),
+        'GET',
+        { app: kintone.app.getId() }
+      );
+      layout = layoutApiResponse.layout;
+
+    } catch (error) { 
+      //エラー処理
+      window.alert("タブプラグインでエラーが発生しました。");
+    } finally {
+      //後処理
+      const r = document.cookie.split(';');//split(';')を使用しデータを1つずつに分ける
+      r.forEach(function(value) {
+        let content = value.split('=');//split('=')を使用しcookie名と値に分ける
+        if(content[0] == 'Tagiji'){
+          strInt = content[1];
+        }
+      })
+
+    }
+
 
       //ヘッダースペース
       let devSpaceHeader = document.createElement('dev');
@@ -70,15 +96,6 @@ let listCnt =0;
       recordGaia.appendChild(devSpaceBottom); 
 
       recordGaia.appendChild(devSpaceFooter);
-
-      //オブジェクトの一覧取得
-
-      //フォームの設定情報
-      const { layout } = await kintone.api(
-        kintone.api.url('/k/v1/app/form/layout.json', true),
-        'GET',
-        { app: kintone.app.getId() }
-      );
 
       const rowGaia = document.getElementsByClassName('row-gaia');
       const subTableRowGaia = document.getElementsByClassName('subtable-row-gaia');
@@ -162,21 +179,8 @@ let listCnt =0;
       for(let i =0;i<tabSetValBtm.length;i++){
         devSpaceFooter.appendChild(tabSetValBtm[i][2]);
       }
-    } catch (error) {  //エラー処理
-      window.alert("タブプラグインでエラーが発生しました。");
-    } finally {  //後処理
-      let strInt=1;
-
-      const r = document.cookie.split(';');//split(';')を使用しデータを1つずつに分ける
-      r.forEach(function(value) {
-        let content = value.split('=');//split('=')を使用しcookie名と値に分ける
-        if(content[0] == 'Tagiji'){
-          strInt = content[1];
-        }
-      })
 
       ViewTag(strInt);
-    }
   }  
 })(jQuery, kintone.$PLUGIN_ID);
 
