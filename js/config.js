@@ -131,7 +131,7 @@ async function FncCreateTabList(PLUGIN_ID){
       HtmlInnerVal += '<div id="tab_1" class="tab-area">';
       HtmlInnerVal += '<div><span class="delete-button '+ isHiddenDelete +'" onclick="FncDeleteTab(1)"">ー</span>';
       HtmlInnerVal += '<span class="add-button" onclick="FncAddTab()">＋</span></div>';
-      HtmlInnerVal += '<input type="text" id="aaButton_1" class="tab-select2" value="" onclick="FncTabOnClick(1)"style="width:70px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" maxlength="20" placeholder="タブ">'
+      HtmlInnerVal += '<input type="text" id="aaButton_1" class="tab-select2 not-focus-tab" value="" onclick="FncTabOnClick(1)"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" placeholder="タブ">'
       HtmlInnerVal += '<span id="input-value_1" class="input-value-span"></span></div>';
       HtmlInnerVal += '</div>'
     }
@@ -141,11 +141,11 @@ async function FncCreateTabList(PLUGIN_ID){
       HtmlInnerVal += '<div id="tab_' + i + '" class="tab-area">';
       HtmlInnerVal += '<div><span class="delete-button '+ isHiddenDelete +'" onclick="FncDeleteTab('+ i +')">ー</span>';
       HtmlInnerVal += '<span class="add-button '+ isHiddenAdd +'" onclick="FncAddTab()">＋</span></div>';
-      HtmlInnerVal += '<input type="text" id="aaButton_' + i + '" class="tab-select2" value="'+ tabSelect2Val[ii] +'" onclick="FncTabOnClick('+ i +')"style="width:70px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" maxlength="20" size="'+tabSelect2Val[ii].length+'">'
+      HtmlInnerVal += '<input type="text" id="aaButton_' + i + '" class="tab-select2 not-focus-tab" value="'+ tabSelect2Val[ii] +'" onclick="FncTabOnClick('+ i +')"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" size="'+tabSelect2Val[ii].length+'">'
       HtmlInnerVal += `<span id="input-value_${i}" class="input-value-span">${tabSelect2Val[ii]}</span></div>`;
       HtmlInnerVal += '</div>'
     }
-    HtmlInnerVal += '<input type="text" id="aaButton_0" class="tab-select3" value="ボトム" onclick="FncTabOnClick(999)" style="width:70px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;" readonly>';
+    HtmlInnerVal += '<input type="text" id="aaButton_0" class="tab-select3 not-focus-tab" value="ボトム" onclick="FncTabOnClick(999)" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" readonly>';
     HtmlInnerVal += '</td></tr>';
     HtmlInnerVal += '<tr><td>';
     HtmlInnerVal += '<div class="grid">';
@@ -169,7 +169,7 @@ async function FncCreateTabList(PLUGIN_ID){
         tabSetValTop[tabSetVal2[1]] = '<div class="Vitem" id="Vitem_' + ii +'"></div>';
         tabSetValTop[tabSetVal2[1]] += '<div class="item" draggable="true" id="item_' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
-          tabSetValTop[tabSetVal2[1]] += '<div class="pplb" style="">'+propertiesArray[layout[i]['code']].label+'<br>';
+          tabSetValTop[tabSetVal2[1]] += '<div class="pl-8 pb-5" style="">'+propertiesArray[layout[i]['code']].label+'<br>';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
             tabSetValTop[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
@@ -204,7 +204,7 @@ async function FncCreateTabList(PLUGIN_ID){
         HtmlInnerVal += '<div class="Vitem" id="Vitem_' + ii +'"></div>';
         HtmlInnerVal += '<div class="item" draggable="true" id="item_' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
-          HtmlInnerVal += '<div class="pplb" style="">'+propertiesArray[layout[i]['code']].label+'<br>';
+          HtmlInnerVal += '<div class="pl-8 pb-5" style="">'+propertiesArray[layout[i]['code']].label+'<br>';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
             HtmlInnerVal += FncCreateFieldHtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
@@ -251,7 +251,7 @@ async function FncCreateTabList(PLUGIN_ID){
           tabSetValMid[tabSetVal2[1]] = '<div class="Vitem" id="Vitem_' + iii +'"></div>';
           tabSetValMid[tabSetVal2[1]] += '<div class="item" draggable="true" id="item_' + iii +'">' +iii + '行目';
           if(layout[ii]['type'] == 'SUBTABLE'){
-            tabSetValMid[tabSetVal2[1]] += '<div class="pplb" style="">'+propertiesArray[layout[ii]['code']].label+'<br>';
+            tabSetValMid[tabSetVal2[1]] += '<div class="pl-8 pb-5" style="">'+propertiesArray[layout[ii]['code']].label+'<br>';
             for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
               tabSetValMid[tabSetVal2[1]] += FncCreateFieldHtml(layout[ii]['fields'][i4],layout[ii]['type'],layout[ii]['code']);
             }
@@ -292,7 +292,7 @@ async function FncCreateTabList(PLUGIN_ID){
         tabSetValBtm[tabSetVal2[1]] = '<div class="Vitem" id="Vitem_' + ii +'"></div>';
         tabSetValBtm[tabSetVal2[1]] += '<div class="item" draggable="true" id="item_' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
-          tabSetValBtm[tabSetVal2[1]] += '<div class="pplb" style="">'+propertiesArray[layout[i]['code']].label+'<br>';
+          tabSetValBtm[tabSetVal2[1]] += '<div class="pl-8 pb-5" style="">'+propertiesArray[layout[i]['code']].label+'<br>';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
             tabSetValBtm[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
@@ -373,13 +373,35 @@ function FncDragField(e){
     }
     if(e.target.id.includes("tabbox") || e.target.id.includes("Vitem_")){
       e.target.classList.add("over");
-    }else{
+    } else if(e.target.id.includes("aaButton")) {
+      const drugTargetIndex = e.target.id.split('_')[1];
+      const focusTargetIndex = document.getElementsByClassName('focus-tab')[0].id.split('_')[1];
+      if (drugTargetIndex !== focusTargetIndex) {
+        document.getElementById(`tabbox${focusTargetIndex}`).style.display='none';
+      }
+      document.getElementById(`tabbox${drugTargetIndex}`).style.display='';
+      document.getElementById(`tabbox${drugTargetIndex}`).classList.add("over");
+      e.target.classList.add("over");
+    } else {
       return;
     }
   };
-
   // 要素が離れた際のイベントを定義
-  const handleDragLeave = (e) => e.target.classList.remove("over");
+  const handleDragLeave = (e) => {
+    if (e.target.id.includes("aaButton")) {
+      const drugLeaveIndex = e.target.id.split('_')[1];
+      const focusTargetIndex = document.getElementsByClassName('focus-tab')[0].id.split('_')[1];
+      document.getElementById(`tabbox${drugLeaveIndex}`).classList.remove("over");
+      e.target.classList.remove("over");
+      document.getElementById(`tabbox${drugLeaveIndex}`).style.display='none';
+      if (document.getElementsByClassName('over').length < 1) {
+        document.getElementById(`tabbox${focusTargetIndex}`).style.display='';
+      }
+    } else {
+      e.target.classList.remove("over");
+    }
+  }
+
 
   // 要素が重なっている最中のイベントを定義
   const handleDragOver = (e) => {
@@ -435,7 +457,19 @@ function FncDragField(e){
         }
         objTabBox.appendChild(document.getElementById(objTabBoxC[i]));
       }
-    }else{
+    } else if(e.target.id.includes("aaButton")) {
+      // ドロップ先のタブと相対するタブボックスに要素を追加する
+      const dropIndex = e.target.id.split('_')[1];
+      document.getElementById(`tabbox${dropIndex}`).appendChild(document.getElementById("V" + id));
+      document.getElementById(`tabbox${dropIndex}`).appendChild(document.getElementById(id));
+      document.getElementById(`tabbox${dropIndex}`).style.display='none';
+      const displayTargetIndex = document.getElementsByClassName('focus-tab')[0].id.split('_')[1];
+      document.getElementById(`tabbox${displayTargetIndex}`).style.display='';
+      const overs = document.getElementsByClassName('over');
+      for(let i = 0; i < overs.length; i++){
+        overs[i].classList.remove("over");
+      } 
+    } else {
       return;
     }
     FncMoveHeight();
@@ -449,6 +483,14 @@ function FncDragField(e){
     box.addEventListener("dragleave", handleDragLeave, false);
     box.addEventListener("dragover", handleDragOver, false);
     box.addEventListener("drop", handleDrop, false);
+  }
+
+  const tabs = [...document.querySelectorAll(".tab-select2")];
+  for (const tab of tabs) {
+    tab.addEventListener("dragenter", handleDragEnter, false);
+    tab.addEventListener("dragleave", handleDragLeave, false);
+    tab.addEventListener("dragover", handleDragOver, false);
+    tab.addEventListener("drop", handleDrop, false);
   }
 }
 
@@ -498,19 +540,31 @@ function FncTabOnClick(ini){
     let tabBoxBtn='aaButton_' + i;
     if(i==ini){
       document.getElementById(tabBoxName).style.display='';
-      document.getElementById(tabBoxBtn).style.background = '#f0f0f0';
+      changeBackgroundColorTab(true, tabBoxBtn);
     }else{
       document.getElementById(tabBoxName).style.display='none';
-      document.getElementById(tabBoxBtn).style.background = '#969998';
+      changeBackgroundColorTab(false, tabBoxBtn);
     }
   }
   if(999 == ini || tabAreaCount == '0'){
     document.getElementById('tabbox999').style.display='';
-    document.getElementById('aaButton_0').style.background = '#f0f0f0';
+    changeBackgroundColorTab(true, 'aaButton_0');
   }else{
     document.getElementById('tabbox999').style.display='none';
-    document.getElementById('aaButton_0').style.background = '#969998';
+    changeBackgroundColorTab(false, 'aaButton_0');
   }
+}
+
+/**
+ * タブの背景色を変更する
+ */
+function changeBackgroundColorTab(focus, targetId) {
+  const removeClass = focus ? 'not-focus-tab': 'focus-tab';
+  const addClass = focus ? 'focus-tab': 'not-focus-tab';
+  console.log(removeClass);
+  console.log(addClass);
+  document.getElementById(targetId).classList.remove(removeClass);
+  document.getElementById(targetId).classList.add(addClass);
 }
 
 /**
@@ -654,11 +708,11 @@ function FncAddTab() {
   newInput.setAttribute('type', 'text');
   newInput.setAttribute('maxlength', '20');
   newInput.setAttribute('id', `aaButton_${tabIndex}`);
-  newInput.setAttribute('class', `tab-select2`);
+  newInput.setAttribute('class', `tab-select2 not-focus-tab`);
   newInput.setAttribute('onclick', `FncTabOnClick(${tabIndex})`);
   newInput.setAttribute('placeholder', `タブ(${tabIndex})`);
   newInput.setAttribute('value', '');
-  newInput.setAttribute('style', 'width:70px;border-radius:10px 10px 0px 0px;background-color:#f5f5f5;padding: 1px 6px;text-align:center;');
+  newInput.setAttribute('style', 'width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;');
   
   // タブを追加・削除するボタンエリアにーボタン要素を挿入
   newAddDeleteArea.appendChild(newDeleteTab);
@@ -733,14 +787,14 @@ if(valHtml['type']=='SPACER'){
   newFieldHtml = '<div class="" style="box-sizing: border-box; min-width: ' + valHtml['size']['width'] + 'px;display:inline-block"><div class="spacer-cybozu">spacer</div></div>';
 }else if(valHtml['type']=='LABEL'){
   //ラベル
-  newFieldHtml += '<div class="pplb" style="box-sizing: border-box; width: ' + valHtml['size']['width'] + 'px; height: auto;display:inline-block;">';
+  newFieldHtml += '<div class="pl-8 pb-5" style="box-sizing: border-box; width: ' + valHtml['size']['width'] + 'px; height: auto;display:inline-block;">';
   newFieldHtml += '<div class=""><span class="">' + valHtml['label'] + '</span></div></div>';
 }else if(valHtml['type']=='HR'){
   //罫線
   newFieldHtml = '<div class="" style="box-sizing: border-box; width: ' + valHtml['size']['width'] + 'px; height: auto;display:inline-block"><hr class=""></div>';
 }else if(valHtml['type']=='REFERENCE_TABLE'){
   //関連レコード一覧
-  newFieldHtml += '<div class="pplb" style="box-sizing: border-box; height: auto;display:inline-block;">';
+  newFieldHtml += '<div class="pl-8 pb-5" style="box-sizing: border-box; height: auto;display:inline-block;">';
   newFieldHtml += '<div class="" style=""><span class="">' + propertiesArray[valHtml['code']].label + '</span></div>';
   for(let i=0;i< propertiesArray[valHtml['code']]['referenceTable']['displayFields'].length;i++){
     newFieldHtml += '<div class="subtable-label-gaiatab" style="box-sizing:border-box;height:auto;display:inline-block">';
@@ -759,7 +813,7 @@ if(valHtml['type']=='SPACER'){
   newFieldHtml += '</div>';
 
 }else{
-  newFieldHtml += '<div class="pplb" style="box-sizing:border-box;width: ' + valHtml['size']['width'] + 'px;height:auto;display:inline-block;">';
+  newFieldHtml += '<div class="pl-8 pb-5" style="box-sizing:border-box;width: ' + valHtml['size']['width'] + 'px;height:auto;display:inline-block;">';
   newFieldHtml += '<div class="" style=""><span class="">' + propertiesArray[valHtml['code']].label + '</span></div>';
   newFieldHtml += '<div class="control-value-gaiatab"><span class="">'+ valHtml['code'] +'</span></div>';
   newFieldHtml += '<div class=""></div>';
