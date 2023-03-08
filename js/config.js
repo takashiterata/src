@@ -129,8 +129,10 @@ async function FncCreateTabList(PLUGIN_ID){
     // タブが一つもない場合
     if (tabIni === 0) {
       HtmlInnerVal += '<div id="tab_1" class="tab-area">';
-      HtmlInnerVal += '<div><span class="delete-button '+ isHiddenDelete +'" onclick="FncDeleteTab(1)"">ー</span>';
-      HtmlInnerVal += '<span class="add-button" onclick="FncAddTab()">＋</span></div>';
+      HtmlInnerVal += '<div class="button-area">';
+      HtmlInnerVal += '<span class="add-button btn btn--circle btn--circle-a btn--shadow" onclick="FncAddTab()">＋</span>';
+      HtmlInnerVal += '<span class="delete-button btn btn--circle btn--circle-a btn--shadow '+ isHiddenDelete +'" onclick="FncDeleteTab(1)"">ー</span>';
+      HtmlInnerVal += '</div>';
       HtmlInnerVal += '<input type="text" id="aaButton_1" class="tab-select2 not-focus-tab" value="" onclick="FncTabOnClick(1)"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" placeholder="タブ">'
       HtmlInnerVal += '<span id="input-value_1" class="input-value-span"></span></div>';
       HtmlInnerVal += '</div>'
@@ -139,8 +141,10 @@ async function FncCreateTabList(PLUGIN_ID){
     for(let i=1;i<=tabIni;i++){
       let ii=i-1;
       HtmlInnerVal += '<div id="tab_' + i + '" class="tab-area">';
-      HtmlInnerVal += '<div><span class="delete-button '+ isHiddenDelete +'" onclick="FncDeleteTab('+ i +')">ー</span>';
-      HtmlInnerVal += '<span class="add-button '+ isHiddenAdd +'" onclick="FncAddTab()">＋</span></div>';
+      HtmlInnerVal += '<div class="button-area">';
+      HtmlInnerVal += '<span class="add-button btn btn--circle btn--circle-a btn--shadow '+ isHiddenAdd +'" onclick="FncAddTab()">＋</span>';
+      HtmlInnerVal += '<span class="delete-button btn btn--circle btn--circle-a btn--shadow '+ isHiddenDelete +'" onclick="FncDeleteTab('+ i +')">ー</span>';
+      HtmlInnerVal += '</div>';
       HtmlInnerVal += '<input type="text" id="aaButton_' + i + '" class="tab-select2 not-focus-tab" value="'+ tabSelect2Val[ii] +'" onclick="FncTabOnClick('+ i +')"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" size="'+tabSelect2Val[ii].length+'">'
       HtmlInnerVal += `<span id="input-value_${i}" class="input-value-span">${tabSelect2Val[ii]}</span></div>`;
       HtmlInnerVal += '</div>'
@@ -561,8 +565,6 @@ function FncTabOnClick(ini){
 function changeBackgroundColorTab(focus, targetId) {
   const removeClass = focus ? 'not-focus-tab': 'focus-tab';
   const addClass = focus ? 'focus-tab': 'not-focus-tab';
-  console.log(removeClass);
-  console.log(addClass);
   document.getElementById(targetId).classList.remove(removeClass);
   document.getElementById(targetId).classList.add(addClass);
 }
@@ -670,6 +672,8 @@ function FncAddTab() {
   let newTab = document.createElement('div');
   // タブを追加・削除するボタンエリア生成
   let newAddDeleteArea = document.createElement('div');
+  newAddDeleteArea.setAttribute('class', `button-area`);
+
   // タブを削除する「ー」ボタン生成
   let newDeleteTab = document.createElement('span');
   // タブ名部分生成
@@ -687,7 +691,7 @@ function FncAddTab() {
   let newAddTab = document.createElement('span');
   
   // タブを追加する「＋」ボタンに class/イベント を設定
-  newAddTab.setAttribute('class', `add-button`);
+  newAddTab.setAttribute('class', `add-button btn btn--circle btn--circle-a btn--shadow`);
   newAddTab.textContent = '＋';
   newAddTab.setAttribute('onclick', 'FncAddTab()');
 
@@ -700,7 +704,7 @@ function FncAddTab() {
   newTab.setAttribute('class', `tab-area`);
   
   // タブを追加する「ー」ボタンに class/イベント を設定
-  newDeleteTab.setAttribute('class', `delete-button`);
+  newDeleteTab.setAttribute('class', `delete-button btn btn--circle btn--circle-a btn--shadow`);
   newDeleteTab.textContent = 'ー';
   newDeleteTab.setAttribute('onclick', `FncDeleteTab(${tabIndex})`);
   
@@ -713,12 +717,12 @@ function FncAddTab() {
   newInput.setAttribute('placeholder', `タブ(${tabIndex})`);
   newInput.setAttribute('value', '');
   newInput.setAttribute('style', 'width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;');
+
+  // タブを追加・削除するボタンエリアに＋ボタン要素を挿入
+  newAddDeleteArea.appendChild(newAddTab);
   
   // タブを追加・削除するボタンエリアにーボタン要素を挿入
   newAddDeleteArea.appendChild(newDeleteTab);
-  
-  // タブを追加・削除するボタンエリアにーボタン要素を挿入
-  newAddDeleteArea.appendChild(newAddTab);
   
   // タブの大枠のdivにボタンエリア要素を挿入
   newTab.appendChild(newAddDeleteArea);
