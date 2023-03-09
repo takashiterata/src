@@ -83,7 +83,7 @@ const MIN_TAB = 1;
 async function FncCreateTabList(PLUGIN_ID){
   try{
     const config = kintone.plugin.app.getConfig(PLUGIN_ID);
-    const listTable = document.getElementById("listTable");
+    const listTable = document.getElementById("ListTable");
     //フォームの設定情報
     const { layout } = await kintone.api(
       kintone.api.url('/k/v1/app/form/layout.json', true),
