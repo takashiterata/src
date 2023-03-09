@@ -33,7 +33,7 @@ const MIN_TAB = 1;
     const tabAreaCount = document.getElementsByClassName("tab-area").length;
     let tabSetAny = [];
     for(let i=0;i<=tabAreaCount;i++){
-      let tabBoxName='tabbox' + i;
+      let tabBoxName=`tabbox${i}`;
       for(let ii=1;ii<=document.getElementById(tabBoxName).childElementCount;ii++){
         let iii = ii-1;
         let i4 = Math.floor(ii / 2)-1;
@@ -42,7 +42,7 @@ const MIN_TAB = 1;
         }
         
         let row = document.getElementById(tabBoxName).children[iii].id.split('_')[1];
-        tabSetAny[row] = i+'--'+i4;
+        tabSetAny[row] = `${i}--${i4}`;
       }
     }
     let tabBoxName='tabbox999';
@@ -140,10 +140,10 @@ async function FncCreateTabList(PLUGIN_ID){
 
     for(let i=1;i<=tabIni;i++){
       let ii=i-1;
-      htmlInnerVal += '<div id="tab_' + i + '" class="tab-area">';
+      htmlInnerVal += `<div id="tab_${i}" class="tab-area">`;
       htmlInnerVal += '<div class="button-area">';
       htmlInnerVal += `<span class="add-button btn btn--circle btn--circle-a btn--shadow ${isHiddenAdd}" onclick="FncAddTab()">＋</span>`;
-      htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="FncDeleteTab('+ i +')">ー</span>`;
+      htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="FncDeleteTab(${i})">ー</span>`;
       htmlInnerVal += '</div>';
       htmlInnerVal += `<input type="text" id="aaButton_${i}" class="tab-select2 not-focus-tab" value="${tabSelect2Val[ii]}" onclick="FncTabOnClick(${i})" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" size="${tabSelect2Val[ii].length}">`;
       htmlInnerVal += `<span id="input-value_${i}" class="input-value-span">${tabSelect2Val[ii]}</span></div>`;
@@ -261,7 +261,7 @@ async function FncCreateTabList(PLUGIN_ID){
             }
             tabSetValMid[tabSetVal2[1]] += '</div>';
           }else if(layout[ii]['type'] == 'GROUP'){
-            tabSetValMid[tabSetVal2[1]] += 'GROUP:'+propertiesArray[layout[ii]['code']]['label'];
+            tabSetValMid[tabSetVal2[1]] += `GROUP:${propertiesArray[layout[ii]['code']]['label']}`;
             tabSetValMid[tabSetVal2[1]] += '<div class="" style="">';
             for(let i4=0;i4 <layout[ii]['layout'].length;i4++){
               for(let i5=0;i5 <layout[ii]['layout'][i4]['fields'].length;i5++){
@@ -435,7 +435,7 @@ function FncDragField(e){
     const { id } = JSON.parse(e.dataTransfer.getData("application/json"));
     if(e.target.id.includes("tabbox")){
     // ドロップ先に要素を追加する
-    e.target.appendChild(document.getElementById("V" + id));
+    e.target.appendChild(document.getElementById(`V${id}`));
     e.target.appendChild(document.getElementById(id));
     }else if(e.target.id.includes("Vitem_")){
       const cItemID = e.target.id;
@@ -451,12 +451,12 @@ function FncDragField(e){
         if(id == objTabBoxC[i]){
           continue;
         }
-        if("V" + id == objTabBoxC[i]){
+        if(`V${id}` == objTabBoxC[i]){
           continue;
         }
 
         if(cItemID == objTabBoxC[i]){
-        objTabBox.appendChild(document.getElementById("V" + id));
+        objTabBox.appendChild(document.getElementById(`V${id}`));
         objTabBox.appendChild(document.getElementById(id));
         }
         objTabBox.appendChild(document.getElementById(objTabBoxC[i]));
@@ -464,7 +464,7 @@ function FncDragField(e){
     } else if(e.target.id.includes("aaButton")) {
       // ドロップ先のタブと相対するタブボックスに要素を追加する
       const dropIndex = e.target.id.split('_')[1];
-      document.getElementById(`tabbox${dropIndex}`).appendChild(document.getElementById("V" + id));
+      document.getElementById(`tabbox${dropIndex}`).appendChild(document.getElementById(`V${id}`));
       document.getElementById(`tabbox${dropIndex}`).appendChild(document.getElementById(id));
       document.getElementById(`tabbox${dropIndex}`).style.display='none';
       const displayTargetIndex = document.getElementsByClassName('focus-tab')[0].id.split('_')[1];
@@ -812,7 +812,7 @@ if(valHtml['type']=='SPACER'){
   //テーブル
   newFieldHtml += `<div class="subtable-label-gaiatab" style="box-sizing:border-box;width:${valHtml['size']['width']}}px;height:auto;display:inline-block">`;
   newFieldHtml += `<div class="" style=""><span class="">${propertiesArray[valName]['fields'][valHtml['code']].label}</span></div>`;
-  newFieldHtml += `<div class="control-value-gaiatab"><span class="" style="color:#000;">'+ ${valHtml['code']} +'</span></div>`;
+  newFieldHtml += `<div class="control-value-gaiatab"><span class="" style="color:#000;">${valHtml['code']}</span></div>`;
   newFieldHtml += '<div class=""></div>';
   newFieldHtml += '</div>';
 
