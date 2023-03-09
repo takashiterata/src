@@ -27,27 +27,27 @@ let listCnt =0;
       let devSpaceBottom = document.createElement('dev');
 
       //固定tab
-      let ButtonAll = document.createElement('button');
-      ButtonAll.id = 'aaButton0';
-      ButtonAll.style.height = '30px';
-      ButtonAll.innerHTML = ' 全表示 ';
-      ButtonAll.className = "tabbottnname";
-      ButtonAll.onclick = function() { ViewTag(0); };
-      ButtonAll.style.borderRadius = '10px 10px 0px 0px';
+      let buttonAll = document.createElement('button');
+      buttonAll.id = 'aaButton0';
+      buttonAll.style.height = '30px';
+      buttonAll.innerHTML = ' 全表示 ';
+      buttonAll.className = "tabbottnname";
+      buttonAll.onclick = function() { ViewTag(0); };
+      buttonAll.style.borderRadius = '10px 10px 0px 0px';
 
       //設定値によりループする↓
       listCnt = config.tabselect;
-      let ButtonTab = [];
+      let buttonTab = [];
       const tabName = config.tabselect2.split('@44');
       for(let i=0;i<config.tabselect;i++){
         let ii=i+1;
-        ButtonTab[i] = document.createElement('button');
-        ButtonTab[i].id = 'aaButton' + ii;
-        ButtonTab[i].style.height = '30px';
-        ButtonTab[i].style.overflow = 'hidden';
-        ButtonTab[i].innerHTML = tabName[i];
-        ButtonTab[i].onclick = function() { ViewTag(ii); };
-        ButtonTab[i].style.borderRadius = '10px 10px 0px 0px';
+        buttonTab[i] = document.createElement('button');
+        buttonTab[i].id = 'aaButton' + ii;
+        buttonTab[i].style.height = '30px';
+        buttonTab[i].style.overflow = 'hidden';
+        buttonTab[i].innerHTML = tabName[i];
+        buttonTab[i].onclick = function() { ViewTag(ii); };
+        buttonTab[i].style.borderRadius = '10px 10px 0px 0px';
       }
       //設定値によりループする↑
 
@@ -58,14 +58,14 @@ let listCnt =0;
       recordGaia.appendChild(devSpaceTab);
 
       //設定値によりループする↓
-      for(let i=0;i<ButtonTab.length;i++){
-        devSpaceTab.appendChild(ButtonTab[i]);
+      for(let i=0;i<buttonTab.length;i++){
+        devSpaceTab.appendChild(buttonTab[i]);
       }
       //設定値によりループする↑
 
       //全表示タブ
       if(2<=config.tabselect){
-        devSpaceTab.appendChild(ButtonAll);
+        devSpaceTab.appendChild(buttonAll);
       }
       recordGaia.appendChild(devSpaceBottom); 
 
@@ -183,35 +183,35 @@ let listCnt =0;
 
 function ViewTag(ViewType){
   document.cookie = 'Tagiji=' + ViewType;
-  let TagArray = [];
-  let TagParmTab = [];
+  let tagArray = [];
+  let tagParmTab = [];
   //設定値でループになる
   for(let i =1;i<=listCnt;i++){
     let tabBoxName = 'tabVclass' + i;
-    TagArray[i] = document.getElementsByClassName(tabBoxName);
+    tagArray[i] = document.getElementsByClassName(tabBoxName);
   }
   let strInt=1;
   if(2<=listCnt){
-    TagParmTab[0] = document.getElementById('aaButton0');
+    tagParmTab[0] = document.getElementById('aaButton0');
     strInt=0;
   }
   for(let i =1;i<=listCnt;i++){
     let tabBoxName = 'aaButton' + i;
-    TagParmTab[i] = document.getElementById(tabBoxName);
+    tagParmTab[i] = document.getElementById(tabBoxName);
   }
-  for(let i=strInt;i<TagParmTab.length;i++){
+  for(let i=strInt;i<tagParmTab.length;i++){
     if(ViewType == i){
-      TagParmTab[i].style.background = '#f0f0f0';
+      tagParmTab[i].style.background = '#f0f0f0';
     }else{
-      TagParmTab[i].style.background = '#969998';
+      tagParmTab[i].style.background = '#969998';
     }
   }
-  for(let i=1;i<TagArray.length;i++){
-    for(let ii=0;ii<TagArray[i].length;ii++){
+  for(let i=1;i<tagArray.length;i++){
+    for(let ii=0;ii<tagArray[i].length;ii++){
       if(ViewType == 0 || ViewType == i){
-        TagArray[i][ii].style.display = '';
+        tagArray[i][ii].style.display = '';
       }else{
-        TagArray[i][ii].style.display = 'none';
+        tagArray[i][ii].style.display = 'none';
       }
     }
   }

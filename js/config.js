@@ -83,7 +83,7 @@ const MIN_TAB = 1;
 async function FncCreateTabList(PLUGIN_ID){
   try{
     const config = kintone.plugin.app.getConfig(PLUGIN_ID);
-    const ListTable = document.getElementById("ListTable");
+    const listTable = document.getElementById("listTable");
     //フォームの設定情報
     const { layout } = await kintone.api(
       kintone.api.url('/k/v1/app/form/layout.json', true),
@@ -113,8 +113,8 @@ async function FncCreateTabList(PLUGIN_ID){
     }
 
 
-    let HtmlInnerVal='';
-    HtmlInnerVal += '<table style="font-size: 16px;width:100%;background-color:#f5f5f5;"><tr><td style="width:50%;">TOP</td><td style="width:50%;" id="tabname">';
+    let htmlInnerVal='';
+    htmlInnerVal += '<table style="font-size: 16px;width:100%;background-color:#f5f5f5;"><tr><td style="width:50%;">TOP</td><td style="width:50%;" id="tabname">';
     //配列戻し用の変数もここで宣言
     let tabSelect2Val = [];
     //配列戻し
@@ -128,32 +128,32 @@ async function FncCreateTabList(PLUGIN_ID){
 
     // タブが一つもない場合
     if (tabIni === 0) {
-      HtmlInnerVal += '<div id="tab_1" class="tab-area">';
-      HtmlInnerVal += '<div class="button-area">';
-      HtmlInnerVal += '<span class="add-button btn btn--circle btn--circle-a btn--shadow" onclick="FncAddTab()">＋</span>';
-      HtmlInnerVal += '<span class="delete-button btn btn--circle btn--circle-a btn--shadow '+ isHiddenDelete +'" onclick="FncDeleteTab(1)"">ー</span>';
-      HtmlInnerVal += '</div>';
-      HtmlInnerVal += '<input type="text" id="aaButton_1" class="tab-select2 not-focus-tab" value="" onclick="FncTabOnClick(1)"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" placeholder="タブ">'
-      HtmlInnerVal += '<span id="input-value_1" class="input-value-span"></span></div>';
-      HtmlInnerVal += '</div>'
+      htmlInnerVal += '<div id="tab_1" class="tab-area">';
+      htmlInnerVal += '<div class="button-area">';
+      htmlInnerVal += '<span class="add-button btn btn--circle btn--circle-a btn--shadow" onclick="FncAddTab()">＋</span>';
+      htmlInnerVal += '<span class="delete-button btn btn--circle btn--circle-a btn--shadow '+ isHiddenDelete +'" onclick="FncDeleteTab(1)"">ー</span>';
+      htmlInnerVal += '</div>';
+      htmlInnerVal += '<input type="text" id="aaButton_1" class="tab-select2 not-focus-tab" value="" onclick="FncTabOnClick(1)"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" placeholder="タブ">'
+      htmlInnerVal += '<span id="input-value_1" class="input-value-span"></span></div>';
+      htmlInnerVal += '</div>'
     }
 
     for(let i=1;i<=tabIni;i++){
       let ii=i-1;
-      HtmlInnerVal += '<div id="tab_' + i + '" class="tab-area">';
-      HtmlInnerVal += '<div class="button-area">';
-      HtmlInnerVal += '<span class="add-button btn btn--circle btn--circle-a btn--shadow '+ isHiddenAdd +'" onclick="FncAddTab()">＋</span>';
-      HtmlInnerVal += '<span class="delete-button btn btn--circle btn--circle-a btn--shadow '+ isHiddenDelete +'" onclick="FncDeleteTab('+ i +')">ー</span>';
-      HtmlInnerVal += '</div>';
-      HtmlInnerVal += '<input type="text" id="aaButton_' + i + '" class="tab-select2 not-focus-tab" value="'+ tabSelect2Val[ii] +'" onclick="FncTabOnClick('+ i +')"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" size="'+tabSelect2Val[ii].length+'">'
-      HtmlInnerVal += `<span id="input-value_${i}" class="input-value-span">${tabSelect2Val[ii]}</span></div>`;
-      HtmlInnerVal += '</div>'
+      htmlInnerVal += '<div id="tab_' + i + '" class="tab-area">';
+      htmlInnerVal += '<div class="button-area">';
+      htmlInnerVal += '<span class="add-button btn btn--circle btn--circle-a btn--shadow '+ isHiddenAdd +'" onclick="FncAddTab()">＋</span>';
+      htmlInnerVal += '<span class="delete-button btn btn--circle btn--circle-a btn--shadow '+ isHiddenDelete +'" onclick="FncDeleteTab('+ i +')">ー</span>';
+      htmlInnerVal += '</div>';
+      htmlInnerVal += '<input type="text" id="aaButton_' + i + '" class="tab-select2 not-focus-tab" value="'+ tabSelect2Val[ii] +'" onclick="FncTabOnClick('+ i +')"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" size="'+tabSelect2Val[ii].length+'">'
+      htmlInnerVal += `<span id="input-value_${i}" class="input-value-span">${tabSelect2Val[ii]}</span></div>`;
+      htmlInnerVal += '</div>'
     }
-    HtmlInnerVal += '<input type="text" id="aaButton_0" class="tab-select3 not-focus-tab" value="ボトム" onclick="FncTabOnClick(999)" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" readonly>';
-    HtmlInnerVal += '</td></tr>';
-    HtmlInnerVal += '<tr><td>';
-    HtmlInnerVal += '<div class="grid">';
-    HtmlInnerVal += '<div class="box box1" id="tabbox0" style="width:100%;">';
+    htmlInnerVal += '<input type="text" id="aaButton_0" class="tab-select3 not-focus-tab" value="ボトム" onclick="FncTabOnClick(999)" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" readonly>';
+    htmlInnerVal += '</td></tr>';
+    htmlInnerVal += '<tr><td>';
+    htmlInnerVal += '<div class="grid">';
+    htmlInnerVal += '<div class="box box1" id="tabbox0" style="width:100%;">';
 
     listCnt =layout.length;
 
@@ -198,52 +198,52 @@ async function FncCreateTabList(PLUGIN_ID){
       }
     }
     for(let i=0;i<tabSetValTop.length;i++){
-      HtmlInnerVal +=tabSetValTop[i];
+      htmlInnerVal +=tabSetValTop[i];
     }
 
     //未設定の行
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
       if(i >=  tabSetVal.length-1){
-        HtmlInnerVal += '<div class="Vitem" id="Vitem_' + ii +'"></div>';
-        HtmlInnerVal += '<div class="item" draggable="true" id="item_' + ii +'">' +ii + '行目';
+        htmlInnerVal += '<div class="Vitem" id="Vitem_' + ii +'"></div>';
+        htmlInnerVal += '<div class="item" draggable="true" id="item_' + ii +'">' +ii + '行目';
         if(layout[i]['type'] == 'SUBTABLE'){
-          HtmlInnerVal += '<div class="pl-8 pb-5" style="">'+propertiesArray[layout[i]['code']].label+'<br>';
+          htmlInnerVal += '<div class="pl-8 pb-5" style="">'+propertiesArray[layout[i]['code']].label+'<br>';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            HtmlInnerVal += FncCreateFieldHtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
+            htmlInnerVal += FncCreateFieldHtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
           }
-          HtmlInnerVal += '</div>';
+          htmlInnerVal += '</div>';
         }else if(layout[i]['type'] == 'GROUP'){
-          HtmlInnerVal += 'GROUP:'+propertiesArray[layout[i]['code']]['label'];
-          HtmlInnerVal += '<div class="" style="">';
+          htmlInnerVal += 'GROUP:'+propertiesArray[layout[i]['code']]['label'];
+          htmlInnerVal += '<div class="" style="">';
           for(let i4=0;i4 <layout[i]['layout'].length;i4++){
             for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
-              HtmlInnerVal += FncCreateFieldHtml(layout[i]['layout'][i4]['fields'][i5]);
+              htmlInnerVal += FncCreateFieldHtml(layout[i]['layout'][i4]['fields'][i5]);
             }
           }
-          HtmlInnerVal += '</div>';
+          htmlInnerVal += '</div>';
         }else{
-          HtmlInnerVal += '<div class="" style="">';
+          htmlInnerVal += '<div class="" style="">';
           for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            HtmlInnerVal += FncCreateFieldHtml(layout[i]['fields'][i4]);
+            htmlInnerVal += FncCreateFieldHtml(layout[i]['fields'][i4]);
           }
-          HtmlInnerVal += '</div>';
+          htmlInnerVal += '</div>';
         }
-        HtmlInnerVal += '</div>';
+        htmlInnerVal += '</div>';
       }
     }
 
-    HtmlInnerVal += '</div>';
-    HtmlInnerVal += '</div>';
-    HtmlInnerVal += '</td><td>';
-    HtmlInnerVal += '<div id="movetabbox" class="grid">';
+    htmlInnerVal += '</div>';
+    htmlInnerVal += '</div>';
+    htmlInnerVal += '</td><td>';
+    htmlInnerVal += '<div id="movetabbox" class="grid">';
 
     if (tabIni === 0) {
-      HtmlInnerVal += '<div class="box box2" id="tabbox1" style="width:100%;"></div>';
+      htmlInnerVal += '<div class="box box2" id="tabbox1" style="width:100%;"></div>';
     }
 
     for(let i=1;i<=tabIni;i++){
-      HtmlInnerVal += '<div class="box box2 tab-box-mid" id="tabbox'+i+'" style="width:100%;">';
+      htmlInnerVal += '<div class="box box2 tab-box-mid" id="tabbox'+i+'" style="width:100%;">';
       let tabSetValMid =[];
       for(let ii =0;ii<layout.length;ii++){
         if(ii>=tabSetVal.length-1){
@@ -280,11 +280,11 @@ async function FncCreateTabList(PLUGIN_ID){
         }
       }
       for(let ii=0;ii<tabSetValMid.length;ii++){
-        HtmlInnerVal +=tabSetValMid[ii];
+        htmlInnerVal +=tabSetValMid[ii];
       }
-      HtmlInnerVal += '</div>';
+      htmlInnerVal += '</div>';
     }
-    HtmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;">';
+    htmlInnerVal += '<div class="box box2" id="tabbox999" style="width:100%;">';
     let tabSetValBtm =[];
     for(let i =0;i<layout.length;i++){
       let ii = i +1;
@@ -321,15 +321,15 @@ async function FncCreateTabList(PLUGIN_ID){
       }
     }
     for(let i=0;i<tabSetValBtm.length;i++){
-      HtmlInnerVal +=tabSetValBtm[i];
+      htmlInnerVal +=tabSetValBtm[i];
     }
 
-    HtmlInnerVal += '</div>';
-    HtmlInnerVal += '</div>';
-    HtmlInnerVal += '</td></tr>';
-    HtmlInnerVal += '</table>';
-    devSpace.innerHTML = HtmlInnerVal;
-    ListTable.appendChild(devSpace); 
+    htmlInnerVal += '</div>';
+    htmlInnerVal += '</div>';
+    htmlInnerVal += '</td></tr>';
+    htmlInnerVal += '</table>';
+    devSpace.innerHTML = htmlInnerVal;
+    listTable.appendChild(devSpace); 
 
   } catch (error) {
     //エラー処理
@@ -516,7 +516,7 @@ function FncMoveHeight(e){
     if(objTabBox[i].style.display == ''){
       displayFlg=1;
     }else{
-      objTabBox[i].style.display = '';      
+      objTabBox[i].style.display = '';
     }
 
     for(let ii=0;ii<objTabBox[i].childElementCount;ii++){
