@@ -42,7 +42,7 @@ let listCnt =0;
       for(let i=0;i<config.tabselect;i++){
         let ii=i+1;
         buttonTab[i] = document.createElement('button');
-        buttonTab[i].id = 'aaButton' + ii;
+        buttonTab[i].id = `aaButton${ii}`;
         buttonTab[i].style.height = '30px';
         buttonTab[i].style.overflow = 'hidden';
         buttonTab[i].innerHTML = tabName[i];
@@ -145,7 +145,7 @@ let listCnt =0;
         }
         for(let ii=0;ii<tabSetValMid.length;ii++){
           devSpaceBottom.appendChild(tabSetValMid[ii][2]);
-          tabSetValMid[ii][2].className = tabSetValMid[ii][2].className + ' tabVclass' +i;
+          tabSetValMid[ii][2].className = `${tabSetValMid[ii][2].className} tabVclass${i}`;
         }
       }
       //BTM
@@ -182,12 +182,12 @@ let listCnt =0;
 
 
 function ViewTag(ViewType){
-  document.cookie = 'Tagiji=' + ViewType;
+  document.cookie = `Tagiji=${ViewType}`;
   let tagArray = [];
   let tagParmTab = [];
   //設定値でループになる
   for(let i =1;i<=listCnt;i++){
-    let tabBoxName = 'tabVclass' + i;
+    let tabBoxName = `tabVclass${i}`;
     tagArray[i] = document.getElementsByClassName(tabBoxName);
   }
   let strInt=1;
@@ -196,7 +196,7 @@ function ViewTag(ViewType){
     strInt=0;
   }
   for(let i =1;i<=listCnt;i++){
-    let tabBoxName = 'aaButton' + i;
+    let tabBoxName = `aaButton${i}`;
     tagParmTab[i] = document.getElementById(tabBoxName);
   }
   for(let i=strInt;i<tagParmTab.length;i++){
