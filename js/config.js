@@ -797,7 +797,7 @@ function FncAddTab(targetIndex) {
       addButtons[i].classList.add('is-hidden');
     }
   }
-  
+
   FncDragField();
   FncTabOnClick(targetIndex);
   FncMoveHeight();
@@ -812,6 +812,9 @@ function giveIdTabAndBox (startIndex) {
   // タブのid,クリックイベントを振り直し
   for (let i = startIndex; i < tabAreaElements.length; i++) {
     tabAreaElements[i].setAttribute('id', `tab_${i + 1}`);
+
+    let addButton = tabAreaElements[i].querySelector('.add-button');
+    addButton.setAttribute('onClick', `FncAddTab(${i + 1})`);
 
     let deleteButton = tabAreaElements[i].querySelector('.delete-button');
     deleteButton.setAttribute('onClick', `FncDeleteTab(${i + 1})`);
