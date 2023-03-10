@@ -3,6 +3,8 @@ jQuery.noConflict();
 let listCnt =0;
 let propertiesArray =[];
 let tabBoxHeight = 0;
+let config = null;
+let layout = null;
 const MAX_TAB = 20;
 const MIN_TAB = 1;
 const HEADER_TAB = 'fixed-tab_0';
@@ -87,14 +89,14 @@ const FOOTER_TAB_BOX = 'tab-box999';
 //移動対象のリストを取得
 async function FncCreateTabList(PLUGIN_ID){
   try{
-    const config = kintone.plugin.app.getConfig(PLUGIN_ID);
-    const listTable = document.getElementById("ListTable");
+    config = kintone.plugin.app.getConfig(PLUGIN_ID);
     //フォームの設定情報
-    const { layout } = await kintone.api(
+    const layoutResponse = await kintone.api(
       kintone.api.url('/k/v1/app/form/layout.json', true),
       'GET',
       { app: kintone.app.getId() }
     );
+    layout = layoutResponse.layout;
     //フォームの設定情報
     const { properties } = await kintone.api(
       kintone.api.url('/k/v1/app/form/fields.json', true),
@@ -102,260 +104,260 @@ async function FncCreateTabList(PLUGIN_ID){
       { app: kintone.app.getId() }
     );
     propertiesArray = properties;
-
-    let devSpace = document.createElement('dev');
-    let tabIni = 0;
-    if(config.tabselect){
-      tabIni = config.tabselect;
-    }
-
-    let isHiddenDelete = '';
-    let isHiddenAdd = '';
-    if (MAX_TAB === Number(tabIni)) {
-      isHiddenAdd = 'is-hidden';
-    } else if (MIN_TAB === Number(tabIni)) {
-      isHiddenDelete = 'is-hidden';
-    }
-
-
-    let htmlInnerVal='';
-    htmlInnerVal += '<table style="font-size: 16px;width:100%;background-color:#f5f5f5;border-collapse:collapse;">';
-    htmlInnerVal += '<tr><td id="fixed-tab-area" style="width:50%;vertical-align:bottom">';
-    htmlInnerVal += '<input type="text" id="fixed-tab_0" class="tab-left not-focus-tab" value="ヘッダー" onclick="fixedTabOnClick(0)" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" readonly> ';
-    htmlInnerVal += '<input type="text" id="fixed-tab_999" class="tab-left not-focus-tab" value="フッター" onclick="fixedTabOnClick(999)" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" readonly>';
-    htmlInnerVal += '</td><td style="width:50%;" id="tab-name">';
-    //配列戻し用の変数もここで宣言
-    let tabSelect2Val = [];
-    //配列戻し
-    if(config.tabselect2){
-      tabSelect2Val = config.tabselect2.split('@44');
-    }else if(tabSelect2Val.length == 0){
-      for(let i=0;i<tabIni;i++){
-        tabSelect2Val[i] = '';
-      }
-    }
-
-    // タブが一つもない場合
-    if (tabIni === 0) {
-      htmlInnerVal += '<div id="tab_1" class="tab-area">';
-      htmlInnerVal += '<div class="button-area">';
-      htmlInnerVal += '<span class="add-button btn btn--circle btn--circle-a btn--shadow" onclick="FncAddTab(1)">＋</span>';
-      htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="FncDeleteTab(1)"">ー</span>`;
-      htmlInnerVal += '</div>';
-      htmlInnerVal += '<input type="text" id="aaButton_1" class="tab-right not-focus-tab" value="" onclick="FncTabOnClick(1)"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20">';
-      htmlInnerVal += '<span id="input-value_1" class="input-value-span"></span></div>';
-      htmlInnerVal += '</div>';
-    }
-
-    for(let i=1;i<=tabIni;i++){
-      let ii=i-1;
-      htmlInnerVal += `<div id="tab_${i}" class="tab-area">`;
-      htmlInnerVal += '<div class="button-area">';
-      htmlInnerVal += `<span class="add-button btn btn--circle btn--circle-a btn--shadow ${isHiddenAdd}" onclick="FncAddTab(${i})">＋</span>`;
-      htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="FncDeleteTab(${i})">ー</span>`;
-      htmlInnerVal += '</div>';
-      htmlInnerVal += `<input type="text" id="aaButton_${i}" class="tab-right not-focus-tab" value="${tabSelect2Val[ii]}" onclick="FncTabOnClick(${i})" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" size="${tabSelect2Val[ii].length}">`;
-      htmlInnerVal += `<span id="input-value_${i}" class="input-value-span">${tabSelect2Val[ii]}</span></div>`;
-      htmlInnerVal += '</div>';
-    }
-    htmlInnerVal += '</td></tr>';
-    htmlInnerVal += '<tr><td>';
-    htmlInnerVal += '<div id="left-tab-list" class="grid">';
-    htmlInnerVal += '<div class="box box1" id="tab-box0" style="width:100%;">';
-
-    listCnt =layout.length;
-
-    let tabSetVal = [];
-    if(config.tabset){
-      tabSetVal = config.tabset.split('@44');
-    }
-
-    let tabSetValTop =[];
-    for(let i =0;i<layout.length;i++){
-      if(i>=tabSetVal.length-1){
-        continue;
-      }
-      let ii = i +1;
-      let tabSetVal2 = tabSetVal[i].split('--');
-      if(tabSetVal2[0] == '0'){
-        tabSetValTop[tabSetVal2[1]] = `<div class="Vitem" id="Vitem_${ii}"></div>`;
-        tabSetValTop[tabSetVal2[1]] += `<div class="item" draggable="true" id="item_${ii}">${ii}行目`;
-        if(layout[i]['type'] == 'SUBTABLE'){
-          tabSetValTop[tabSetVal2[1]] += `<div class="pl-8 pb-5" style="">${propertiesArray[layout[i]['code']].label}<br>`;
-          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            tabSetValTop[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
-          }
-          tabSetValTop[tabSetVal2[1]] += '</div>';
-        }else if(layout[i]['type'] == 'GROUP'){
-          tabSetValTop[tabSetVal2[1]] += `GROUP:${propertiesArray[layout[i]['code']]['label']}`;
-          tabSetValTop[tabSetVal2[1]] += '<div class="" style="">';
-          for(let i4=0;i4 <layout[i]['layout'].length;i4++){
-            for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
-              tabSetValTop[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['layout'][i4]['fields'][i5]);
-            }
-          }
-          tabSetValTop[tabSetVal2[1]] += '</div>';
-        }else{
-          tabSetValTop[tabSetVal2[1]] += '<div class="" style="">';
-          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            tabSetValTop[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['fields'][i4]);
-          }
-          tabSetValTop[tabSetVal2[1]] += '</div>';
-        }
-        tabSetValTop[tabSetVal2[1]] += '</div>';
-      }
-    }
-    for(let i=0;i<tabSetValTop.length;i++){
-      htmlInnerVal +=tabSetValTop[i];
-    }
-
-    //未設定の行
-    for(let i =0;i<layout.length;i++){
-      let ii = i +1;
-      if(i >=  tabSetVal.length-1){
-        htmlInnerVal += `<div class="Vitem" id="Vitem_${ii}"></div>`;
-        htmlInnerVal += `<div class="item" draggable="true" id="item_${ii}">${ii}行目`;
-        if(layout[i]['type'] == 'SUBTABLE'){
-          htmlInnerVal += `<div class="pl-8 pb-5" style="">${propertiesArray[layout[i]['code']].label}<br>`;
-          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            htmlInnerVal += FncCreateFieldHtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
-          }
-          htmlInnerVal += '</div>';
-        }else if(layout[i]['type'] == 'GROUP'){
-          htmlInnerVal += `GROUP:${propertiesArray[layout[i]['code']]['label']}`;
-          htmlInnerVal += '<div class="" style="">';
-          for(let i4=0;i4 <layout[i]['layout'].length;i4++){
-            for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
-              htmlInnerVal += FncCreateFieldHtml(layout[i]['layout'][i4]['fields'][i5]);
-            }
-          }
-          htmlInnerVal += '</div>';
-        }else{
-          htmlInnerVal += '<div class="" style="">';
-          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            htmlInnerVal += FncCreateFieldHtml(layout[i]['fields'][i4]);
-          }
-          htmlInnerVal += '</div>';
-        }
-        htmlInnerVal += '</div>';
-      }
-    }
-
-    htmlInnerVal += '</div>';
-    htmlInnerVal += '</div>';
-    htmlInnerVal += '</td><td>';
-    htmlInnerVal += '<div id="move-tab-box" class="grid">';
-
-    if (tabIni === 0) {
-      htmlInnerVal += '<div class="box box2" id="tab-box1" style="width:100%;"></div>';
-    }
-
-    for(let i=1;i<=tabIni;i++){
-      htmlInnerVal += `<div class="box box2 tab-box-mid" id="tab-box${i}" style="width:100%;">`;
-      let tabSetValMid =[];
-      for(let ii =0;ii<layout.length;ii++){
-        if(ii>=tabSetVal.length-1){
-          continue;
-        }
-          let iii = ii +1;
-        let tabSetVal2 = tabSetVal[ii].split('--');
-        if(tabSetVal2[0] == i){
-          tabSetValMid[tabSetVal2[1]] = `<div class="Vitem" id="Vitem_${iii}"></div>`;
-          tabSetValMid[tabSetVal2[1]] += `<div class="item" draggable="true" id="item_${iii}">${iii}行目`;
-          if(layout[ii]['type'] == 'SUBTABLE'){
-            tabSetValMid[tabSetVal2[1]] += `<div class="pl-8 pb-5" style="">${propertiesArray[layout[ii]['code']].label}<br>`;
-            for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
-              tabSetValMid[tabSetVal2[1]] += FncCreateFieldHtml(layout[ii]['fields'][i4],layout[ii]['type'],layout[ii]['code']);
-            }
-            tabSetValMid[tabSetVal2[1]] += '</div>';
-          }else if(layout[ii]['type'] == 'GROUP'){
-            tabSetValMid[tabSetVal2[1]] += `GROUP:${propertiesArray[layout[ii]['code']]['label']}`;
-            tabSetValMid[tabSetVal2[1]] += '<div class="" style="">';
-            for(let i4=0;i4 <layout[ii]['layout'].length;i4++){
-              for(let i5=0;i5 <layout[ii]['layout'][i4]['fields'].length;i5++){
-                tabSetValMid[tabSetVal2[1]] += FncCreateFieldHtml(layout[ii]['layout'][i4]['fields'][i5]);
-              }
-            }
-            tabSetValMid[tabSetVal2[1]] += '</div>';
-          }else{
-            tabSetValMid[tabSetVal2[1]] += '<div class="" style="">';
-            for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
-              tabSetValMid[tabSetVal2[1]] += FncCreateFieldHtml(layout[ii]['fields'][i4]);
-            }
-            tabSetValMid[tabSetVal2[1]] += '</div>';
-          }
-          tabSetValMid[tabSetVal2[1]] += '</div>';
-        }
-      }
-      for(let ii=0;ii<tabSetValMid.length;ii++){
-        htmlInnerVal +=tabSetValMid[ii];
-      }
-      htmlInnerVal += '</div>';
-    }
-    let footerInnerVal = '';
-    footerInnerVal += '<div class="box box1" id="tab-box999" style="width:100%;">';
-    let tabSetValFooter =[];
-    for(let i =0;i<layout.length;i++){
-      let ii = i +1;
-      if(i>=tabSetVal.length-1){
-        continue;
-      }
-      let tabSetVal2 = tabSetVal[i].split('--');
-      if(tabSetVal2[0] == '999'){
-        tabSetValFooter[tabSetVal2[1]] = `<div class="Vitem" id="Vitem_${ii}"></div>`;
-        tabSetValFooter[tabSetVal2[1]] += `<div class="item" draggable="true" id="item_${ii}">${ii}行目`;
-        if(layout[i]['type'] == 'SUBTABLE'){
-          tabSetValFooter[tabSetVal2[1]] += `<div class="pl-8 pb-5" style="">${propertiesArray[layout[i]['code']].label}<br>`;
-          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            tabSetValFooter[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
-          }
-          tabSetValFooter[tabSetVal2[1]] += '</div>';
-        }else if(layout[i]['type'] == 'GROUP'){
-          tabSetValFooter[tabSetVal2[1]] += `GROUP:${propertiesArray[layout[i]['code']]['label']}`;
-          tabSetValFooter[tabSetVal2[1]] += '<div class="" style="">';
-          for(let i4=0;i4 <layout[i]['layout'].length;i4++){
-            for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
-              tabSetValFooter[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['layout'][i4]['fields'][i5]);
-            }
-          }
-          tabSetValFooter[tabSetVal2[1]] += '</div>';
-        }else{
-          tabSetValFooter[tabSetVal2[1]] += '<div class="" style="">';
-          for(let i4=0;i4 <layout[i]['fields'].length;i4++){
-            tabSetValFooter[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['fields'][i4]);
-          }
-          tabSetValFooter[tabSetVal2[1]] += '</div>';
-        }
-        tabSetValFooter[tabSetVal2[1]] += '</div>';
-      }
-    }
-    for(let i=0;i<tabSetValFooter.length;i++){
-      footerInnerVal +=tabSetValFooter[i];
-    }
-
-    htmlInnerVal += '</div>';
-    htmlInnerVal += '</div>';
-    htmlInnerVal += '</td></tr>';
-    htmlInnerVal += '</table>';
-    devSpace.innerHTML = htmlInnerVal;
-    listTable.appendChild(devSpace); 
-    document.getElementById('left-tab-list').insertAdjacentHTML('beforeend', footerInnerVal);
-
   } catch (error) {
     //エラー処理
     window.alert("タブプラグインでエラーが発生しました。");
-  } finally {
-    //後処理
-    FncDragField();
-    FncTabOnClick(1);
-    FncMoveHeight();
-    SetTabWidthIni();
-    fixedTabOnClick(0);
+  }
 
-    const inputTab = document.getElementsByClassName("tab-right");
-    for (let i = 0;i < inputTab.length; i++) {
-      inputTab[i].addEventListener('input', SetTabWidthInput);
+  const listTable = document.getElementById("ListTable");
+
+  let devSpace = document.createElement('dev');
+  let tabIni = 0;
+  if(config.tabselect){
+    tabIni = config.tabselect;
+  }
+
+  let isHiddenDelete = '';
+  let isHiddenAdd = '';
+  if (MAX_TAB === Number(tabIni)) {
+    isHiddenAdd = 'is-hidden';
+  } else if (MIN_TAB === Number(tabIni)) {
+    isHiddenDelete = 'is-hidden';
+  }
+
+
+  let htmlInnerVal='';
+  htmlInnerVal += '<table style="font-size: 16px;width:100%;background-color:#f5f5f5;border-collapse:collapse;">';
+  htmlInnerVal += '<tr><td id="fixed-tab-area" style="width:50%;vertical-align:bottom">';
+  htmlInnerVal += '<input type="text" id="fixed-tab_0" class="tab-left not-focus-tab" value="ヘッダー" onclick="fixedTabOnClick(0)" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" readonly> ';
+  htmlInnerVal += '<input type="text" id="fixed-tab_999" class="tab-left not-focus-tab" value="フッター" onclick="fixedTabOnClick(999)" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" readonly>';
+  htmlInnerVal += '</td><td style="width:50%;" id="tab-name">';
+  //配列戻し用の変数もここで宣言
+  let tabSelect2Val = [];
+  //配列戻し
+  if(config.tabselect2){
+    tabSelect2Val = config.tabselect2.split('@44');
+  }else if(tabSelect2Val.length == 0){
+    for(let i=0;i<tabIni;i++){
+      tabSelect2Val[i] = '';
     }
+  }
+
+  // タブが一つもない場合
+  if (tabIni === 0) {
+    htmlInnerVal += '<div id="tab_1" class="tab-area">';
+    htmlInnerVal += '<div class="button-area">';
+    htmlInnerVal += '<span class="add-button btn btn--circle btn--circle-a btn--shadow" onclick="FncAddTab(1)">＋</span>';
+    htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="FncDeleteTab(1)"">ー</span>`;
+    htmlInnerVal += '</div>';
+    htmlInnerVal += '<input type="text" id="aaButton_1" class="tab-right not-focus-tab" value="" onclick="FncTabOnClick(1)"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20">';
+    htmlInnerVal += '<span id="input-value_1" class="input-value-span"></span></div>';
+    htmlInnerVal += '</div>';
+  }
+
+  for(let i=1;i<=tabIni;i++){
+    let ii=i-1;
+    htmlInnerVal += `<div id="tab_${i}" class="tab-area">`;
+    htmlInnerVal += '<div class="button-area">';
+    htmlInnerVal += `<span class="add-button btn btn--circle btn--circle-a btn--shadow ${isHiddenAdd}" onclick="FncAddTab(${i})">＋</span>`;
+    htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="FncDeleteTab(${i})">ー</span>`;
+    htmlInnerVal += '</div>';
+    htmlInnerVal += `<input type="text" id="aaButton_${i}" class="tab-right not-focus-tab" value="${tabSelect2Val[ii]}" onclick="FncTabOnClick(${i})" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" size="${tabSelect2Val[ii].length}">`;
+    htmlInnerVal += `<span id="input-value_${i}" class="input-value-span">${tabSelect2Val[ii]}</span></div>`;
+    htmlInnerVal += '</div>';
+  }
+  htmlInnerVal += '</td></tr>';
+  htmlInnerVal += '<tr><td>';
+  htmlInnerVal += '<div id="left-tab-list" class="grid">';
+  htmlInnerVal += '<div class="box box1" id="tab-box0" style="width:100%;">';
+
+  listCnt =layout.length;
+
+  let tabSetVal = [];
+  if(config.tabset){
+    tabSetVal = config.tabset.split('@44');
+  }
+
+  let tabSetValTop =[];
+  for(let i =0;i<layout.length;i++){
+    if(i>=tabSetVal.length-1){
+      continue;
+    }
+    let ii = i +1;
+    let tabSetVal2 = tabSetVal[i].split('--');
+    if(tabSetVal2[0] == '0'){
+      tabSetValTop[tabSetVal2[1]] = `<div class="Vitem" id="Vitem_${ii}"></div>`;
+      tabSetValTop[tabSetVal2[1]] += `<div class="item" draggable="true" id="item_${ii}">${ii}行目`;
+      if(layout[i]['type'] == 'SUBTABLE'){
+        tabSetValTop[tabSetVal2[1]] += `<div class="pl-8 pb-5" style="">${propertiesArray[layout[i]['code']].label}<br>`;
+        for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+          tabSetValTop[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
+        }
+        tabSetValTop[tabSetVal2[1]] += '</div>';
+      }else if(layout[i]['type'] == 'GROUP'){
+        tabSetValTop[tabSetVal2[1]] += `GROUP:${propertiesArray[layout[i]['code']]['label']}`;
+        tabSetValTop[tabSetVal2[1]] += '<div class="" style="">';
+        for(let i4=0;i4 <layout[i]['layout'].length;i4++){
+          for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
+            tabSetValTop[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['layout'][i4]['fields'][i5]);
+          }
+        }
+        tabSetValTop[tabSetVal2[1]] += '</div>';
+      }else{
+        tabSetValTop[tabSetVal2[1]] += '<div class="" style="">';
+        for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+          tabSetValTop[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['fields'][i4]);
+        }
+        tabSetValTop[tabSetVal2[1]] += '</div>';
+      }
+      tabSetValTop[tabSetVal2[1]] += '</div>';
+    }
+  }
+  for(let i=0;i<tabSetValTop.length;i++){
+    htmlInnerVal +=tabSetValTop[i];
+  }
+
+  //未設定の行
+  for(let i =0;i<layout.length;i++){
+    let ii = i +1;
+    if(i >=  tabSetVal.length-1){
+      htmlInnerVal += `<div class="Vitem" id="Vitem_${ii}"></div>`;
+      htmlInnerVal += `<div class="item" draggable="true" id="item_${ii}">${ii}行目`;
+      if(layout[i]['type'] == 'SUBTABLE'){
+        htmlInnerVal += `<div class="pl-8 pb-5" style="">${propertiesArray[layout[i]['code']].label}<br>`;
+        for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+          htmlInnerVal += FncCreateFieldHtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
+        }
+        htmlInnerVal += '</div>';
+      }else if(layout[i]['type'] == 'GROUP'){
+        htmlInnerVal += `GROUP:${propertiesArray[layout[i]['code']]['label']}`;
+        htmlInnerVal += '<div class="" style="">';
+        for(let i4=0;i4 <layout[i]['layout'].length;i4++){
+          for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
+            htmlInnerVal += FncCreateFieldHtml(layout[i]['layout'][i4]['fields'][i5]);
+          }
+        }
+        htmlInnerVal += '</div>';
+      }else{
+        htmlInnerVal += '<div class="" style="">';
+        for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+          htmlInnerVal += FncCreateFieldHtml(layout[i]['fields'][i4]);
+        }
+        htmlInnerVal += '</div>';
+      }
+      htmlInnerVal += '</div>';
+    }
+  }
+
+  htmlInnerVal += '</div>';
+  htmlInnerVal += '</div>';
+  htmlInnerVal += '</td><td>';
+  htmlInnerVal += '<div id="move-tab-box" class="grid">';
+
+  if (tabIni === 0) {
+    htmlInnerVal += '<div class="box box2" id="tab-box1" style="width:100%;"></div>';
+  }
+
+  for(let i=1;i<=tabIni;i++){
+    htmlInnerVal += `<div class="box box2 tab-box-mid" id="tab-box${i}" style="width:100%;">`;
+    let tabSetValMid =[];
+    for(let ii =0;ii<layout.length;ii++){
+      if(ii>=tabSetVal.length-1){
+        continue;
+      }
+        let iii = ii +1;
+      let tabSetVal2 = tabSetVal[ii].split('--');
+      if(tabSetVal2[0] == i){
+        tabSetValMid[tabSetVal2[1]] = `<div class="Vitem" id="Vitem_${iii}"></div>`;
+        tabSetValMid[tabSetVal2[1]] += `<div class="item" draggable="true" id="item_${iii}">${iii}行目`;
+        if(layout[ii]['type'] == 'SUBTABLE'){
+          tabSetValMid[tabSetVal2[1]] += `<div class="pl-8 pb-5" style="">${propertiesArray[layout[ii]['code']].label}<br>`;
+          for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
+            tabSetValMid[tabSetVal2[1]] += FncCreateFieldHtml(layout[ii]['fields'][i4],layout[ii]['type'],layout[ii]['code']);
+          }
+          tabSetValMid[tabSetVal2[1]] += '</div>';
+        }else if(layout[ii]['type'] == 'GROUP'){
+          tabSetValMid[tabSetVal2[1]] += `GROUP:${propertiesArray[layout[ii]['code']]['label']}`;
+          tabSetValMid[tabSetVal2[1]] += '<div class="" style="">';
+          for(let i4=0;i4 <layout[ii]['layout'].length;i4++){
+            for(let i5=0;i5 <layout[ii]['layout'][i4]['fields'].length;i5++){
+              tabSetValMid[tabSetVal2[1]] += FncCreateFieldHtml(layout[ii]['layout'][i4]['fields'][i5]);
+            }
+          }
+          tabSetValMid[tabSetVal2[1]] += '</div>';
+        }else{
+          tabSetValMid[tabSetVal2[1]] += '<div class="" style="">';
+          for(let i4=0;i4 <layout[ii]['fields'].length;i4++){
+            tabSetValMid[tabSetVal2[1]] += FncCreateFieldHtml(layout[ii]['fields'][i4]);
+          }
+          tabSetValMid[tabSetVal2[1]] += '</div>';
+        }
+        tabSetValMid[tabSetVal2[1]] += '</div>';
+      }
+    }
+    for(let ii=0;ii<tabSetValMid.length;ii++){
+      htmlInnerVal +=tabSetValMid[ii];
+    }
+    htmlInnerVal += '</div>';
+  }
+  let footerInnerVal = '';
+  footerInnerVal += '<div class="box box1" id="tab-box999" style="width:100%;">';
+  let tabSetValFooter =[];
+  for(let i =0;i<layout.length;i++){
+    let ii = i +1;
+    if(i>=tabSetVal.length-1){
+      continue;
+    }
+    let tabSetVal2 = tabSetVal[i].split('--');
+    if(tabSetVal2[0] == '999'){
+      tabSetValFooter[tabSetVal2[1]] = `<div class="Vitem" id="Vitem_${ii}"></div>`;
+      tabSetValFooter[tabSetVal2[1]] += `<div class="item" draggable="true" id="item_${ii}">${ii}行目`;
+      if(layout[i]['type'] == 'SUBTABLE'){
+        tabSetValFooter[tabSetVal2[1]] += `<div class="pl-8 pb-5" style="">${propertiesArray[layout[i]['code']].label}<br>`;
+        for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+          tabSetValFooter[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['fields'][i4],layout[i]['type'],layout[i]['code']);
+        }
+        tabSetValFooter[tabSetVal2[1]] += '</div>';
+      }else if(layout[i]['type'] == 'GROUP'){
+        tabSetValFooter[tabSetVal2[1]] += `GROUP:${propertiesArray[layout[i]['code']]['label']}`;
+        tabSetValFooter[tabSetVal2[1]] += '<div class="" style="">';
+        for(let i4=0;i4 <layout[i]['layout'].length;i4++){
+          for(let i5=0;i5 <layout[i]['layout'][i4]['fields'].length;i5++){
+            tabSetValFooter[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['layout'][i4]['fields'][i5]);
+          }
+        }
+        tabSetValFooter[tabSetVal2[1]] += '</div>';
+      }else{
+        tabSetValFooter[tabSetVal2[1]] += '<div class="" style="">';
+        for(let i4=0;i4 <layout[i]['fields'].length;i4++){
+          tabSetValFooter[tabSetVal2[1]] += FncCreateFieldHtml(layout[i]['fields'][i4]);
+        }
+        tabSetValFooter[tabSetVal2[1]] += '</div>';
+      }
+      tabSetValFooter[tabSetVal2[1]] += '</div>';
+    }
+  }
+  for(let i=0;i<tabSetValFooter.length;i++){
+    footerInnerVal +=tabSetValFooter[i];
+  }
+
+  htmlInnerVal += '</div>';
+  htmlInnerVal += '</div>';
+  htmlInnerVal += '</td></tr>';
+  htmlInnerVal += '</table>';
+  devSpace.innerHTML = htmlInnerVal;
+  listTable.appendChild(devSpace); 
+  document.getElementById('left-tab-list').insertAdjacentHTML('beforeend', footerInnerVal);
+  
+  FncDragField();
+  FncTabOnClick(1);
+  FncMoveHeight();
+  SetTabWidthIni();
+  fixedTabOnClick(0);
+
+  const inputTab = document.getElementsByClassName("tab-right");
+  for (let i = 0;i < inputTab.length; i++) {
+    inputTab[i].addEventListener('input', SetTabWidthInput);
   }
 }
 
@@ -655,27 +657,6 @@ function FncDeleteTab(index) {
 
   // タブとタブ設定箇所にidとクリックイベントを振り直す
   giveIdTabAndBox(0);
-
-
-  // タブのid,クリックイベントを振り直し
-  // for (let i = 0; i < tabAreaElements.length; i++) {
-  //   tabAreaElements[i].setAttribute('id', `tab_${i + 1}`);
-
-  //   let deleteButton = tabAreaElements[i].querySelector('.delete-button');
-  //   deleteButton.setAttribute('onClick', `FncDeleteTab(${i + 1})`);
-
-  //   let input = tabAreaElements[i].querySelector('input');
-  //   let inputSpan = tabAreaElements[i].querySelector('.input-value-span');
-  //   input.setAttribute('onClick', `FncTabOnClick(${i + 1})`);
-  //   input.setAttribute('id', `aaButton_${i + 1}`);
-  //   inputSpan.setAttribute('id', `input-value_${i + 1}`);
-  
-  // }
-  // // タブ設定箇所のidを振り直し
-  // const tabBoxMidElements = document.getElementsByClassName('tab-box-mid');
-  // for (let i = 0; i < tabBoxMidElements.length; i++) {
-  //   tabBoxMidElements[i].setAttribute('id', `tab-box${i + 1}`);
-  // }
 
   // タブが20個未満の場合「＋」ボタンを表示にする
   if (isHiddenAddButton) {
