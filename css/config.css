@@ -144,3 +144,21 @@
   line-height: 20px;
   padding: 0;
 }
+
+#form-button-area {
+  display: flex;
+  align-items: flex-end;
+}
+
+#update-check-box-area {
+  margin-left: 20px;
+}
+
+#update-check-box-area input[type=checkbox] {
+  transform: scale(1.5);
+  margin: 0 10px 0 0;
+}
+
+#update-check-box-area label {
+  font-size: 1.1rem;
+}

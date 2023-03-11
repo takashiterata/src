@@ -5,6 +5,7 @@ let propertiesArray =[];
 let tabBoxHeight = 0;
 let config = null;
 let layout = null;
+let revision = null;
 const MAX_TAB = 20;
 const MIN_TAB = 1;
 const HEADER_TAB = 'fixed-tab_0';
@@ -20,6 +21,7 @@ const FOOTER_TAB_BOX = 'tab-box999';
   //固定オブジェクトはここで宣言
   let $form = $('.js-submit-settings');
   let $cancelButton = $('.js-cancel-button');
+  let $isUpdateChecked = $('input[name="update-app"]');
 
   $form.on('submit', function(e) {
   
@@ -74,17 +76,29 @@ const FOOTER_TAB_BOX = 'tab-box999';
       tabselect: $tabCount
       ,tabselect2: $tabSelect2
       ,tabset: $tabSet
-    }, function() {
-    
-      alert('プラグインの設定が保存されました。 アプリの更新をしてください！');
-      window.location.href = `../../flow?app=${kintone.app.getId()}`;
+    }, async function() {
+      if ($isUpdateChecked.prop('checked')) {
+        try {
+          kintone.api(
+            kintone.api.url('/k/v1/preview/app/deploy.json', true),
+            'POST',
+            { apps:[ { app: kintone.app.getId() } ] }
+          );
+        } catch {
+          window.alert("タブプラグインでエラーが発生しました。");
+        }
+        alert('プラグインの設定の保存とアプリの更新がされました。');
+      } else {
+        alert('プラグインの設定が保存されました。 アプリの更新をしてください！');
+        window.location.href = `../../flow?app=${kintone.app.getId()}`;
+      }
     });
   });
+
   $cancelButton.on('click', function() {
     window.location.href = `../../${kintone.app.getId()}/plugin/`;
   });
 })(jQuery, kintone.$PLUGIN_ID);
-
 
 //移動対象のリストを取得
 async function FncCreateTabList(PLUGIN_ID){
@@ -97,6 +111,7 @@ async function FncCreateTabList(PLUGIN_ID){
       { app: kintone.app.getId() }
     );
     layout = layoutResponse.layout;
+    revision = layoutResponse.revision;
     //フォームの設定情報
     const { properties } = await kintone.api(
       kintone.api.url('/k/v1/app/form/fields.json', true),
