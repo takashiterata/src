@@ -19,11 +19,11 @@ const FOOTER_TAB_BOX = 'tab-box_999';
   createTabList(PLUGIN_ID);
 
   //固定オブジェクトはここで宣言
-  let $form = $('.js-submit-settings');
+  let $submitButton = $('.kintoneplugin-button-dialog-ok');
   let $cancelButton = $('.js-cancel-button');
   let $isUpdateChecked = $('input[name="update-app"]');
 
-  $form.on('submit', function(e) {
+  $submitButton.on('click', function(e) {
   
     e.preventDefault();
     //配列の設定↓ *プラグインの設定値は配列を格納できないので文字列連結でsplit;
