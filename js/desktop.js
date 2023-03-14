@@ -8,11 +8,11 @@ let layout = null;
   'use strict';
   
   kintone.events.on(['app.record.detail.show','app.record.edit.show','app.record.create.show'], function(event) {
-    DeleteList(event);
+    recordScreenCreation(event);
   });
 
   //移動対象のリストを取得
-  async  function DeleteList(event){
+  async  function recordScreenCreation(event){
     try {
       config = kintone.plugin.app.getConfig(PLUGIN_ID);
 

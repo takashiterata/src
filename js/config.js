@@ -16,7 +16,7 @@ const FOOTER_TAB_BOX = 'tab-box999';
   'use strict';
 
   //API呼び出しで、同期解除の為別関数で呼び出し　動的配列も関数内で設定する。
-  FncCreateTabList(PLUGIN_ID);
+  createTabList(PLUGIN_ID);
 
   //固定オブジェクトはここで宣言
   let $form = $('.js-submit-settings');
@@ -42,7 +42,7 @@ const FOOTER_TAB_BOX = 'tab-box999';
     const tabAreaCount = document.getElementsByClassName("tab-area").length;
     let tabSetAny = [];
     for(let i=0;i<=tabAreaCount;i++){
-      let tabBoxName=`tab-box${i}`;
+      let tabBoxName=`tab-box_${i}`;
       for(let ii=1;ii<=document.getElementById(tabBoxName).childElementCount;ii++){
         let iii = ii-1;
         let i4 = Math.floor(ii / 2)-1;
@@ -101,7 +101,7 @@ const FOOTER_TAB_BOX = 'tab-box999';
 })(jQuery, kintone.$PLUGIN_ID);
 
 //移動対象のリストを取得
-async function FncCreateTabList(PLUGIN_ID){
+async function createTabList(PLUGIN_ID){
   try{
     config = kintone.plugin.app.getConfig(PLUGIN_ID);
     //フォームの設定情報
@@ -124,7 +124,7 @@ async function FncCreateTabList(PLUGIN_ID){
     window.alert("タブプラグインでエラーが発生しました。");
   }
 
-  const listTable = document.getElementById("ListTable");
+  const listTable = document.getElementById("list-table");
 
   let devSpace = document.createElement('dev');
   let tabIni = 0;
@@ -162,10 +162,10 @@ async function FncCreateTabList(PLUGIN_ID){
   if (tabIni === 0) {
     htmlInnerVal += '<div id="tab_1" class="tab-area">';
     htmlInnerVal += '<div class="button-area">';
-    htmlInnerVal += '<span class="add-button btn btn--circle btn--circle-a btn--shadow" onclick="FncAddTab(1)">＋</span>';
-    htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="FncDeleteTab(1)"">ー</span>`;
+    htmlInnerVal += '<span class="add-button btn btn--circle btn--circle-a btn--shadow" onclick="addTab(1)">＋</span>';
+    htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="deleteTab(1)"">ー</span>`;
     htmlInnerVal += '</div>';
-    htmlInnerVal += '<input type="text" id="aaButton_1" class="tab-right not-focus-tab" value="" onclick="FncTabOnClick(1)"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20">';
+    htmlInnerVal += '<input type="text" id="aaButton_1" class="tab-right not-focus-tab" value="" onclick="tabOnClick(1)"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20">';
     htmlInnerVal += '<span id="input-value_1" class="input-value-span"></span></div>';
     htmlInnerVal += '</div>';
   }
@@ -174,10 +174,10 @@ async function FncCreateTabList(PLUGIN_ID){
     let ii=i-1;
     htmlInnerVal += `<div id="tab_${i}" class="tab-area">`;
     htmlInnerVal += '<div class="button-area">';
-    htmlInnerVal += `<span class="add-button btn btn--circle btn--circle-a btn--shadow ${isHiddenAdd}" onclick="FncAddTab(${i})">＋</span>`;
-    htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="FncDeleteTab(${i})">ー</span>`;
+    htmlInnerVal += `<span class="add-button btn btn--circle btn--circle-a btn--shadow ${isHiddenAdd}" onclick="addTab(${i})">＋</span>`;
+    htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="deleteTab(${i})">ー</span>`;
     htmlInnerVal += '</div>';
-    htmlInnerVal += `<input type="text" id="aaButton_${i}" class="tab-right not-focus-tab" value="${tabSelect2Val[ii]}" onclick="FncTabOnClick(${i})" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" size="${tabSelect2Val[ii].length}">`;
+    htmlInnerVal += `<input type="text" id="aaButton_${i}" class="tab-right not-focus-tab" value="${tabSelect2Val[ii]}" onclick="tabOnClick(${i})" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" size="${tabSelect2Val[ii].length}">`;
     htmlInnerVal += `<span id="input-value_${i}" class="input-value-span">${tabSelect2Val[ii]}</span></div>`;
     htmlInnerVal += '</div>';
   }
@@ -274,7 +274,7 @@ async function FncCreateTabList(PLUGIN_ID){
   }
 
   for(let i=1;i<=tabIni;i++){
-    htmlInnerVal += `<div class="box box2 tab-box-mid" id="tab-box${i}" style="width:100%;">`;
+    htmlInnerVal += `<div class="box box2 tab-box-mid" id="tab-box_${i}" style="width:100%;">`;
     let tabSetValMid =[];
     for(let ii =0;ii<layout.length;ii++){
       if(ii>=tabSetVal.length-1){
@@ -364,10 +364,10 @@ async function FncCreateTabList(PLUGIN_ID){
   listTable.appendChild(devSpace); 
   document.getElementById('left-tab-list').insertAdjacentHTML('beforeend', footerInnerVal);
   
-  FncDragField();
-  FncTabOnClick(1);
-  FncMoveHeight();
-  SetTabWidthIni();
+  dragField();
+  tabOnClick(1);
+  moveHeight();
+  setTabWidthIni();
   fixedTabOnClick(0);
 
   const inputTab = document.getElementsByClassName("tab-right");
@@ -376,7 +376,7 @@ async function FncCreateTabList(PLUGIN_ID){
   }
 }
 
-function FncDragField(e){
+function dragField(e){
   // アイテムのリストを取得
   const items = [...document.querySelectorAll(".item")];
   // ドラッグ開始イベントを定義
@@ -403,7 +403,7 @@ function FncDragField(e){
     if ([...e.target.classList].includes("item")) {
       return;
     }
-    if(e.target.id.includes("tab-box") || e.target.id.includes("Vitem_")){
+    if(e.target.id.includes("tab-box_") || e.target.id.includes("Vitem_")){
       e.target.classList.add("over");
     } else if(e.target.id.includes("aaButton_") || e.target.id.includes('fixed-tab_')) {
       const drugTargetIndex = e.target.id.split('_')[1];
@@ -412,10 +412,10 @@ function FncDragField(e){
       const focusTargetIndex = targetTabArea.getElementsByClassName('focus-tab')[0].id.split('_')[1];
 
       if (drugTargetIndex !== focusTargetIndex) {
-        document.getElementById(`tab-box${focusTargetIndex}`).style.display='none';
+        document.getElementById(`tab-box_${focusTargetIndex}`).style.display='none';
       }
-      document.getElementById(`tab-box${drugTargetIndex}`).style.display='';
-      document.getElementById(`tab-box${drugTargetIndex}`).classList.add("over");
+      document.getElementById(`tab-box_${drugTargetIndex}`).style.display='';
+      document.getElementById(`tab-box_${drugTargetIndex}`).classList.add("over");
       e.target.classList.add("over");
     } else {
       return;
@@ -428,11 +428,11 @@ function FncDragField(e){
       const targetTabId = e.target.id.includes("aaButton_")? 'tab-name': 'fixed-tab-area';
       const targetTabArea = document.getElementById(targetTabId);
       const focusTargetIndex = targetTabArea.getElementsByClassName('focus-tab')[0].id.split('_')[1];
-      document.getElementById(`tab-box${drugLeaveIndex}`).classList.remove("over");
+      document.getElementById(`tab-box_${drugLeaveIndex}`).classList.remove("over");
       e.target.classList.remove("over");
-      document.getElementById(`tab-box${drugLeaveIndex}`).style.display='none';
+      document.getElementById(`tab-box_${drugLeaveIndex}`).style.display='none';
       if (document.getElementsByClassName('over').length < 1) {
-        document.getElementById(`tab-box${focusTargetIndex}`).style.display='';
+        document.getElementById(`tab-box_${focusTargetIndex}`).style.display='';
       }
     } else {
       e.target.classList.remove("over");
@@ -466,7 +466,7 @@ function FncDragField(e){
     }
     // 転送データの取得
     const { id } = JSON.parse(e.dataTransfer.getData("application/json"));
-    if(e.target.id.includes("tab-box")){
+    if(e.target.id.includes("tab-box_")){
     // ドロップ先に要素を追加する
     e.target.appendChild(document.getElementById(`V${id}`));
     e.target.appendChild(document.getElementById(id));
@@ -497,13 +497,13 @@ function FncDragField(e){
     } else if(e.target.id.includes("aaButton_") || e.target.id.includes('fixed-tab_')) {
       // ドロップ先のタブと相対するタブボックスに要素を追加する
       const dropIndex = e.target.id.split('_')[1];
-      document.getElementById(`tab-box${dropIndex}`).appendChild(document.getElementById(`V${id}`));
-      document.getElementById(`tab-box${dropIndex}`).appendChild(document.getElementById(id));
-      document.getElementById(`tab-box${dropIndex}`).style.display='none';
+      document.getElementById(`tab-box_${dropIndex}`).appendChild(document.getElementById(`V${id}`));
+      document.getElementById(`tab-box_${dropIndex}`).appendChild(document.getElementById(id));
+      document.getElementById(`tab-box_${dropIndex}`).style.display='none';
       const targetTabId = e.target.id.includes("aaButton_")? 'tab-name': 'fixed-tab-area';
       const targetTabArea = document.getElementById(targetTabId);
       const focusTargetIndex = targetTabArea.getElementsByClassName('focus-tab')[0].id.split('_')[1];
-      document.getElementById(`tab-box${focusTargetIndex}`).style.display='';
+      document.getElementById(`tab-box_${focusTargetIndex}`).style.display='';
       const overs = document.getElementsByClassName('over');
       for(let i = 0; i < overs.length; i++){
         overs[i].classList.remove("over");
@@ -511,7 +511,7 @@ function FncDragField(e){
     } else {
       return;
     }
-    FncMoveHeight();
+    moveHeight();
   };
 
   // ドロップ先のリストを取得
@@ -541,14 +541,14 @@ function FncDragField(e){
   }
 }
 
-function FncMoveHeight(e){
+function moveHeight(e){
   let objTabBox=[];
   objTabBox[0] =document.getElementById("tab-box0");
   objTabBox[1] =document.getElementById("tab-box999");
 
   const tabArea = document.getElementsByClassName('box2');
   for(let i = 1; i<= tabArea.length; i++){
-    objTabBox[i + 1] = tabArea[`tab-box${i}`];
+    objTabBox[i + 1] = tabArea[`tab-box_${i}`];
   }
 
   let currentMaxHeight = 0;
@@ -582,10 +582,10 @@ function FncMoveHeight(e){
   }
 }
 
-function FncTabOnClick(ini){
+function tabOnClick(ini){
   const tabAreaCount = document.getElementsByClassName('tab-area').length;
   for(let i=1;i<=tabAreaCount;i++){
-    let tabBoxName=`tab-box${i}`;
+    let tabBoxName=`tab-box_${i}`;
     let tabBoxBtn=`aaButton_${i}`;
     if(i==ini){
       document.getElementById(tabBoxName).style.display='';
@@ -630,13 +630,13 @@ function changeBackgroundColorTab(focus, targetId) {
 /**
  * 選択中のタブを削除する
  */
-function FncDeleteTab(index) {
+function deleteTab(index) {
 
   const tabAreaLengthIni = document.getElementsByClassName('tab-area').length;
   const isHiddenAddButton = (MAX_TAB === tabAreaLengthIni)?? false;
 
   // 削除するタブ
-  const deleteTabBoxItems = document.getElementById(`tab-box${index}`).getElementsByClassName('item');
+  const deleteTabBoxItems = document.getElementById(`tab-box_${index}`).getElementsByClassName('item');
 
   // フィールド移動先（トップ）
   const tabBoxTop = document.getElementById('tab-box0');
@@ -668,7 +668,7 @@ function FncDeleteTab(index) {
 
   // タブとタプ設定箇所を削除
   document.getElementById(`tab_${index}`).remove();
-  document.getElementById(`tab-box${index}`).remove();
+  document.getElementById(`tab-box_${index}`).remove();
 
   // タブとタブ設定箇所にidとクリックイベントを振り直す
   giveIdTabAndBox(0);
@@ -688,8 +688,8 @@ function FncDeleteTab(index) {
   }
 
   const focusTabIndex = index > 1 ? index - 1: index;
-  FncMoveHeight();
-  FncTabOnClick(focusTabIndex);
+  moveHeight();
+  tabOnClick(focusTabIndex);
 }
 
 /**
@@ -708,7 +708,7 @@ function displayFirstDeleteBtn(display) {
 /**
  * 新しいタブを追加する
  */
-function FncAddTab(targetIndex) {
+function addTab(targetIndex) {
   // タブの大枠のdiv生成
   let newTab = document.createElement('div');
   // タブを追加・削除するボタンエリア生成
@@ -732,7 +732,7 @@ function FncAddTab(targetIndex) {
   // タブを追加する「＋」ボタンに class/イベント を設定
   newAddTab.setAttribute('class', `add-button btn btn--circle btn--circle-a btn--shadow`);
   newAddTab.textContent = '＋';
-  newAddTab.setAttribute('onclick', `FncAddTab(${targetIndex})`);
+  newAddTab.setAttribute('onclick', `addTab(${targetIndex})`);
 
   let newInputValueSpan = document.createElement('span');
   newInputValueSpan.setAttribute('id', `input-value_${targetIndex}`);
@@ -745,14 +745,14 @@ function FncAddTab(targetIndex) {
   // タブを追加する「ー」ボタンに class/イベント を設定
   newDeleteTab.setAttribute('class', `delete-button btn btn--circle btn--circle-a btn--shadow`);
   newDeleteTab.textContent = 'ー';
-  newDeleteTab.setAttribute('onclick', `FncDeleteTab(${targetIndex})`);
+  newDeleteTab.setAttribute('onclick', `deleteTab(${targetIndex})`);
   
   // タブ名部分に id/class/style/イベント/input を設定
   newInput.setAttribute('type', 'text');
   newInput.setAttribute('maxlength', '20');
   newInput.setAttribute('id', `aaButton_${targetIndex}`);
   newInput.setAttribute('class', `tab-right not-focus-tab`);
-  newInput.setAttribute('onclick', `FncTabOnClick(${targetIndex})`);
+  newInput.setAttribute('onclick', `tabOnClick(${targetIndex})`);
   newInput.setAttribute('style', 'width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;');
 
   // タブを追加・削除するボタンエリアに＋ボタン要素を挿入
@@ -773,14 +773,14 @@ function FncAddTab(targetIndex) {
 
   // 設定箇所に class/id/style を設定
   newTabBox.setAttribute('class', 'box box2 tab-box-mid');
-  newTabBox.setAttribute('id', `tab-box${targetIndex}`);
+  newTabBox.setAttribute('id', `tab-box_${targetIndex}`);
   newTabBox.setAttribute('style', `width: 100%; height:${tabBoxHeight};`);
 
   const rightTabArea = document.getElementById('tab-name');
   const tabBoxes = document.getElementById('move-tab-box');
   
   rightTabArea.insertBefore( newTab, document.getElementById(`tab_${targetIndex}`));
-  tabBoxes.insertBefore( newTabBox, document.getElementById(`tab-box${targetIndex}`));
+  tabBoxes.insertBefore( newTabBox, document.getElementById(`tab-box_${targetIndex}`));
   
   // タブとタブ設定箇所にidとクリックイベントを振り直す
   giveIdTabAndBox(targetIndex);
@@ -794,9 +794,9 @@ function FncAddTab(targetIndex) {
     }
   }
 
-  FncDragField();
-  FncTabOnClick(targetIndex);
-  FncMoveHeight();
+  dragField();
+  tabOnClick(targetIndex);
+  moveHeight();
   newInput.addEventListener('input', SetTabWidthInput);
 }
 
@@ -810,14 +810,14 @@ function giveIdTabAndBox (startIndex) {
     tabAreaElements[i].setAttribute('id', `tab_${i + 1}`);
 
     let addButton = tabAreaElements[i].querySelector('.add-button');
-    addButton.setAttribute('onClick', `FncAddTab(${i + 1})`);
+    addButton.setAttribute('onClick', `addTab(${i + 1})`);
 
     let deleteButton = tabAreaElements[i].querySelector('.delete-button');
-    deleteButton.setAttribute('onClick', `FncDeleteTab(${i + 1})`);
+    deleteButton.setAttribute('onClick', `deleteTab(${i + 1})`);
 
     let input = tabAreaElements[i].querySelector('input');
     let inputSpan = tabAreaElements[i].querySelector('.input-value-span');
-    input.setAttribute('onClick', `FncTabOnClick(${i + 1})`);
+    input.setAttribute('onClick', `tabOnClick(${i + 1})`);
     input.setAttribute('id', `aaButton_${i + 1}`);
     inputSpan.setAttribute('id', `input-value_${i + 1}`);
   
@@ -825,14 +825,14 @@ function giveIdTabAndBox (startIndex) {
   // タブ設定箇所のidを振り直し
   const tabBoxMidElements = document.getElementsByClassName('tab-box-mid');
   for (let i = startIndex; i < tabBoxMidElements.length; i++) {
-    tabBoxMidElements[i].setAttribute('id', `tab-box${i + 1}`);
+    tabBoxMidElements[i].setAttribute('id', `tab-box_${i + 1}`);
   }
 }
 
 /**
  * 初期表示時のタブの幅を設定する
  */
-function SetTabWidthIni () {
+function setTabWidthIni () {
   const tabs = document.getElementsByClassName('tab-right');
   for (let i = 0; i < tabs.length; i++) {
     const inputValueSpan = document.getElementById(`input-value_${i + 1}`);
