@@ -124,7 +124,7 @@ async function createTabList(PLUGIN_ID){
     window.alert("タブプラグインでエラーが発生しました。");
   }
 
-  const listTable = document.getElementById("list-table");
+  const listTable = document.getElementById("ListTable");
 
   let devSpace = document.createElement('dev');
   let tabIni = 0;
