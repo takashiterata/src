@@ -10,8 +10,8 @@ const MAX_TAB = 20;
 const MIN_TAB = 1;
 const HEADER_TAB = 'fixed-tab_0';
 const FOOTER_TAB = 'fixed-tab_999';
-const HEADER_TAB_BOX = 'tab-box0';
-const FOOTER_TAB_BOX = 'tab-box999';
+const HEADER_TAB_BOX = 'tab-box_0';
+const FOOTER_TAB_BOX = 'tab-box_999';
 (function($, PLUGIN_ID) {
   'use strict';
 
@@ -54,7 +54,7 @@ const FOOTER_TAB_BOX = 'tab-box999';
         tabSetAny[row] = `${i}--${i4}`;
       }
     }
-    let tabBoxName='tab-box999';
+    let tabBoxName='tab-box_999';
     for(let i=1;i<=document.getElementById(tabBoxName).childElementCount;i++){
       let ii = i -1;
       let i4 = Math.floor(i / 2)-1;
@@ -184,7 +184,7 @@ async function createTabList(PLUGIN_ID){
   htmlInnerVal += '</td></tr>';
   htmlInnerVal += '<tr><td>';
   htmlInnerVal += '<div id="left-tab-list" class="grid">';
-  htmlInnerVal += '<div class="box box1" id="tab-box0" style="width:100%;">';
+  htmlInnerVal += '<div class="box box1" id="tab-box_0" style="width:100%;">';
 
   listCnt =layout.length;
 
@@ -270,7 +270,7 @@ async function createTabList(PLUGIN_ID){
   htmlInnerVal += '<div id="move-tab-box" class="grid">';
 
   if (tabIni === 0) {
-    htmlInnerVal += '<div class="box box2" id="tab-box1" style="width:100%;"></div>';
+    htmlInnerVal += '<div class="box box2" id="tab-box_1" style="width:100%;"></div>';
   }
 
   for(let i=1;i<=tabIni;i++){
@@ -316,7 +316,7 @@ async function createTabList(PLUGIN_ID){
     htmlInnerVal += '</div>';
   }
   let footerInnerVal = '';
-  footerInnerVal += '<div class="box box1" id="tab-box999" style="width:100%;">';
+  footerInnerVal += '<div class="box box1" id="tab-box_999" style="width:100%;">';
   let tabSetValFooter =[];
   for(let i =0;i<layout.length;i++){
     let ii = i +1;
@@ -543,8 +543,8 @@ function dragField(e){
 
 function moveHeight(e){
   let objTabBox=[];
-  objTabBox[0] =document.getElementById("tab-box0");
-  objTabBox[1] =document.getElementById("tab-box999");
+  objTabBox[0] =document.getElementById("tab-box_0");
+  objTabBox[1] =document.getElementById("tab-box_999");
 
   const tabArea = document.getElementsByClassName('box2');
   for(let i = 1; i<= tabArea.length; i++){
@@ -609,11 +609,11 @@ function fixedTabOnClick(targetIndex) {
   
   // 設定行の表示制御
   if (focusTab === HEADER_TAB) {
-    document.getElementById('tab-box0').style.display = '';
-    document.getElementById('tab-box999').style.display = 'none';
+    document.getElementById('tab-box_0').style.display = '';
+    document.getElementById('tab-box_999').style.display = 'none';
   } else {
-    document.getElementById('tab-box999').style.display = '';
-    document.getElementById('tab-box0').style.display = 'none';
+    document.getElementById('tab-box_999').style.display = '';
+    document.getElementById('tab-box_0').style.display = 'none';
   }
 }
 
@@ -639,7 +639,7 @@ function deleteTab(index) {
   const deleteTabBoxItems = document.getElementById(`tab-box_${index}`).getElementsByClassName('item');
 
   // フィールド移動先（トップ）
-  const tabBoxTop = document.getElementById('tab-box0');
+  const tabBoxTop = document.getElementById('tab-box_0');
   const tabBoxTopVItems = tabBoxTop.getElementsByClassName('Vitem');
 
   const deleteTabBoxItemsArray = [...deleteTabBoxItems];
