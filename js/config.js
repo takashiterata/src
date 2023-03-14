@@ -574,7 +574,7 @@ function moveHeight(e){
        currentMaxHeight = boxHeight
     }
   }
-  // タブ設定箇所の最大の高さを設定
+  // 行設定箇所の最大の高さを設定
   tabBoxHeight = currentMaxHeight;
 
   for(let i=0;i<objTabBox.length;i++){
@@ -628,7 +628,7 @@ function changeBackgroundColorTab(focus, targetId) {
 }
 
 /**
- * 選択中のタブを削除する
+ * 「ー」ボタンの下に位置するタブを削除する
  */
 function deleteTab(index) {
 
@@ -645,7 +645,7 @@ function deleteTab(index) {
   const deleteTabBoxItemsArray = [...deleteTabBoxItems];
   const tabBoxTopVItemsArray = [...tabBoxTopVItems];
 
-  // 削除タブに設定されているフィールドをTOPに戻す
+  // 削除タブに設定されているフィールドをヘッダーに戻す
   for (let itemKey = 0; itemKey < deleteTabBoxItemsArray.length; itemKey++) {
     let moveItemIndex = Number(deleteTabBoxItemsArray[itemKey].id.split('_')[1]);
 
@@ -670,7 +670,7 @@ function deleteTab(index) {
   document.getElementById(`tab_${index}`).remove();
   document.getElementById(`tab-box_${index}`).remove();
 
-  // タブとタブ設定箇所にidとクリックイベントを振り直す
+  // タブと行設定箇所にidとクリックイベントを振り直す
   giveIdTabAndBox(0);
 
   // タブが20個未満の場合「＋」ボタンを表示にする
@@ -782,7 +782,7 @@ function addTab(targetIndex) {
   rightTabArea.insertBefore( newTab, document.getElementById(`tab_${targetIndex}`));
   tabBoxes.insertBefore( newTabBox, document.getElementById(`tab-box_${targetIndex}`));
   
-  // タブとタブ設定箇所にidとクリックイベントを振り直す
+  // タブと行設定箇所にidとクリックイベントを振り直す
   giveIdTabAndBox(targetIndex);
   
   let newTabCount = oldTabCount + 1;
@@ -801,7 +801,7 @@ function addTab(targetIndex) {
 }
 
 /**
- * タブのid，クリックイベント、タブ設定箇所のidを付与する
+ * タブのid，クリックイベント、行設定箇所のidを付与する
 */
 function giveIdTabAndBox (startIndex) {
   const tabAreaElements = document.getElementsByClassName('tab-area');
@@ -822,7 +822,7 @@ function giveIdTabAndBox (startIndex) {
     inputSpan.setAttribute('id', `input-value_${i + 1}`);
   
   }
-  // タブ設定箇所のidを振り直し
+  // 行設定箇所のidを振り直し
   const tabBoxMidElements = document.getElementsByClassName('tab-box-mid');
   for (let i = startIndex; i < tabBoxMidElements.length; i++) {
     tabBoxMidElements[i].setAttribute('id', `tab-box_${i + 1}`);
