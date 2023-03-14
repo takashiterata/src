@@ -372,7 +372,7 @@ async function createTabList(PLUGIN_ID){
 
   const inputTab = document.getElementsByClassName("tab-right");
   for (let i = 0;i < inputTab.length; i++) {
-    inputTab[i].addEventListener('input', SetTabWidthInput);
+    inputTab[i].addEventListener('input', setTabWidthInput);
   }
 }
 
@@ -797,7 +797,7 @@ function addTab(targetIndex) {
   dragField();
   tabOnClick(targetIndex);
   moveHeight();
-  newInput.addEventListener('input', SetTabWidthInput);
+  newInput.addEventListener('input', setTabWidthInput);
 }
 
 /**
@@ -843,7 +843,7 @@ function setTabWidthIni () {
 /**
  * タブ名を入力した際にタブの幅を文字数に合わせて設定する
  */
-function SetTabWidthInput (e) {
+function setTabWidthInput (e) {
   const targetIndex = e.target.id.split('_')[1];
   const inputValueSpan = document.getElementById(`input-value_${targetIndex}`);
   inputValueSpan.textContent = e.target.value;
