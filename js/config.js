@@ -79,7 +79,7 @@ const FOOTER_TAB_BOX = 'tab-box_999';
     }, async function() {
       if ($isUpdateChecked.prop('checked')) {
         try {
-          kintone.api(
+          await kintone.api(
             kintone.api.url('/k/v1/preview/app/deploy.json', true),
             'POST',
             { apps:[ { app: kintone.app.getId() } ] }
@@ -87,7 +87,10 @@ const FOOTER_TAB_BOX = 'tab-box_999';
         } catch {
           window.alert("タブプラグインでエラーが発生しました。");
         }
-        alert('プラグインの設定の保存とアプリの更新がされました。');
+        window.setTimeout(function(){
+          alert('プラグインの設定の保存とアプリの更新がされました。');
+          window.location.href = `../../flow?app=${kintone.app.getId()}`
+        },2000);
       } else {
         alert('プラグインの設定が保存されました。 アプリの更新をしてください！');
         window.location.href = `../../flow?app=${kintone.app.getId()}`;
