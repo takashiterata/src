@@ -168,7 +168,7 @@ async function createTabList(PLUGIN_ID){
     htmlInnerVal += '<span class="add-button btn btn--circle btn--circle-a btn--shadow" onclick="addTab(1)">＋</span>';
     htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="deleteTab(1)"">ー</span>`;
     htmlInnerVal += '</div>';
-    htmlInnerVal += '<input type="text" id="aaButton_1" class="tab-right not-focus-tab" value="" onclick="tabOnClick(1)"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20">';
+    htmlInnerVal += '<input type="text" id="aaButton_1" class="tab-right not-focus-tab" value="" onclick="tabOnClick(1)"style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" placeholder="タブ1">';
     htmlInnerVal += '<span id="input-value_1" class="input-value-span"></span></div>';
     htmlInnerVal += '</div>';
   }
@@ -180,7 +180,7 @@ async function createTabList(PLUGIN_ID){
     htmlInnerVal += `<span class="add-button btn btn--circle btn--circle-a btn--shadow ${isHiddenAdd}" onclick="addTab(${i})">＋</span>`;
     htmlInnerVal += `<span class="delete-button btn btn--circle btn--circle-a btn--shadow ${isHiddenDelete}" onclick="deleteTab(${i})">ー</span>`;
     htmlInnerVal += '</div>';
-    htmlInnerVal += `<input type="text" id="aaButton_${i}" class="tab-right not-focus-tab" value="${tabSelect2Val[ii]}" onclick="tabOnClick(${i})" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" size="${tabSelect2Val[ii].length}">`;
+    htmlInnerVal += `<input type="text" id="aaButton_${i}" class="tab-right not-focus-tab" value="${tabSelect2Val[ii]}" onclick="tabOnClick(${i})" style="width:70px;border-radius:10px 10px 0px 0px;padding: 1px 6px;text-align:center;" maxlength="20" size="${tabSelect2Val[ii].length}" placeholder="タブ${i}">`;
     htmlInnerVal += `<span id="input-value_${i}" class="input-value-span">${tabSelect2Val[ii]}</span></div>`;
     htmlInnerVal += '</div>';
   }
@@ -787,6 +787,14 @@ function addTab(targetIndex) {
   
   // タブと行設定箇所にidとクリックイベントを振り直す
   giveIdTabAndBox(targetIndex);
+
+  // タブ名が空白の場合placeholderを設定
+  const tabInputs = document.getElementsByClassName('tab-right');
+  for (let i = 0; i < tabInputs.length; i++) {
+    if (tabInputs[i].value.length === 0) {
+      tabInputs[i].setAttribute('placeholder', `タブ${i + 1}`);
+    }
+  }
   
   let newTabCount = oldTabCount + 1;
 
