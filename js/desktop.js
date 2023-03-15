@@ -88,9 +88,7 @@ let layout = null;
     //設定値によりループする↑
 
     //全表示タブ
-    if(2<=config.tabselect){
-      devSpaceTab.appendChild(buttonAll);
-    }
+    devSpaceTab.appendChild(buttonAll);
     recordGaia.appendChild(devSpaceBottom); 
 
     recordGaia.appendChild(devSpaceFooter);
@@ -193,11 +191,8 @@ function ViewTag(ViewType){
     let tabBoxName = `tabVclass${i}`;
     tagArray[i] = document.getElementsByClassName(tabBoxName);
   }
-  let strInt=1;
-  if(2<=listCnt){
-    tagParmTab[0] = document.getElementById('aaButton0');
-    strInt=0;
-  }
+  let strInt=0;
+  tagParmTab[0] = document.getElementById('aaButton0');
   for(let i =1;i<=listCnt;i++){
     let tabBoxName = `aaButton${i}`;
     tagParmTab[i] = document.getElementById(tabBoxName);
