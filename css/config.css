@@ -22,7 +22,9 @@
   margin-left: 10px;
   margin-right: 10px;
   border: 1px solid black;
+  margin-top: 22px;
 }
+
 
 .dragging {
   opacity: 0.5;
@@ -60,9 +62,9 @@
   padding-bottom:5px;
 }
 
-.Vitem {
+/* .Vitem {
   height: 22px;
-}
+} */
 
 .tab-area {
   display: inline-block;

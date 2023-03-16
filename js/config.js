@@ -406,7 +406,7 @@ function dragField(e){
     if ([...e.target.classList].includes("item")) {
       return;
     }
-    if(e.target.id.includes("tab-box_") || e.target.id.includes("Vitem_")){
+    if(e.target.id.includes("tab-box_")){
       e.target.classList.add("over");
     } else if(e.target.id.includes("aaButton_") || e.target.id.includes('fixed-tab_')) {
       const drugTargetIndex = e.target.id.split('_')[1];
@@ -424,6 +424,7 @@ function dragField(e){
       return;
     }
   };
+
   // 要素が離れた際のイベントを定義
   const handleDragLeave = (e) => {
     if (e.target.id.includes("aaButton_") || e.target.id.includes('fixed-tab_')) {
@@ -470,33 +471,12 @@ function dragField(e){
     // 転送データの取得
     const { id } = JSON.parse(e.dataTransfer.getData("application/json"));
     if(e.target.id.includes("tab-box_")){
-    // ドロップ先に要素を追加する
-    e.target.appendChild(document.getElementById(`V${id}`));
-    e.target.appendChild(document.getElementById(id));
-    }else if(e.target.id.includes("Vitem_")){
-      const cItemID = e.target.id;
-      const vItemID = document.getElementById(e.target.id).parentElement.id;
-      let objTabBox = document.getElementById(vItemID);
-      let objTabBoxC = [];
-      const objTabBoxCnt = objTabBox.childElementCount;
+      // ドロップ先に要素を追加する
+      e.target.appendChild(document.getElementById(`V${id}`));
+      e.target.appendChild(document.getElementById(id));
+      const tabBox = e.target.closest(".box");
+      sortRowsInDesOrder(tabBox.id);
 
-      for(let i=0;i<objTabBox.childElementCount;i++){
-        objTabBoxC[i] = objTabBox.children[i].id;
-      }
-      for(let i=0;i<objTabBoxCnt;i++){
-        if(id == objTabBoxC[i]){
-          continue;
-        }
-        if(`V${id}` == objTabBoxC[i]){
-          continue;
-        }
-
-        if(cItemID == objTabBoxC[i]){
-        objTabBox.appendChild(document.getElementById(`V${id}`));
-        objTabBox.appendChild(document.getElementById(id));
-        }
-        objTabBox.appendChild(document.getElementById(objTabBoxC[i]));
-      }
     } else if(e.target.id.includes("aaButton_") || e.target.id.includes('fixed-tab_')) {
       // ドロップ先のタブと相対するタブボックスに要素を追加する
       const dropIndex = e.target.id.split('_')[1];
@@ -507,6 +487,8 @@ function dragField(e){
       const targetTabArea = document.getElementById(targetTabId);
       const focusTargetIndex = targetTabArea.getElementsByClassName('focus-tab')[0].id.split('_')[1];
       document.getElementById(`tab-box_${focusTargetIndex}`).style.display='';
+      const tabBox = document.getElementById(`tab-box_${dropIndex}`)
+      sortRowsInDesOrder(tabBox.id);
       const overs = document.getElementsByClassName('over');
       for(let i = 0; i < overs.length; i++){
         overs[i].classList.remove("over");
@@ -571,8 +553,8 @@ function moveHeight(e){
     if(displayFlg== 0){
       objTabBox[i].style.display = 'none';      
     }
-
-    boxHeight += 20;
+    const marginHeight = objTabBox[i].childElementCount / 2 * 22;
+    boxHeight += 20 + marginHeight;
     if(boxHeight > currentMaxHeight){
        currentMaxHeight = boxHeight
     }
@@ -653,21 +635,12 @@ function deleteTab(index) {
     let moveItemIndex = Number(deleteTabBoxItemsArray[itemKey].id.split('_')[1]);
 
     for (let vItemKey = 0; vItemKey < tabBoxTopVItemsArray.length; vItemKey++) {
-      let tabBoxIndex = Number(tabBoxTopVItemsArray[vItemKey].id.split('_')[1]);
       const moveVItem = document.getElementById(`Vitem_${moveItemIndex}`);
-      const insertBeforeItem = document.getElementById(`item_${moveItemIndex}`);
-
-      if (moveItemIndex < tabBoxIndex) {
-        tabBoxTop.insertBefore(deleteTabBoxItemsArray[itemKey], tabBoxTopVItemsArray[vItemKey]);
-        tabBoxTop.insertBefore(moveVItem, insertBeforeItem);
-        break;
-      }
-      if (vItemKey + 1 === tabBoxTopVItemsArray.length) {
-        tabBoxTop.appendChild(moveVItem);
-        tabBoxTop.appendChild(deleteTabBoxItemsArray[itemKey]);
-      } 
+      tabBoxTop.appendChild(moveVItem);
+      tabBoxTop.appendChild(deleteTabBoxItemsArray[itemKey]);
     }
   }
+  sortRowsInDesOrder('tab-box_0');
 
   // タブとタプ設定箇所を削除
   document.getElementById(`tab_${index}`).remove();
@@ -903,4 +876,31 @@ if(valHtml['type']=='SPACER'){
 }
 
 return newFieldHtml;
+}
+
+/**
+ * 行を降順で並び替える 
+ */
+function sortRowsInDesOrder (tabBoxId) {
+  const tabBox = document.getElementById(tabBoxId);
+  const tabBoxVItems = tabBox.getElementsByClassName("Vitem");
+  const tabBoxItems= tabBox.getElementsByClassName("item");
+  console.log(tabBoxVItems)
+  const tabBoxArray = [];
+  for (let i = 0; i < tabBoxVItems.length; i++) {
+    const tabBoxArrayKey = tabBoxVItems[i].id.split('_')[1];
+    let tabBoxObj = {
+      key: tabBoxArrayKey,
+      Vitem: tabBoxVItems[i],
+      item: tabBoxItems[i]
+    };
+    tabBoxArray.push(tabBoxObj);
+  }
+
+  tabBoxArray.sort((a, b) => a.key - b.key);
+  tabBox.innerHTML = '';
+  tabBoxArray.forEach(function (element) {
+    tabBox.appendChild(element.Vitem);
+    tabBox.appendChild(element.item);
+  });
 }
