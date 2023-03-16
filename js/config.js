@@ -129,7 +129,7 @@ async function createTabList(PLUGIN_ID){
 
   const listTable = document.getElementById("ListTable");
 
-  let devSpace = document.createElement('dev');
+  let devSpace = document.createElement('div');
   let tabIni = 0;
   if(config.tabselect){
     tabIni = config.tabselect;
@@ -888,7 +888,7 @@ if(valHtml['type']=='SPACER'){
   newFieldHtml += '</div>';
 }else if(valType == 'SUBTABLE'){
   //テーブル
-  newFieldHtml += `<div class="subtable-label-gaiatab" style="box-sizing:border-box;width:${valHtml['size']['width']}}px;height:auto;display:inline-block">`;
+  newFieldHtml += `<div class="subtable-label-gaiatab" style="box-sizing:border-box;width:${valHtml['size']['width']}px;height:auto;display:inline-block">`;
   newFieldHtml += `<div class="" style=""><span class="">${propertiesArray[valName]['fields'][valHtml['code']].label}</span></div>`;
   newFieldHtml += `<div class="control-value-gaiatab"><span class="" style="color:#000;">${valHtml['code']}</span></div>`;
   newFieldHtml += '<div class=""></div>';
