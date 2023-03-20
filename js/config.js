@@ -885,7 +885,6 @@ function sortRowsInDesOrder (tabBoxId) {
   const tabBox = document.getElementById(tabBoxId);
   const tabBoxVItems = tabBox.getElementsByClassName("Vitem");
   const tabBoxItems= tabBox.getElementsByClassName("item");
-  console.log(tabBoxVItems)
   const tabBoxArray = [];
   for (let i = 0; i < tabBoxVItems.length; i++) {
     const tabBoxArrayKey = tabBoxVItems[i].id.split('_')[1];
